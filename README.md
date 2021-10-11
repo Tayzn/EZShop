@@ -25,4 +25,6 @@ Change the `homepage` field in the `package.json` file to be `https://ud-cisc275
 
 Make a change in `src/App.tsx`. Commit and push the change to the main branch and see if your deployment was successful. 
 
-All your teammates will additionally need to make feature branches to add your names to the site, merging them as Pull Requests to main.
+In the future, you will no longer need to use the `npm run deploy` command - you just need to have a successful push to the `main` branch and it'll automatically deploy!
+
+All your teammates will additionally need to make feature branches to add your names to the site, merging them as Pull Requests to main. Follow the instructions in the Canvas Assignment for more details.
