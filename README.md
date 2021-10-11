@@ -11,17 +11,7 @@ After forking, click on your picture -> settings in the top right of Github. The
 ### 2. Add a secret to the forked repo
 In the forked repo, go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step. 
 
-### 3. Change the package.json
-
-Change the `homepage` field in the `package.json` file to be `https://ud-cisc275-f21.github.io/YOUR-TEAMS-REPOSITORY-NAME/`, replacing the capitalized letters with the actual name of your repository:
-```json
-{
-  "name": "final-project-starter",
-  "homepage": "https://ud-cisc275-f21.github.io/YOUR-TEAMS-REPOSITORY-NAME/",
-  "version": "0.1.0",
-```
-
-### 4. Test your deployment
+### 3. Test your deployment
 
 Make a change in `src/App.tsx`. Commit and push the change to the main branch and see if your deployment was successful. 
 
