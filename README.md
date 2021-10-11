@@ -11,15 +11,9 @@ After forking, click on your picture -> settings in the top right of Github. The
 ### 2. Add a secret to the forked repo
 In the forked repo, go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step. 
 
-### 3. Change the workflow file and package.json
+### 3. Change the package.json
 
-Open the [.github/workflows/node.js.yml](.github/workflows/node.js.yml) file, and edit lines 36 and 37 to have your name and email: 
-```
-git config --global user.name YOURNAME
-git config --global user.email YOUREMAIL@udel.edu
-```
-
-Then, change the `homepage` field in the `package.json` file to be `https://ud-cisc275-f21.github.io/YOUR-TEAMS-REPOSITORY-NAME/`, replacing the capitalized letters with the actual name of your repository:
+Change the `homepage` field in the `package.json` file to be `https://ud-cisc275-f21.github.io/YOUR-TEAMS-REPOSITORY-NAME/`, replacing the capitalized letters with the actual name of your repository:
 ```json
 {
   "name": "final-project-starter",
