@@ -1,6 +1,8 @@
 # 275 Final Project Starter Repo
 Hello! This repository has been pre-configured with eslint and gh-pages to automatically deploy your app when you push to the main branch. 
 
+You will, however, need to finish setting up the deployment.
+
 ## Setting Up the Deployment
 
 ### 1. Generate a personal access token
@@ -17,6 +19,12 @@ git config --global user.email YOUREMAIL@udel.edu
 ```
 
 Then, change the "homepage" field in the `package.json` file to be `https://YOUR_USERNAME.github.io/final-project-starter/`
+```json
+{
+  "name": "final-project-starter",
+  "homepage": "https://YOUR_USERNAME.github.io/final-project-starter/",
+  "version": "0.1.0",
+```
 
 ### 4. Test your deployment
 Make a change in `src/App.tsx`. Commit and push the change to the main branch and see if your deployment was successful. 
