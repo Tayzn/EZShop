@@ -6,10 +6,10 @@ You will, however, need to finish setting up the deployment.
 ## Setting Up the Deployment
 
 ### 1. Generate a personal access token
-After forking, click on your picture -> settings in the top right of Github. Then, scroll to "Developer Settings" and click "Personal access tokens." Generate a new token with "repo" access and no expiration date. Make sure you copy the created token as you will not be able to see it after this.
+Click on your picture -> settings in the top right of Github. Then, scroll to "Developer Settings" and click "Personal access tokens." Generate a new token with "repo" access and no expiration date. Make sure you copy the created token as you will not be able to see it after this.
 
 ### 2. Add a secret to the forked repo
-In the forked repo, go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step. 
+Go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step. 
 
 ### 3. Test your deployment
 
