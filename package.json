@@ -1,6 +1,6 @@
 {
-  "name": "final-project-starter",
-  "homepage": "SET_DURING_BUILD",
+  "name": "react-typescript-starter",
+  "homepage": "homepage",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -25,7 +25,8 @@
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "lint": "eslint ./src --ext .tsx --ext .ts --max-warnings 0"
+    "lint": "eslint ./src --ext .tsx --ext .ts --max-warnings 0",
+    "format": "prettier --config .prettierrc --write src/**/*.{ts,tsx}"
   },
   "eslintConfig": {
     "extends": [
@@ -47,9 +48,13 @@
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.32.0",
-    "@typescript-eslint/parser": "^4.32.0",
+    "@typescript-eslint/parser": "^4.33.0",
     "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
-    "gh-pages": "^3.2.3"
+    "gh-pages": "^3.2.3",
+    "prettier": "2.5.1",
+    "prettier-eslint": "^13.0.0"
   }
 }
