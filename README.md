@@ -6,8 +6,13 @@ You will, however, need to finish setting up the deployment.
 
 ### 1. Generate a personal access token
 
-Click on your picture -> settings in the top right of Github. Then, scroll to "Developer Settings" and click "Personal access tokens." Generate a new token with "repo" access and no expiration date. Make sure you copy the created token as you will not be able to see it after this.
+1. Click on your picture -> `settings` in the top right of Github.
+2. Then, scroll to `Developer Settings` and click `Personal access tokens`
+3. Generate a new token with `repo` access and no expiration date.
+4. Make sure you copy the created token as you will not be able to see it after this.
 
 ### 2. Add a secret to the forked repo
 
-Go to settings -> secrets and click "New repository secret." Name the secret "GH_TOKEN" and paste in the value you copied in the previous step.
+Back in this repository, go to `settings` -> `secrets` -> `Actions` and click the `New repository secret` button in the topright.
+
+Name the secret "GH_TOKEN" and paste in the token you copied in the previous step.
