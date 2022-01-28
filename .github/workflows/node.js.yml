@@ -37,7 +37,7 @@ jobs:
                   value: ${{ steps.get-repo-values.outputs.url }}
             - run: npm ci
             - run: npm run lint
-            - run: npm run test --coverage |& tee ./public/test_report.txt
+            - run: npm run test -- --coverage |& tee ./public/test_report.txt
             - run: npm run build --if-present
 
             - name: Deploy
