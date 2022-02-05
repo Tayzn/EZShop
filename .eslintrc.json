@@ -26,7 +26,12 @@
     },
     "plugins": ["react", "@typescript-eslint", "prettier"],
     "rules": {
-        "prettier/prettier": 2,
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
         "no-extra-parens": [
             "warn",
             "all",
