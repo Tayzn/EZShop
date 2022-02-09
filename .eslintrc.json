@@ -37,7 +37,8 @@
             "all",
             {
                 "nestedBinaryExpressions": false,
-                "returnAssign": false
+                "returnAssign": false,
+                "enforceForArrowConditionals": false
             }
         ],
         "brace-style": ["error", "1tbs"],
