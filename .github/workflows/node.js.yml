@@ -26,7 +26,7 @@ jobs:
             - id: get-repo-values
               run: |
                   url=https://$(echo "${{github.repository}}" | sed "s/\//.github.io\//")
-                  echo "::set-output name=url::$url"
+                  echo "url=$url" >> $GITHUB_OUTPUT
             - name: Update package.json homepage
               uses: jossef/action-set-json-field@v1
               with:
