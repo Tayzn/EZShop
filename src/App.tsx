@@ -9,7 +9,10 @@ function App(): JSX.Element {
             </header>
             <h1>Team Members:</h1>
             <p>Tyler Nauta</p>
+            <p>Paul Kearney</p>
+            <p>Matt Meredith</p>
             <p>Nick Lago</p>
+
         </div>
     );
 }
