@@ -11,6 +11,9 @@ function App(): JSX.Element {
             <p>Tyler Nauta</p>
             <p>Paul Kearney</p>
             <p>Matt Meredith</p>
+            <p>Nick Lago</p>
+
+
         </div>
     );
 }
