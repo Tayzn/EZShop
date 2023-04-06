@@ -13,6 +13,7 @@ function App(): JSX.Element {
             <p>Matt Meredith</p>
             <p>Nick Lago</p>
             <p>Evan Lewis</p>
+            <p>Kay Sousa</p>
         </div>
     );
 }
