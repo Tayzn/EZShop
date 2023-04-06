@@ -17,3 +17,13 @@ They aim to shop and purchase something, or just browse.
 
 - **What's your main barrier to achieving this goal?**  
 Creating an interface that is modern and welcoming to the average student.
+
+## Stocking Employee
+- **Who are you?**  
+This is an employee who has the ability to update the stock of products on the store.
+
+- **What's your main goal?**  
+They aim to keep the stock up-to-date and allow the user to add their products if there is enough.
+
+- **What's your main barrier to achieving this goal?**  
+Creating an intuitive way to update the stock of all products.
