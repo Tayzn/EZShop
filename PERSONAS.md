@@ -27,3 +27,23 @@ They aim to keep the stock up-to-date and allow the user to add their products i
 
 - **What's your main barrier to achieving this goal?**  
 Creating an intuitive way to update the stock of all products.
+
+## Colorblind User
+- **Who are you?**  
+An ordinary shopper, but they happen to be colorblind.
+  
+- **What's your main goal?**  
+They want to buy something from our website.
+
+- **What's your main barrier to achieving this goal?**  
+If the colors don't look right to them, they may struggle to navigate the site.
+
+## Supplier
+- **Who are you?**  
+Someone who works for a big shot supplying company that would be an invaluable work partner.
+  
+- **What's your main goal?**  
+They want to reach out for a potential partnership.
+
+- **What's your main barrier to achieving this goal?**  
+No obvious way to contact the site admins.
