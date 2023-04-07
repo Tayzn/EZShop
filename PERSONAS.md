@@ -27,3 +27,13 @@ They aim to keep the stock up-to-date and allow the user to add their products i
 
 - **What's your main barrier to achieving this goal?**  
 Creating an intuitive way to update the stock of all products.
+## Basic Customer
+- **Who are you?**  
+I am a student starting college.
+  
+- **What's your main goal?**  
+I am looking to buy a large quantity of books and other assorted items to start off college.
+
+- **What's your main barrier to achieving this goal?**  
+if our site does not have enough variety, they may go to competitor web-stores.
+
