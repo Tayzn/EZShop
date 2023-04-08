@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-
+import { Filter } from "./components/Filter";
 function App(): JSX.Element {
     return (
         <div className="App">
@@ -10,6 +10,7 @@ function App(): JSX.Element {
             <h1>Team Members:</h1>
             <p>Tyler Nauta</p>
             <p>Paul Kearney</p>
+            {<Filter></Filter>}
             <p>Matt Meredith</p>
             <p>Nick Lago</p>
             <p>Evan Lewis</p>
