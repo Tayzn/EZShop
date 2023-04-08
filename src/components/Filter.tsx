@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 export function Filter(): JSX.Element {
+    //below are just place holder item fields
     const [filterVisible, setFilterVisible] = useState(false);
     const colors = ["any", "red", "blue", "pink"];
     const sizes = ["any", "small", "medium", "large"];
@@ -8,6 +9,7 @@ export function Filter(): JSX.Element {
     const [size, setSize] = useState("any");
     const [isInStock, setIsInStock] = useState(true);
     const [backorder, setBackorder] = useState(false);
+    //All css went into App.css
     return (
         <div>
             <Button
