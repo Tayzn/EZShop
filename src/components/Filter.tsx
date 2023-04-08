@@ -51,7 +51,7 @@ export function Filter(): JSX.Element {
                             ))}
                         </Form.Select>
                         <hr></hr>
-                        Avalibility:
+                        Availability:
                         <h1></h1>
                         <Form.Check
                             inline
