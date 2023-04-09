@@ -109,12 +109,12 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/NavbarCollapse.js:23:3
         at nav
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Navbar.js:60:43
-        at HeaderNav
+        at HeaderNav (/home/runner/work/275-Final-Project/275-Final-Project/src/components/HeaderNav.tsx:10:29)
         at div
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Col.js:72:8
         at div
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Container.js:24:3
-        at App
+        at App (/home/runner/work/275-Final-Project/275-Final-Project/src/App.tsx:16:37)
     
     Consider adding an error boundary to your tree to customize error handling behavior.
     Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
@@ -135,7 +135,7 @@ Browserslist: caniuse-lite is outdated. Please run:
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Col.js:72:8
         at div
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Container.js:24:3
-        at App
+        at App (/home/runner/work/275-Final-Project/275-Final-Project/src/App.tsx:16:37)
     
     Consider adding an error boundary to your tree to customize error handling behavior.
     Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
@@ -149,7 +149,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (235 ms)
+  ✕ renders the course name somewhere (290 ms)
 
   ● renders the course name somewhere
 
@@ -198,14 +198,15 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|-------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------|---------|----------|---------|---------|-------------------
-All files               |   39.71 |     40.9 |   19.54 |   39.71 |                   
- src                    |     100 |      100 |     100 |     100 |                   
-  App.tsx               |     100 |      100 |     100 |     100 |                   
- src/components         |   56.52 |       45 |   28.88 |   56.52 |                   
+All files               |      40 |    41.66 |    19.1 |   39.58 |                   
+ src                    |     100 |       50 |     100 |     100 |                   
+  App.tsx               |     100 |       50 |     100 |     100 | 22                
+ src/components         |   55.78 |       45 |   27.65 |   55.31 |                   
   AuthComponent.tsx     |   47.82 |    42.85 |   22.22 |   47.82 | 32-34,38-43,63-96 
+  Cart.tsx              |      50 |      100 |       0 |      50 | 6                 
   Filter.tsx            |    62.5 |      100 |   33.33 |    62.5 | 17-31,45,68-93    
   Footer.tsx            |     100 |       50 |     100 |     100 | 16                
-  HeaderNav.tsx         |      75 |      100 |      50 |      75 | 42,46,50          
+  HeaderNav.tsx         |   69.23 |      100 |   42.85 |   66.66 | 30,47,51,55       
   ImageBanner.tsx       |     100 |      100 |     100 |     100 |                   
   Inventory.tsx         |     100 |      100 |     100 |     100 |                   
   TempDataComponent.tsx |   44.11 |       50 |   11.11 |   44.11 | 53-67,74-177      
@@ -221,5 +222,5 @@ All files               |   39.71 |     40.9 |   19.54 |   39.71 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.987 s
+Time:        2.888 s
 Ran all test suites.
