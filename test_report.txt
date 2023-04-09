@@ -98,6 +98,17 @@ Browserslist: caniuse-lite is outdated. Please run:
     
         at AuthComponent (/home/runner/work/275-Final-Project/275-Final-Project/src/components/AuthComponent.tsx:19:29)
         at div
+        at Transition (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-transition-group/cjs/Transition.js:133:30)
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/TransitionWrapper.js:24:3
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Collapse.js:60:3
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/NavbarCollapse.js:23:3
+        at div
+        at Transition (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-transition-group/cjs/Transition.js:133:30)
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/TransitionWrapper.js:24:3
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Collapse.js:60:3
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/NavbarCollapse.js:23:3
+        at nav
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Navbar.js:60:43
         at HeaderNav
         at div
         at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Col.js:72:8
@@ -138,7 +149,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (265 ms)
+  ✕ renders the course name somewhere (235 ms)
 
   ● renders the course name somewhere
 
@@ -187,14 +198,14 @@ FAIL src/App.test.tsx
 ------------------------|---------|----------|---------|---------|-------------------
 File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------|---------|----------|---------|---------|-------------------
-All files               |    37.4 |       40 |   18.29 |    37.4 |                   
+All files               |   39.71 |     40.9 |   19.54 |   39.71 |                   
  src                    |     100 |      100 |     100 |     100 |                   
   App.tsx               |     100 |      100 |     100 |     100 |                   
- src/components         |   54.87 |    44.44 |    27.5 |   54.87 |                   
+ src/components         |   56.52 |       45 |   28.88 |   56.52 |                   
   AuthComponent.tsx     |   47.82 |    42.85 |   22.22 |   47.82 | 32-34,38-43,63-96 
   Filter.tsx            |    62.5 |      100 |   33.33 |    62.5 | 17-31,45,68-93    
-  Footer.tsx            |     100 |      100 |     100 |     100 |                   
-  HeaderNav.tsx         |     100 |      100 |     100 |     100 |                   
+  Footer.tsx            |     100 |       50 |     100 |     100 | 16                
+  HeaderNav.tsx         |      75 |      100 |      50 |      75 | 42,46,50          
   ImageBanner.tsx       |     100 |      100 |     100 |     100 |                   
   Inventory.tsx         |     100 |      100 |     100 |     100 |                   
   TempDataComponent.tsx |   44.11 |       50 |   11.11 |   44.11 | 53-67,74-177      
@@ -210,5 +221,5 @@ All files               |    37.4 |       40 |   18.29 |    37.4 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.991 s
+Time:        2.987 s
 Ran all test suites.
