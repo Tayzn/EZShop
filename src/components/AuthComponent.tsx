@@ -4,7 +4,7 @@
  * 4/8/2023
  */
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     auth_CreateUser,
     auth_GetCurrentUser,
@@ -17,6 +17,11 @@ import { Alert, Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 
 export function AuthComponent(): JSX.Element {
     const [user, setUser] = useState<User | null>(auth_GetCurrentUser());
+
+    useEffect(() => {
+        auth_HookUserState(setUser);
+    }, []);
+
     const [error, setError] = useState<string>("");
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
@@ -39,8 +44,6 @@ export function AuthComponent(): JSX.Element {
             })
             .catch(setError);
     };
-
-    auth_HookUserState(setUser);
 
     return (
         <div>
