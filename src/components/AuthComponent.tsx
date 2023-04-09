@@ -49,7 +49,7 @@ export function AuthComponent(): JSX.Element {
         <div>
             {user ? (
                 <span>
-                    <p>
+                    <p className="m-0">
                         Welcome,&nbsp;
                         {user.displayName ? user.displayName : user.email}
                         &nbsp;
