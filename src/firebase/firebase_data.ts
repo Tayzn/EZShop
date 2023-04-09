@@ -19,7 +19,7 @@ import {
 import { app } from "./firebase";
 import { Product } from "../interface/product";
 import { UserAccount } from "../interface/account";
-import { Cart } from "../interface/cart";
+//import { Cart } from "../interface/cart";
 
 export interface ReferencedObject<T> {
     data: T;
