@@ -7,7 +7,7 @@ import { HeaderNav } from "./components/HeaderNav";
 import { ImageBanner } from "./components/ImageBanner";
 import { Inventory } from "./components/Inventory";
 import { Footer } from "./components/Footer";
-import { TempDataComponent } from "./components/TempDataComponent";
+import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
 
 function App(): JSX.Element {
     return (
@@ -17,7 +17,7 @@ function App(): JSX.Element {
                 <ImageBanner />
                 <Inventory />
                 <Footer />
-                <TempDataComponent />
+                <ProductDisplayGrid />
             </Col>
         </Container>
     );
