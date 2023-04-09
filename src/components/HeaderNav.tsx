@@ -55,35 +55,35 @@ const LinkUsers = (): JSX.Element => (
 );
 
 // Link Bundles by Role
-const UserLinks = (): JSX.Element => {
-    return (
-        <Nav className="me-auto">
-            <LinkProducts />
-        </Nav>
-    );
-};
+// const UserLinks = (): JSX.Element => {
+//     return (
+//         <Nav className="me-auto">
+//             <LinkProducts />
+//         </Nav>
+//     );
+// };
 
-const StockerLinks = (): JSX.Element => {
-    return (
-        <Nav className="me-auto">
-            <LinkProducts />
-            <NavDropdown title="Stocker" id="collasible-nav-dropdown">
-                <LinkOrders />
-            </NavDropdown>
-        </Nav>
-    );
-};
+// const StockerLinks = (): JSX.Element => {
+//     return (
+//         <Nav className="me-auto">
+//             <LinkProducts />
+//             <NavDropdown title="Stocker" id="collasible-nav-dropdown">
+//                 <LinkOrders />
+//             </NavDropdown>
+//         </Nav>
+//     );
+// };
 
-const SupplierLinks = (): JSX.Element => {
-    return (
-        <Nav className="me-auto">
-            <LinkProducts />
-            <NavDropdown title="Supplier" id="collasible-nav-dropdown">
-                <LinkInventory />
-            </NavDropdown>
-        </Nav>
-    );
-};
+// const SupplierLinks = (): JSX.Element => {
+//     return (
+//         <Nav className="me-auto">
+//             <LinkProducts />
+//             <NavDropdown title="Supplier" id="collasible-nav-dropdown">
+//                 <LinkInventory />
+//             </NavDropdown>
+//         </Nav>
+//     );
+// };
 
 const AdminLinks = (): JSX.Element => {
     return (
