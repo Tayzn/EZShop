@@ -18,7 +18,7 @@ function App(): JSX.Element {
     return (
         <Container fluid className="m-0 p-0">
             <Col className="vh-100">
-                <HeaderNav />
+                <HeaderNav setCartView={setCartView} />
                 {cartView ? (
                     <Cart />
                 ) : (
