@@ -16,7 +16,7 @@ export function Filter(): JSX.Element {
                 className="filter-button"
                 onClick={() => setFilterVisible(true)}
             >
-                filter
+                Filter
             </Button>
             <div className="outcrop" hidden={!filterVisible}>
                 <div className="popup" id="pop" hidden={!filterVisible}>

@@ -4,7 +4,7 @@ import { Filter } from "./Filter";
 
 export const Inventory = (): JSX.Element => {
     return (
-        <div>
+        <div style={{ height: "62%", overflowY: "scroll" }}>
             Inventory <Filter />
         </div>
     );

@@ -3,8 +3,7 @@ import { AuthComponent } from "./AuthComponent";
 
 export const HeaderNav = (): JSX.Element => {
     return (
-        <div style={{ backgroundColor: "#a1f79f" }}>
-            HeaderNav
+        <div style={{ height: "5%", backgroundColor: "#a1f79f" }}>
             <AuthComponent />
         </div>
     );
