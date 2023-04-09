@@ -19,7 +19,7 @@ export function AuthComponent(): JSX.Element {
     const [user, setUser] = useState<User | null>(auth_GetCurrentUser());
 
     useEffect(() => {
-        auth_HookUserState(setUser);
+        return auth_HookUserState(setUser);
     }, []);
 
     const [error, setError] = useState<string>("");

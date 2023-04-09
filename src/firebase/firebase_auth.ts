@@ -1,6 +1,7 @@
 import {
     Auth,
     User,
+    Unsubscribe,
     getAuth,
     onAuthStateChanged,
     createUserWithEmailAndPassword,
@@ -17,14 +18,18 @@ export function auth_Initialize() {
 
     onAuthStateChanged(auth, (user) => {
         currentUser = user;
-        console.log("current user", user?.email);
     });
 }
 
+/**
+ * Hook a state dispatcher onto login change events
+ * @param stateDispatcher The state dispatcher to attach
+ * @returns An unsubscribe function to clean up when done
+ */
 export function auth_HookUserState(
     stateDispatcher: React.Dispatch<React.SetStateAction<User | null>>
-) {
-    onAuthStateChanged(auth, (user) => {
+): Unsubscribe {
+    return onAuthStateChanged(auth, (user) => {
         stateDispatcher(user);
     });
 }
