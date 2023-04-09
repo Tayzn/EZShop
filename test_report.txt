@@ -77,8 +77,12 @@ Browserslist: caniuse-lite is outdated. Please run:
     The above error occurred in the <AuthComponent> component:
     
         at AuthComponent (/home/runner/work/275-Final-Project/275-Final-Project/src/components/AuthComponent.tsx:19:29)
-        at header
         at div
+        at HeaderNav
+        at div
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Col.js:72:8
+        at div
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Container.js:24:3
         at App
     
     Consider adding an error boundary to your tree to customize error handling behavior.
@@ -93,7 +97,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (167 ms)
+  ✕ renders the course name somewhere (176 ms)
 
   ● renders the course name somewhere
 
@@ -146,12 +150,16 @@ FAIL src/App.test.tsx
 --------------------|---------|----------|---------|---------|-------------------
 File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 --------------------|---------|----------|---------|---------|-------------------
-All files           |   37.28 |        0 |   21.21 |   37.28 |                   
+All files           |   45.58 |        0 |   29.72 |   45.58 |                   
  src                |     100 |      100 |     100 |     100 |                   
   App.tsx           |     100 |      100 |     100 |     100 |                   
- src/components     |      50 |        0 |   23.52 |      50 |                   
+ src/components     |   59.57 |        0 |   38.09 |   59.57 |                   
   AuthComponent.tsx |    40.9 |        0 |    12.5 |    40.9 | 27-29,33-38,45-93 
   Filter.tsx        |    62.5 |      100 |   33.33 |    62.5 | 17-31,45,68-93    
+  Footer.tsx        |     100 |      100 |     100 |     100 |                   
+  HeaderNav.tsx     |     100 |      100 |     100 |     100 |                   
+  ImageBanner.tsx   |     100 |      100 |     100 |     100 |                   
+  Inventory.tsx     |     100 |      100 |     100 |     100 |                   
  src/firebase       |      10 |      100 |   13.33 |      10 |                   
   firebase.ts       |       0 |      100 |       0 |       0 | 14-28             
   firebase_auth.ts  |    12.5 |      100 |   14.28 |    12.5 | 16-20,28,40-64    
@@ -159,5 +167,5 @@ All files           |   37.28 |        0 |   21.21 |   37.28 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.302 s
+Time:        2.406 s
 Ran all test suites.
