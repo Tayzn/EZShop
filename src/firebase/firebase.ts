@@ -2,6 +2,7 @@
 import { FirebaseApp, initializeApp } from "firebase/app";
 import { Analytics, getAnalytics } from "firebase/analytics";
 import { auth_Initialize } from "./firebase_auth";
+import { data_Initialize } from "./firebase_data";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -26,4 +27,5 @@ export function initializeFirebase() {
     analytics = getAnalytics(app);
 
     auth_Initialize();
+    data_Initialize();
 }
