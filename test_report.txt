@@ -70,6 +70,30 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
 
   console.error
+    Error: Uncaught [FirebaseError: Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore]
+        at reportException (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:66:24)
+        at innerInvokeEventListeners (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+        at invokeEventListeners (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+        at HTMLUnknownElementImpl._dispatch (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+        at HTMLUnknownElementImpl.dispatchEvent (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+        at HTMLUnknownElement.dispatchEvent (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/jsdom/lib/jsdom/living/generated/EventTarget.js:231:34)
+        at Object.invokeGuardedCallbackDev (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-dom/cjs/react-dom.development.js:3994:16)
+        at invokeGuardedCallback (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-dom/cjs/react-dom.development.js:4056:31)
+        at flushPassiveEffectsImpl (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-dom/cjs/react-dom.development.js:23574:9)
+        at unstable_runWithPriority (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/scheduler/cjs/scheduler.development.js:468:12) [FirebaseError: Expected first argument to collection() to be a CollectionReference, a DocumentReference or FirebaseFirestore] {
+      code: 'invalid-argument',
+      customData: undefined,
+      toString: [Function (anonymous)]
+    }
+
+      at VirtualConsole.<anonymous> (node_modules/jsdom/lib/jsdom/virtual-console.js:29:45)
+      at reportException (node_modules/jsdom/lib/jsdom/living/helpers/runtime-script-errors.js:70:28)
+      at innerInvokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:341:9)
+      at invokeEventListeners (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:274:3)
+      at HTMLUnknownElementImpl._dispatch (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:221:9)
+      at HTMLUnknownElementImpl.dispatchEvent (node_modules/jsdom/lib/jsdom/living/events/EventTarget-impl.js:94:17)
+
+  console.error
     The above error occurred in the <AuthComponent> component:
     
         at AuthComponent (/home/runner/work/275-Final-Project/275-Final-Project/src/components/AuthComponent.tsx:19:29)
@@ -92,8 +116,29 @@ Browserslist: caniuse-lite is outdated. Please run:
       at commitLayoutEffects (node_modules/react-dom/cjs/react-dom.development.js:23426:7)
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
+  console.error
+    The above error occurred in the <TempDataComponent> component:
+    
+        at TempDataComponent (/home/runner/work/275-Final-Project/275-Final-Project/src/components/TempDataComponent.tsx:27:37)
+        at div
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Col.js:72:8
+        at div
+        at /home/runner/work/275-Final-Project/275-Final-Project/node_modules/react-bootstrap/cjs/Container.js:24:3
+        at App
+    
+    Consider adding an error boundary to your tree to customize error handling behavior.
+    Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries.
+
+      at logCapturedError (node_modules/react-dom/cjs/react-dom.development.js:20085:23)
+      at update.callback (node_modules/react-dom/cjs/react-dom.development.js:20118:5)
+      at callCallback (node_modules/react-dom/cjs/react-dom.development.js:12318:12)
+      at commitUpdateQueue (node_modules/react-dom/cjs/react-dom.development.js:12339:9)
+      at commitLifeCycles (node_modules/react-dom/cjs/react-dom.development.js:20736:11)
+      at commitLayoutEffects (node_modules/react-dom/cjs/react-dom.development.js:23426:7)
+      at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
+
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (187 ms)
+  ✕ renders the course name somewhere (265 ms)
 
   ● renders the course name somewhere
 
@@ -139,25 +184,31 @@ FAIL src/App.test.tsx
       at _run10000 (node_modules/@jest/core/build/cli/index.js:320:7)
       at runCLI (node_modules/@jest/core/build/cli/index.js:173:3)
 
---------------------|---------|----------|---------|---------|-------------------
-File                | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
---------------------|---------|----------|---------|---------|-------------------
-All files           |   48.52 |    42.85 |   31.57 |   48.52 |                   
- src                |     100 |      100 |     100 |     100 |                   
-  App.tsx           |     100 |      100 |     100 |     100 |                   
- src/components     |    62.5 |    42.85 |    40.9 |    62.5 |                   
-  AuthComponent.tsx |   47.82 |    42.85 |   22.22 |   47.82 | 32-34,38-43,63-96 
-  Filter.tsx        |    62.5 |      100 |   33.33 |    62.5 | 17-31,45,68-93    
-  Footer.tsx        |     100 |      100 |     100 |     100 |                   
-  HeaderNav.tsx     |     100 |      100 |     100 |     100 |                   
-  ImageBanner.tsx   |     100 |      100 |     100 |     100 |                   
-  Inventory.tsx     |     100 |      100 |     100 |     100 |                   
- src/firebase       |   10.52 |      100 |   13.33 |   10.52 |                   
-  firebase.ts       |       0 |      100 |       0 |       0 | 14-28             
-  firebase_auth.ts  |   13.33 |      100 |   14.28 |   13.33 | 17-20,33,55-88    
---------------------|---------|----------|---------|---------|-------------------
+------------------------|---------|----------|---------|---------|-------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------|---------|----------|---------|---------|-------------------
+All files               |    37.4 |       40 |   18.29 |    37.4 |                   
+ src                    |     100 |      100 |     100 |     100 |                   
+  App.tsx               |     100 |      100 |     100 |     100 |                   
+ src/components         |   54.87 |    44.44 |    27.5 |   54.87 |                   
+  AuthComponent.tsx     |   47.82 |    42.85 |   22.22 |   47.82 | 32-34,38-43,63-96 
+  Filter.tsx            |    62.5 |      100 |   33.33 |    62.5 | 17-31,45,68-93    
+  Footer.tsx            |     100 |      100 |     100 |     100 |                   
+  HeaderNav.tsx         |     100 |      100 |     100 |     100 |                   
+  ImageBanner.tsx       |     100 |      100 |     100 |     100 |                   
+  Inventory.tsx         |     100 |      100 |     100 |     100 |                   
+  TempDataComponent.tsx |   44.11 |       50 |   11.11 |   44.11 | 53-67,74-177      
+ src/firebase           |    6.25 |        0 |    7.31 |    6.25 |                   
+  firebase.ts           |       0 |      100 |       0 |       0 | 15-30             
+  firebase_auth.ts      |   13.33 |      100 |   14.28 |   13.33 | 17-20,33,55-88    
+  firebase_data.ts      |    3.57 |        0 |    3.84 |    3.57 | 32-145,161-198    
+ src/interface          |       0 |        0 |       0 |       0 |                   
+  account.ts            |       0 |        0 |       0 |       0 |                   
+  cart.ts               |       0 |        0 |       0 |       0 |                   
+  product.ts            |       0 |        0 |       0 |       0 |                   
+------------------------|---------|----------|---------|---------|-------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        2.321 s
+Time:        2.991 s
 Ran all test suites.
