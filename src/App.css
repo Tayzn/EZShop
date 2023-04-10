@@ -55,3 +55,25 @@
 .item {
     border: 1px solid #6dee5c;
 }
+
+.side-shadow {
+    box-shadow: 12px 0 15px -4px rgba(0, 0, 0, 0.2),
+        -12px 0 8px -4px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+.ez-bg {
+    background-image: url(https://i.ibb.co/5xctNYH/ezbg.png);
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.h-20 {
+    height: 20%;
+}
+
+.h-80 {
+    height: 80%;
+}

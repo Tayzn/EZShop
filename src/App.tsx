@@ -6,27 +6,17 @@ import { Container, Col } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 
 import { HeaderNav } from "./components/HeaderNav";
-import { ImageBanner } from "./components/ImageBanner";
-import { Inventory } from "./components/Inventory";
-import { EmptyPage } from "./components/EmptyPage";
+import { Home } from "./components/Home";
 import { Cart } from "./components/Cart";
+import { EmptyPage } from "./components/EmptyPage";
 
 function App(): JSX.Element {
-    const home = (): JSX.Element => {
-        return (
-            <>
-                <ImageBanner />
-                <Inventory />
-            </>
-        );
-    };
-
     return (
-        <Container fluid className="m-0 p-0 vh-100">
+        <Container fluid className="m-0 p-0 vh-100 overflow-hidden">
             <Col className="h-100 d-flex flex-column">
                 <HeaderNav />
                 <Routes>
-                    <Route path="/" element={home()} />
+                    <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>
