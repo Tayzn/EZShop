@@ -10,8 +10,6 @@ import { ImageBanner } from "./components/ImageBanner";
 import { Inventory } from "./components/Inventory";
 import { EmptyPage } from "./components/EmptyPage";
 import { Cart } from "./components/Cart";
-import { Footer } from "./components/Footer";
-import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
 
 function App(): JSX.Element {
     const home = (): JSX.Element => {
@@ -19,21 +17,19 @@ function App(): JSX.Element {
             <>
                 <ImageBanner />
                 <Inventory />
-                <ProductDisplayGrid />
             </>
         );
     };
 
     return (
-        <Container fluid className="m-0 p-0">
-            <Col className="vh-100">
+        <Container fluid className="m-0 p-0 vh-100">
+            <Col className="h-100 d-flex flex-column">
                 <HeaderNav />
                 <Routes>
                     <Route path="/" element={home()} />
                     <Route path="/cart" element={<Cart />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>
-                <Footer />
             </Col>
         </Container>
     );

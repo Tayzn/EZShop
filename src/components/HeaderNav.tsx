@@ -9,9 +9,10 @@ export const HeaderNav = (): JSX.Element => {
             collapseOnSelect
             expand="sm"
             style={{
-                backgroundColor: "#a1f79f",
+                backgroundColor: "#90ee90",
                 paddingLeft: "16px",
-                paddingRight: "16px"
+                paddingRight: "16px",
+                boxShadow: "0 4px 6px -6px #222"
             }}
         >
             <Navbar.Brand href="#/">EZShop™</Navbar.Brand>
