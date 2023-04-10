@@ -5,8 +5,7 @@
  */
 
 import { Product } from "./product";
-import { UserAccount } from "./account";
-import { ProductData, ReferencedObject } from "../firebase/firebase_data";
+import { ReferencedObject } from "../firebase/firebase_data";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
