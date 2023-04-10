@@ -1,6 +1,6 @@
 {
     "name": "react-typescript-starter",
-    "homepage": "homepage",
+    "homepage": "/275-Final-Project/#",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
@@ -14,6 +14,7 @@
         "react": "^17.0.2",
         "react-bootstrap": "^2.1.1",
         "react-dom": "^17.0.2",
+        "react-router-dom": "^6.10.0",
         "react-scripts": "5.0.0",
         "typescript": "^4.5.5",
         "web-vitals": "^2.1.4"
