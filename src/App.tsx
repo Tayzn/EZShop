@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { HeaderNav } from "./components/HeaderNav";
 import { ImageBanner } from "./components/ImageBanner";
 import { Inventory } from "./components/Inventory";
+import { EmptyPage } from "./components/EmptyPage";
 import { Cart } from "./components/Cart";
 import { Footer } from "./components/Footer";
 import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
@@ -30,6 +31,7 @@ function App(): JSX.Element {
                 <Routes>
                     <Route path="/" element={home()} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="*" element={<EmptyPage />} />
                 </Routes>
                 <Footer />
             </Col>
