@@ -3,7 +3,11 @@ import { Badge, Button, Nav, NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthComponent } from "./AuthComponent";
 
-export const HeaderNav = (): JSX.Element => {
+interface HeaderNavProps {
+    setCartView: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export const HeaderNav = ({ setCartView }: HeaderNavProps): JSX.Element => {
     return (
         <Navbar
             collapseOnSelect
@@ -21,7 +25,10 @@ export const HeaderNav = (): JSX.Element => {
                 <Navbar.Collapse className="justify-content-end">
                     <AuthComponent />
                     <div style={{ marginLeft: "20px" }}></div>
-                    <Button variant="outline-dark" href="#">
+                    <Button
+                        variant="outline-dark"
+                        onClick={() => setCartView(true)}
+                    >
                         Cart
                         <Badge pill style={{ marginLeft: "10px" }} bg="dark">
                             2
@@ -34,9 +41,7 @@ export const HeaderNav = (): JSX.Element => {
 };
 
 // Links
-const LinkProducts = (): JSX.Element => (
-    <Nav.Link href="#home">Products</Nav.Link>
-);
+const LinkProducts = (): JSX.Element => <Nav.Link href="/">Products</Nav.Link>;
 
 const LinkOrders = (): JSX.Element => (
     <NavDropdown.Item href="#action/3.1">View Orders</NavDropdown.Item>
