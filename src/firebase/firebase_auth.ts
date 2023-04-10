@@ -6,15 +6,20 @@ import {
     onAuthStateChanged,
     createUserWithEmailAndPassword,
     signInWithEmailAndPassword,
-    signOut
+    signOut,
+    GoogleAuthProvider,
+    signInWithPopup
 } from "firebase/auth";
 import { app } from "./firebase";
 
 let auth: Auth;
+let googleProvider: GoogleAuthProvider;
 let currentUser: User | null;
 
 export function auth_Initialize() {
     auth = getAuth(app);
+    googleProvider = new GoogleAuthProvider();
+    auth.useDeviceLanguage();
 
     onAuthStateChanged(auth, (user) => {
         currentUser = user;
@@ -70,15 +75,29 @@ export function auth_CreateUser(
  * @returns A Promise that resolves with the new logged in user, or rejects if an error occurred
  */
 export function auth_SignIn(email: string, password: string): Promise<User> {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) =>
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
                 resolve(userCredential.user);
             })
             .catch((error) => {
                 reject(error.message);
-            });
-    });
+            })
+    );
+}
+
+/**
+ * Sign in with Google (opens a popup window)
+ * @returns A Promise that resolves with the new logged in user, or rejects if an error occurred
+ */
+export function auth_GoogleSignIn(): Promise<User> {
+    return new Promise((resolve, reject) =>
+        signInWithPopup(auth, googleProvider)
+            .then((userCredential) => resolve(userCredential.user))
+            .catch((error) => {
+                reject(error.message);
+            })
+    );
 }
 
 /**

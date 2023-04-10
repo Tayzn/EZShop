@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import {
     auth_CreateUser,
     auth_GetCurrentUser,
+    auth_GoogleSignIn,
     auth_HookUserState,
     auth_SignIn,
     auth_SignOut
@@ -40,6 +41,14 @@ export function AuthComponent(): JSX.Element {
             .then(() => {
                 setEmail("");
                 setPassword("");
+                closeModal();
+            })
+            .catch(setError);
+    };
+
+    const googleFlow = () => {
+        auth_GoogleSignIn()
+            .then(() => {
                 closeModal();
             })
             .catch(setError);
@@ -103,6 +112,10 @@ export function AuthComponent(): JSX.Element {
                     &nbsp;
                     <Button variant="secondary" onClick={closeModal}>
                         Cancel
+                    </Button>
+                    &nbsp;or&nbsp;
+                    <Button variant="info" onClick={googleFlow}>
+                        Sign in with Google
                     </Button>
                 </Modal.Body>
             </Modal>
