@@ -1,12 +1,12 @@
 import React from "react";
-import { Image } from "react-bootstrap";
+import { Container, Image } from "react-bootstrap";
 
-const bannerUrl = "https://i.ibb.co/Kxstm1M/phbg.png";
+const bannerUrl = "https://i.ibb.co/BKgX1tt/bannergrad.png";
 
 export const ImageBanner = (): JSX.Element => {
     return (
-        <div className="w-100" style={{ height: "30%" }}>
-            <Image className="w-100 h-100" src={bannerUrl} />
-        </div>
+        <Container fluid className="p-0 m-0">
+            <Image fluid src={bannerUrl} />
+        </Container>
     );
 };
