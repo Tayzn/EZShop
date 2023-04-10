@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (249 ms)
+  ✕ renders the course name somewhere (202 ms)
 
   ● renders the course name somewhere
 
@@ -148,12 +148,13 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   16.83 |    16.66 |    6.66 |   16.66 |                                
+All files                     |   17.17 |    16.66 |    6.61 |   17.01 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |   41.26 |    43.75 |   16.66 |   40.32 |                                
+ src/components               |   41.53 |    43.75 |   16.12 |   40.62 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,72-105    
   Cart.tsx                    |      50 |      100 |       0 |      50 | 6                              
+  EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
   Filter.tsx                  |       0 |      100 |       0 |       0 | 5-93                           
   Footer.tsx                  |     100 |       50 |     100 |     100 | 16                             
   HeaderNav.tsx               |      75 |      100 |      50 |   72.72 | 40,44,48                       
@@ -175,5 +176,5 @@ All files                     |   16.83 |    16.66 |    6.66 |   16.66 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.029 s
+Time:        3.214 s
 Ran all test suites.
