@@ -7,11 +7,15 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { initializeFirebase } from "./firebase/firebase";
 
+import { HashRouter } from "react-router-dom";
+
 initializeFirebase();
 
 ReactDOM.render(
     <React.StrictMode>
-        <App />
+        <HashRouter>
+            <App />
+        </HashRouter>
     </React.StrictMode>,
     document.getElementById("root")
 );

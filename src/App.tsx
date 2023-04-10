@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
 
-import { useState } from "react";
-
 import { Container, Col } from "react-bootstrap";
+
+import { Route, Routes } from "react-router-dom";
 
 import { HeaderNav } from "./components/HeaderNav";
 import { ImageBanner } from "./components/ImageBanner";
@@ -13,21 +13,24 @@ import { Footer } from "./components/Footer";
 import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
 
 function App(): JSX.Element {
-    const [cartView, setCartView] = useState<boolean>(false);
+    const home = (): JSX.Element => {
+        return (
+            <>
+                <ImageBanner />
+                <Inventory />
+                <ProductDisplayGrid />
+            </>
+        );
+    };
 
     return (
         <Container fluid className="m-0 p-0">
             <Col className="vh-100">
-                <HeaderNav setCartView={setCartView} />
-                {cartView ? (
-                    <Cart />
-                ) : (
-                    <>
-                        <ImageBanner />
-                        <Inventory />
-                        <ProductDisplayGrid />
-                    </>
-                )}
+                <HeaderNav />
+                <Routes>
+                    <Route path="/" element={home()} />
+                    <Route path="/cart" element={<Cart />} />
+                </Routes>
                 <Footer />
             </Col>
         </Container>
