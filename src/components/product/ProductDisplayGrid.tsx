@@ -1,7 +1,7 @@
 /**
  * Temporary data editor
- * merematt@udel.edu
- * 4/8/2023
+ * merematt@udel.edu & nlago@udel.edu
+ * 4/9/2023
  */
 
 import React, { useEffect, useState } from "react";
@@ -74,7 +74,7 @@ export function ProductDisplayGrid(): JSX.Element {
             {loadError ? (
                 <Alert variant="danger">Failed to load products</Alert>
             ) : (
-                <div className="d-flex flex-wrap justify-content-center">
+                <div className="item-grid">
                     {products.map((product) => (
                         <ProductDisplayComponent
                             key={product.reference.id}

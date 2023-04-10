@@ -25,7 +25,7 @@ function App(): JSX.Element {
                     <>
                         <ImageBanner />
                         <Inventory />
-                        <TempDataComponent />
+                        <ProductDisplayGrid />
                     </>
                 )}
                 <Footer />
