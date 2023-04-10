@@ -10,7 +10,7 @@ import { ImageBanner } from "./components/ImageBanner";
 import { Inventory } from "./components/Inventory";
 import { Cart } from "./components/Cart";
 import { Footer } from "./components/Footer";
-import { TempDataComponent } from "./components/TempDataComponent";
+import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
 
 function App(): JSX.Element {
     const [cartView, setCartView] = useState<boolean>(false);
