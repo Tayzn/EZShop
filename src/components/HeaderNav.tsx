@@ -14,7 +14,7 @@ export const HeaderNav = (): JSX.Element => {
                 paddingRight: "16px"
             }}
         >
-            <Navbar.Brand href="/">EZShop™</Navbar.Brand>
+            <Navbar.Brand href="#/">EZShop™</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 <AdminLinks />
@@ -34,7 +34,7 @@ export const HeaderNav = (): JSX.Element => {
 };
 
 // Links
-const LinkProducts = (): JSX.Element => <Nav.Link href="/">Products</Nav.Link>;
+const LinkProducts = (): JSX.Element => <Nav.Link href="#/">Products</Nav.Link>;
 
 const LinkOrders = (): JSX.Element => (
     <NavDropdown.Item href="#action/3.1">View Orders</NavDropdown.Item>
