@@ -1,6 +1,6 @@
 /**
  * Product Display Component
- * merematt@udel.edu
+ * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
 
@@ -38,7 +38,7 @@ export function ProductDisplayComponent({
 
     return (
         <>
-            <Card className="m-2 p-2">
+            <Card className="item">
                 <Card.Title>
                     {product.data.stock} * {product.data.name}
                 </Card.Title>
