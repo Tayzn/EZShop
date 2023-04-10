@@ -37,15 +37,15 @@ export const HeaderNav = (): JSX.Element => {
 const LinkProducts = (): JSX.Element => <Nav.Link href="#/">Products</Nav.Link>;
 
 const LinkOrders = (): JSX.Element => (
-    <NavDropdown.Item href="#action/3.1">View Orders</NavDropdown.Item>
+    <NavDropdown.Item href="#/action/3.1">View Orders</NavDropdown.Item>
 );
 
 const LinkInventory = (): JSX.Element => (
-    <NavDropdown.Item href="#action/3.1">Manage Inventory</NavDropdown.Item>
+    <NavDropdown.Item href="#/action/3.1">Manage Inventory</NavDropdown.Item>
 );
 
 const LinkUsers = (): JSX.Element => (
-    <NavDropdown.Item href="#action/3.1">Manage Users</NavDropdown.Item>
+    <NavDropdown.Item href="#/action/3.1">Manage Users</NavDropdown.Item>
 );
 
 // Link Bundles by Role
