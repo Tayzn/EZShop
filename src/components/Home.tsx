@@ -1,8 +1,6 @@
 import React from "react";
 
 import { Container } from "react-bootstrap";
-
-import { Footer } from "./Footer";
 import { ImageBanner } from "./ImageBanner";
 import { Inventory } from "./Inventory";
 
@@ -14,7 +12,6 @@ export const Home = (): JSX.Element => {
         >
             <ImageBanner />
             <Inventory />
-            <Footer />
         </Container>
     );
 };

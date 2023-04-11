@@ -9,6 +9,7 @@ import { Cart } from "./components/Cart";
 import { EmptyPage } from "./components/EmptyPage";
 import { HeaderNav } from "./components/HeaderNav";
 import { Home } from "./components/Home";
+import { Footer } from "./components/Footer";
 
 function App(): JSX.Element {
     return (
@@ -20,6 +21,7 @@ function App(): JSX.Element {
                     <Route path="/cart" element={<Cart />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>
+                <Footer />
             </Col>
         </Container>
     );
