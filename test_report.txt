@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (198 ms)
+  ✕ renders the course name somewhere (206 ms)
 
   ● renders the course name somewhere
 
@@ -148,17 +148,17 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |    14.9 |    11.53 |    4.91 |   14.85 |                                
+All files                     |   15.86 |    13.46 |    5.73 |   15.84 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |   34.21 |     37.5 |   12.12 |   34.24 |                                
+ src/components               |   36.84 |    43.75 |   15.15 |   36.98 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,72-105    
   Cart.tsx                    |      50 |      100 |       0 |      50 | 6                              
   EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
   Filter.tsx                  |       0 |      100 |       0 |       0 | 12-131                         
-  Footer.tsx                  |       0 |        0 |       0 |       0 | 4-5                            
+  Footer.tsx                  |     100 |       50 |     100 |     100 | 14                             
   HeaderNav.tsx               |      75 |      100 |      50 |   72.72 | 41,45,49                       
-  Home.tsx                    |      50 |      100 |       0 |      50 | 9                              
+  Home.tsx                    |      50 |      100 |       0 |      50 | 8                              
   ImageBanner.tsx             |   66.66 |      100 |       0 |   66.66 | 7                              
   Inventory.tsx               |      20 |      100 |       0 |      20 | 15-18                          
  src/components/product       |       0 |        0 |       0 |       0 |                                
@@ -177,5 +177,5 @@ All files                     |    14.9 |    11.53 |    4.91 |   14.85 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.565 s
+Time:        3.312 s
 Ran all test suites.
