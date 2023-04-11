@@ -3,12 +3,6 @@
  * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
-type propData = {
-    category: string;
-    isInStock: boolean;
-    backorder: boolean;
-};
-
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Modal, Stack, Toast } from "react-bootstrap";
 import {
@@ -19,8 +13,12 @@ import {
 import { Product } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 import { ProductFormComponent } from "./ProductFormComponent";
-//import { type } from "os";
 
+type propData = {
+    category: string;
+    isInStock: boolean;
+    backorder: boolean;
+};
 export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);

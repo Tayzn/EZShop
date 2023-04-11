@@ -15,7 +15,7 @@ export function Filter({
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const categories = ["any", "books", "pen/pencils", "lights", "cars"];
+    const categories = ["any", "books", "pen/pencils", "lights", "automotive"];
     const [minprice, setMinPriceFilter] = useState<string>("0");
     const [maxprice, setMaxPriceFilter] = useState<string>("9999");
 
@@ -47,26 +47,37 @@ export function Filter({
                         ))}
                     </Form.Select>
                     <hr></hr>
-                    <Form.Group controlId="setMinPrice">
-                        <Form.Label>from</Form.Label>
-                        <Form.Control
-                            value={minprice}
-                            type="number"
-                            onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>
-                            ) => setMinPriceFilter(event.target.value)}
-                        />
-                    </Form.Group>
-                    <Form.Group controlId="setMaxPrice">
-                        <Form.Label>to</Form.Label>
-                        <Form.Control
-                            type="number"
-                            value={maxprice}
-                            onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>
-                            ) => setMaxPriceFilter(event.target.value)}
-                        />
-                    </Form.Group>
+                    Price:
+                    <div className="priceFilter">
+                        <Form.Group controlId="setMinPrice">
+                            <Form.Control
+                                value={minprice}
+                                style={{ width: "100px" }}
+                                type="number"
+                                onChange={(
+                                    event: React.ChangeEvent<HTMLInputElement>
+                                ) => setMinPriceFilter(event.target.value)}
+                            />
+                        </Form.Group>
+                        <span
+                            style={{
+                                paddingRight: "20px",
+                                paddingLeft: "20px"
+                            }}
+                        >
+                            to
+                        </span>
+                        <Form.Group controlId="setMaxPrice">
+                            <Form.Control
+                                type="number"
+                                style={{ width: "100px" }}
+                                value={maxprice}
+                                onChange={(
+                                    event: React.ChangeEvent<HTMLInputElement>
+                                ) => setMaxPriceFilter(event.target.value)}
+                            />
+                        </Form.Group>
+                    </div>
                     <hr></hr>
                     Availability:
                     <h1></h1>
