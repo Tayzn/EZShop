@@ -3,7 +3,6 @@
  * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
-
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Modal, Stack, Toast } from "react-bootstrap";
 import {
@@ -15,7 +14,12 @@ import { Product } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 import { ProductFormComponent } from "./ProductFormComponent";
 
-export function ProductDisplayGrid(): JSX.Element {
+type propData = {
+    category: string;
+    isInStock: boolean;
+    backorder: boolean;
+};
+export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);
 
@@ -75,15 +79,32 @@ export function ProductDisplayGrid(): JSX.Element {
                 <Alert variant="danger">Failed to load products</Alert>
             ) : (
                 <div className="item-grid">
-                    {products.map((product) => (
-                        <ProductDisplayComponent
-                            key={product.reference.id}
-                            product={product}
-                            admin={true}
-                            deletedDispatcher={setItemDeleteSuccess}
-                            editedDispatcher={setItemEditSuccess}
-                        />
-                    ))}
+                    {products[0] !== undefined ? (
+                        products.map((product) => {
+                            if (
+                                (product.data.category === props.category ||
+                                    props.category === "any") &&
+                                ((props.isInStock === true &&
+                                    product.data.stock > 0) ||
+                                    (props.backorder === true &&
+                                        product.data.stock <= 0))
+                            ) {
+                                return (
+                                    <ProductDisplayComponent
+                                        key={product.reference.id}
+                                        product={product}
+                                        admin={true}
+                                        deletedDispatcher={setItemDeleteSuccess}
+                                        editedDispatcher={setItemEditSuccess}
+                                    />
+                                );
+                            }
+                        })
+                    ) : (
+                        <Alert variant="undefinedProducts">
+                            No items to show
+                        </Alert>
+                    )}
                 </div>
             )}
             <Modal show={newItem} onHide={() => setNewItem(false)}>
