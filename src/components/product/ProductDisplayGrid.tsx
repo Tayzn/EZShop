@@ -82,12 +82,12 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     {products[0] !== undefined ? (
                         products.map((product) => {
                             if (
-                                ((product.data.category === props.category ||
+                                (product.data.category === props.category ||
                                     props.category === "any") &&
-                                    props.isInStock === true &&
+                                ((props.isInStock === true &&
                                     product.data.stock > 0) ||
-                                (props.backorder === true &&
-                                    product.data.stock <= 0)
+                                    (props.backorder === true &&
+                                        product.data.stock <= 0))
                             ) {
                                 return (
                                     <ProductDisplayComponent

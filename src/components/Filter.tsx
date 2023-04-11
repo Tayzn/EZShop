@@ -23,7 +23,9 @@ export function Filter({
         <>
             <Button
                 variant="success"
-                style={{ width: "60px" }}
+                style={{
+                    width: "60px"
+                }}
                 onClick={handleShow}
             >
                 Filter
