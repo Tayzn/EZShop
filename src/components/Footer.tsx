@@ -4,8 +4,6 @@ import Navbar from "react-bootstrap/Navbar";
 export const Footer = (): JSX.Element => {
     return (
         <Navbar
-            className="d-flex"
-            fixed="bottom"
             style={{
                 backgroundColor: "#e6e6e6"
             }}
