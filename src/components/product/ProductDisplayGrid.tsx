@@ -3,14 +3,14 @@
  * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
-interface RevealFilters {
+type propData = {
     category: string;
     isInStock: boolean;
     backorder: boolean;
-}
+};
+
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Modal, Stack, Toast } from "react-bootstrap";
-//import { ApplyFilter } from "../Filter";
 import {
     ProductData,
     ReferencedObject,
@@ -19,12 +19,9 @@ import {
 import { Product } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 import { ProductFormComponent } from "./ProductFormComponent";
-//Category: Props
-export function ProductDisplayGrid({
-    category,
-    isInStock,
-    backorder
-}: RevealFilters): JSX.Element {
+//import { type } from "os";
+
+export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);
 
@@ -47,7 +44,6 @@ export function ProductDisplayGrid({
 
     return (
         <div>
-            <span>{category}</span>
             <Stack direction="vertical" className="m-3">
                 <Button onClick={() => setNewItem(true)}>New Item</Button>
                 <Toast
@@ -88,11 +84,12 @@ export function ProductDisplayGrid({
                     {products[0] !== undefined ? (
                         products.map((product) => {
                             if (
-                                ((product.data.category === category ||
-                                    category === "any") &&
-                                    isInStock === true &&
+                                ((product.data.category === props.category ||
+                                    props.category === "any") &&
+                                    props.isInStock === true &&
                                     product.data.stock > 0) ||
-                                (backorder === true && product.data.stock <= 0)
+                                (props.backorder === true &&
+                                    product.data.stock <= 0)
                             ) {
                                 return (
                                     <ProductDisplayComponent

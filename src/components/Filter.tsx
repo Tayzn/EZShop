@@ -1,29 +1,31 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { ProductDisplayGrid } from "./product/ProductDisplayGrid";
+import { propData } from "./Inventory";
 
-//export function ApplyFilter(): JSX.Element {
-//    return <>testestestest</>;
-//}
-export function Filter(): JSX.Element {
+export function Filter({
+    setBackorder,
+    setIsInStock,
+    setCategory
+}: propData): JSX.Element {
     //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
     //pressed, the filter fields will remain unchanged
     const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
     const [isInStockPlaceHolder, setIsInStockPlaceHolder] = useState(true);
     const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(false);
-    const [category, setCategory] = useState("any");
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const categories = ["any", "books", "pen/pencils", "lights", "cars"];
     const [minprice, setMinPriceFilter] = useState<string>("0");
     const [maxprice, setMaxPriceFilter] = useState<string>("9999");
-    const [isInStock, setIsInStock] = useState(true);
-    const [backorder, setBackorder] = useState(false);
 
     return (
         <>
-            <Button variant="success" onClick={handleShow}>
+            <Button
+                variant="success"
+                style={{ width: "60px" }}
+                onClick={handleShow}
+            >
                 Filter
             </Button>
             <Modal show={show} onHide={handleClose}>
@@ -120,11 +122,6 @@ export function Filter(): JSX.Element {
                     </Button>
                 </Modal.Footer>
             </Modal>
-            <ProductDisplayGrid
-                category={category}
-                isInStock={isInStock}
-                backorder={backorder}
-            />
         </>
     );
 }
