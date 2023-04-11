@@ -3,9 +3,14 @@
  * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
-
+interface RevealFilters {
+    category: string;
+    isInStock: boolean;
+    backorder: boolean;
+}
 import React, { useEffect, useState } from "react";
 import { Alert, Button, Modal, Stack, Toast } from "react-bootstrap";
+//import { ApplyFilter } from "../Filter";
 import {
     ProductData,
     ReferencedObject,
@@ -14,8 +19,12 @@ import {
 import { Product } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 import { ProductFormComponent } from "./ProductFormComponent";
-
-export function ProductDisplayGrid(): JSX.Element {
+//Category: Props
+export function ProductDisplayGrid({
+    category,
+    isInStock,
+    backorder
+}: RevealFilters): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);
 
@@ -38,6 +47,7 @@ export function ProductDisplayGrid(): JSX.Element {
 
     return (
         <div>
+            <span>{category}</span>
             <Stack direction="vertical" className="m-3">
                 <Button onClick={() => setNewItem(true)}>New Item</Button>
                 <Toast
@@ -75,15 +85,31 @@ export function ProductDisplayGrid(): JSX.Element {
                 <Alert variant="danger">Failed to load products</Alert>
             ) : (
                 <div className="item-grid">
-                    {products.map((product) => (
-                        <ProductDisplayComponent
-                            key={product.reference.id}
-                            product={product}
-                            admin={true}
-                            deletedDispatcher={setItemDeleteSuccess}
-                            editedDispatcher={setItemEditSuccess}
-                        />
-                    ))}
+                    {products[0] !== undefined ? (
+                        products.map((product) => {
+                            if (
+                                ((product.data.category === category ||
+                                    category === "any") &&
+                                    isInStock === true &&
+                                    product.data.stock > 0) ||
+                                (backorder === true && product.data.stock <= 0)
+                            ) {
+                                return (
+                                    <ProductDisplayComponent
+                                        key={product.reference.id}
+                                        product={product}
+                                        admin={true}
+                                        deletedDispatcher={setItemDeleteSuccess}
+                                        editedDispatcher={setItemEditSuccess}
+                                    />
+                                );
+                            }
+                        })
+                    ) : (
+                        <Alert variant="undefinedProducts">
+                            No items to show
+                        </Alert>
+                    )}
                 </div>
             )}
             <Modal show={newItem} onHide={() => setNewItem(false)}>

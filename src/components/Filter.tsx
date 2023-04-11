@@ -1,101 +1,130 @@
 import React, { useState } from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
+import { ProductDisplayGrid } from "./product/ProductDisplayGrid";
+
+//export function ApplyFilter(): JSX.Element {
+//    return <>testestestest</>;
+//}
 export function Filter(): JSX.Element {
-    //below are just place holder item fields
-    const [filterVisible, setFilterVisible] = useState(false);
-    const colors = ["any", "red", "blue", "pink"];
-    const sizes = ["any", "small", "medium", "large"];
-    const [color, setColor] = useState("any");
-    const [size, setSize] = useState("any");
+    //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
+    //pressed, the filter fields will remain unchanged
+    const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
+    const [isInStockPlaceHolder, setIsInStockPlaceHolder] = useState(true);
+    const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(false);
+    const [category, setCategory] = useState("any");
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+    const categories = ["any", "books", "pen/pencils", "lights", "cars"];
+    const [minprice, setMinPriceFilter] = useState<string>("0");
+    const [maxprice, setMaxPriceFilter] = useState<string>("9999");
     const [isInStock, setIsInStock] = useState(true);
     const [backorder, setBackorder] = useState(false);
-    //All css went into App.css
+
     return (
-        <div>
-            <Button
-                className="filter-button"
-                onClick={() => setFilterVisible(true)}
-            >
+        <>
+            <Button variant="success" onClick={handleShow}>
                 Filter
             </Button>
-            <div className="outcrop" hidden={!filterVisible}>
-                <div className="popup" id="pop" hidden={!filterVisible}>
-                    <h1>Filter</h1>
-                    <hr></hr>
-                    <span>
-                        Color:
-                        <Form.Select
-                            value={color}
-                            onChange={(
-                                event: React.ChangeEvent<HTMLSelectElement>
-                            ) => setColor(event.target.value)}
-                        >
-                            {colors.map((color: string) => (
-                                <option key={color} value={color}>
-                                    {color}
-                                </option>
-                            ))}
-                        </Form.Select>
-                        <hr></hr>
-                        Size:
-                        <Form.Select
-                            value={size}
-                            onChange={(
-                                event: React.ChangeEvent<HTMLSelectElement>
-                            ) => setSize(event.target.value)}
-                        >
-                            {sizes.map((size: string) => (
-                                <option key={size} value={size}>
-                                    {size}
-                                </option>
-                            ))}
-                        </Form.Select>
-                        <hr></hr>
-                        Availability:
-                        <h1></h1>
-                        <Form.Check
-                            inline
-                            label="in-stock "
-                            style={{
-                                position: "relative",
-                                display: "inline-block",
-                                top: "5%"
-                            }}
-                            type="checkbox"
-                            name="in-stock"
-                            onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>
-                            ) => setIsInStock(event.target.checked)}
-                            id="filter-in-stock"
-                            value="in-stock"
-                            checked={isInStock}
-                        />
-                        <Form.Check
-                            inline
-                            label="backorder"
-                            style={{
-                                position: "relative",
-                                display: "inline-block",
-                                top: "5%"
-                            }}
-                            type="checkbox"
-                            name="in-stock"
-                            onChange={(
-                                event: React.ChangeEvent<HTMLInputElement>
-                            ) => setBackorder(event.target.checked)}
-                            id="filter-out-stock"
-                            value="in-stock"
-                            checked={backorder}
-                        />
-                    </span>
-                    <Button
-                        className="popup-close-button"
-                        onClick={() => setFilterVisible(false)}
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Filter</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Category:
+                    <Form.Select
+                        value={categoryPlaceHolder}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLSelectElement>
+                        ) => setCategoryPlaceHolder(event.target.value)}
                     >
-                        Close & Apply
+                        {categories.map((color: string) => (
+                            <option key={color} value={color}>
+                                {color}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    <hr></hr>
+                    <Form.Group controlId="setMinPrice">
+                        <Form.Label>from</Form.Label>
+                        <Form.Control
+                            value={minprice}
+                            type="number"
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) => setMinPriceFilter(event.target.value)}
+                        />
+                    </Form.Group>
+                    <Form.Group controlId="setMaxPrice">
+                        <Form.Label>to</Form.Label>
+                        <Form.Control
+                            type="number"
+                            value={maxprice}
+                            onChange={(
+                                event: React.ChangeEvent<HTMLInputElement>
+                            ) => setMaxPriceFilter(event.target.value)}
+                        />
+                    </Form.Group>
+                    <hr></hr>
+                    Availability:
+                    <h1></h1>
+                    <Form.Check
+                        inline
+                        label="in-stock "
+                        style={{
+                            position: "relative",
+                            display: "inline-block",
+                            top: "5%"
+                        }}
+                        type="checkbox"
+                        name="in-stock"
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setIsInStockPlaceHolder(event.target.checked)}
+                        id="filter-in-stock"
+                        value="in-stock"
+                        checked={isInStockPlaceHolder}
+                    />
+                    <Form.Check
+                        inline
+                        label="backorder"
+                        style={{
+                            position: "relative",
+                            display: "inline-block",
+                            top: "5%"
+                        }}
+                        type="checkbox"
+                        name="backorder"
+                        onChange={(
+                            event: React.ChangeEvent<HTMLInputElement>
+                        ) => setBackorderPlaceHolder(event.target.checked)}
+                        id="filter-out-stock"
+                        value="backorder"
+                        checked={backorderPlaceHolder}
+                    />
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
                     </Button>
-                </div>
-            </div>
-        </div>
+                    <Button
+                        variant="success"
+                        onClick={() => {
+                            handleClose();
+                            setCategory(categoryPlaceHolder);
+                            setBackorder(backorderPlaceHolder);
+                            setIsInStock(isInStockPlaceHolder);
+                        }}
+                    >
+                        Apply
+                    </Button>
+                </Modal.Footer>
+            </Modal>
+            <ProductDisplayGrid
+                category={category}
+                isInStock={isInStock}
+                backorder={backorder}
+            />
+        </>
     );
 }

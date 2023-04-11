@@ -11,7 +11,6 @@ import { Inventory } from "./components/Inventory";
 import { EmptyPage } from "./components/EmptyPage";
 import { Cart } from "./components/Cart";
 import { Footer } from "./components/Footer";
-import { ProductDisplayGrid } from "./components/product/ProductDisplayGrid";
 
 function App(): JSX.Element {
     const home = (): JSX.Element => {
@@ -19,7 +18,6 @@ function App(): JSX.Element {
             <>
                 <ImageBanner />
                 <Inventory />
-                <ProductDisplayGrid />
             </>
         );
     };
