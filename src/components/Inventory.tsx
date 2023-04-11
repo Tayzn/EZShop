@@ -16,28 +16,26 @@ export const Inventory = (): JSX.Element => {
     const [isInStock, setIsInStock] = useState(true);
     const [backorder, setBackorder] = useState(false);
     return (
-        <Container className="h-75 side-shadow">
-            <Container className="h-100">
-                <Row>
-                    <h1>Catalog</h1>
-                    <Filter
-                        setBackorder={setBackorder}
-                        setIsInStock={setIsInStock}
-                        setCategory={setCategory}
-                        category={category}
-                        isInStock={isInStock}
-                        backorder={backorder}
-                    />
-                    <hr></hr>
-                </Row>
-                <Row className="overflow-y-scroll h-75">
-                    <ProductDisplayGrid
-                        category={category}
-                        isInStock={isInStock}
-                        backorder={backorder}
-                    />
-                </Row>
-            </Container>
+        <Container fluid="lg" className="side-shadow overflow-y-visible">
+            <Row>
+                <h1>Catalog</h1>
+                <Filter
+                    setBackorder={setBackorder}
+                    setIsInStock={setIsInStock}
+                    setCategory={setCategory}
+                    category={category}
+                    isInStock={isInStock}
+                    backorder={backorder}
+                />
+                <hr></hr>
+            </Row>
+            <Row className="overflow-y-visible pb-3">
+                <ProductDisplayGrid
+                    category={category}
+                    isInStock={isInStock}
+                    backorder={backorder}
+                />
+            </Row>
         </Container>
     );
 };

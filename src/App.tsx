@@ -1,18 +1,18 @@
 import React from "react";
 import "./App.css";
 
-import { Container, Col } from "react-bootstrap";
+import { Col, Container } from "react-bootstrap";
 
 import { Route, Routes } from "react-router-dom";
 
-import { HeaderNav } from "./components/HeaderNav";
-import { Home } from "./components/Home";
 import { Cart } from "./components/Cart";
 import { EmptyPage } from "./components/EmptyPage";
+import { HeaderNav } from "./components/HeaderNav";
+import { Home } from "./components/Home";
 
 function App(): JSX.Element {
     return (
-        <Container fluid className="m-0 p-0 vh-100 overflow-hidden">
+        <Container fluid className="m-0 p-0 vh-100">
             <Col className="h-100 d-flex flex-column">
                 <HeaderNav />
                 <Routes>
