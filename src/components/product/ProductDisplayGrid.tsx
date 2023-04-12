@@ -18,17 +18,15 @@ type propData = {
     category: string;
     isInStock: boolean;
     backorder: boolean;
+    currentSearch: string;
 };
 export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);
-
     const [newItem, setNewItem] = useState<boolean>(false);
-
     const [itemCreateSuccess, setItemCreateSuccess] = useState<boolean>(false);
     const [itemEditSuccess, setItemEditSuccess] = useState<boolean>(false);
     const [itemDeleteSuccess, setItemDeleteSuccess] = useState<boolean>(false);
-
     // loading data is resource intensive so we should avoid doing it
     useEffect(
         () =>
@@ -82,6 +80,11 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     {products[0] !== undefined ? (
                         products.map((product) => {
                             if (
+                                (product.data.name.substring(
+                                    0,
+                                    props.currentSearch.length
+                                ) === props.currentSearch ||
+                                    props.currentSearch === "") &&
                                 (product.data.category === props.category ||
                                     props.category === "any") &&
                                 ((props.isInStock === true &&

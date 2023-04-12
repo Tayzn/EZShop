@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
-import { propData } from "./Inventory";
+import { FilterProp } from "./Inventory";
 
 export function Filter({
     setBackorder,
     setIsInStock,
     setCategory
-}: propData): JSX.Element {
+}: FilterProp): JSX.Element {
     //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
     //pressed, the filter fields will remain unchanged
     const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
