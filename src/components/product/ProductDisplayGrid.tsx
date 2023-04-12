@@ -37,7 +37,24 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
             ),
         [itemCreateSuccess, itemDeleteSuccess]
     );
-
+    function determineShowProduct(product: ReferencedObject<Product>) {
+        //this function just returns a boolean representing if the product in the
+        //product mapping meets filter requirements and search.
+        if (
+            (product.data.name.substring(0, props.currentSearch.length) ===
+                props.currentSearch ||
+                props.currentSearch === "" ||
+                props.currentSearch === product.data.category) &&
+            (product.data.category === props.category ||
+                props.category === "any") &&
+            ((props.isInStock === true && product.data.stock > 0) ||
+                (props.backorder === true && product.data.stock <= 0))
+        ) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     return (
         <div>
             <Stack direction="vertical" className="m-3">
@@ -79,19 +96,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                 <div className="item-grid">
                     {products[0] !== undefined ? (
                         products.map((product) => {
-                            if (
-                                (product.data.name.substring(
-                                    0,
-                                    props.currentSearch.length
-                                ) === props.currentSearch ||
-                                    props.currentSearch === "") &&
-                                (product.data.category === props.category ||
-                                    props.category === "any") &&
-                                ((props.isInStock === true &&
-                                    product.data.stock > 0) ||
-                                    (props.backorder === true &&
-                                        product.data.stock <= 0))
-                            ) {
+                            if (determineShowProduct(product)) {
                                 return (
                                     <ProductDisplayComponent
                                         key={product.reference.id}

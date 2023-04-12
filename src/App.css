@@ -16,14 +16,17 @@
     display: flex;
 }
 .searchButton {
-    width: 40px;
+    width: 39px;
     height: 40px;
     border: 1px solid #00b4cc;
     background: #00b4cc;
-    color: #fff;
     border-radius: 0 5px 5px 0;
-    cursor: pointer;
     font-size: 17px;
+    right: 100%;
+}
+.filterButton {
+    position: right;
+    display: flex;
 }
 .wrap {
     width: 30%;

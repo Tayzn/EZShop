@@ -24,7 +24,8 @@ export function Filter({
             <Button
                 variant="success"
                 style={{
-                    width: "60px"
+                    width: "60px",
+                    marginLeft: "20px"
                 }}
                 onClick={handleShow}
             >

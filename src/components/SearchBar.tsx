@@ -5,15 +5,18 @@ type searchProps = {
     searchInput: string;
     setCurrentSearch: (setSearchInput: string) => void;
 };
-const handleKeyDown = (props: searchProps, event: KeyboardEvent) => {
-    const { key } = event;
-    console.log("pressed Enter");
-    if (key === "d") {
-        props.setSearchInput(props.searchInput);
-    }
-};
+//import { ProductData } from "./../firebase/firebase_data";
 export function SearchBar(props: searchProps): JSX.Element {
-    //const [searchSuggest, setSearchSuggest] = useState("search");
+    //search by category or item name. hit enter or search button to load results
+    //still need to add search suggest
+    //
+    //
+    //const onSearch = (input: props.searchInput) => {
+    //now get product names/cats and if they match, put dem in
+    //if (ProductData.data.name === input) {
+    //console.log("match");
+    //}
+    //};
     return (
         <div className="wrap">
             <div className="search">
@@ -22,7 +25,13 @@ export function SearchBar(props: searchProps): JSX.Element {
                         className="searchBar"
                         value={props.searchInput}
                         placeholder="search"
-                        onKeyDown={() => handleKeyDown}
+                        onKeyDown={(
+                            e: React.KeyboardEvent<HTMLInputElement>
+                        ) => {
+                            if (e.key === "Enter") {
+                                props.setCurrentSearch(props.searchInput);
+                            }
+                        }}
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
                         ) => props.setSearchInput(event.target.value)}
@@ -35,6 +44,7 @@ export function SearchBar(props: searchProps): JSX.Element {
                     🔍
                 </Button>
             </div>
+            <div></div>
         </div>
     );
 }
