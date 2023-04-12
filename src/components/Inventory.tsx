@@ -16,7 +16,6 @@ export const Inventory = (): JSX.Element => {
     const [category, setCategory] = useState("any");
     const [isInStock, setIsInStock] = useState(true);
     const [backorder, setBackorder] = useState(false);
-    const [searchInput, setSearchInput] = useState("");
     const [currentSearch, setCurrentSearch] = useState("");
     return (
         <Container fluid="lg" className="side-shadow overflow-y-visible">
@@ -31,8 +30,7 @@ export const Inventory = (): JSX.Element => {
                     backorder={backorder}
                 />
                 <SearchBar
-                    setSearchInput={setSearchInput}
-                    searchInput={searchInput}
+                    currentSearch={currentSearch}
                     setCurrentSearch={setCurrentSearch}
                 />
                 <p></p>

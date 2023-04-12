@@ -1,8 +1,7 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 type searchProps = {
-    setSearchInput: (setSearchInput: string) => void;
-    searchInput: string;
+    currentSearch: string;
     setCurrentSearch: (setSearchInput: string) => void;
 };
 //import { ProductData } from "./../firebase/firebase_data";
@@ -23,26 +22,13 @@ export function SearchBar(props: searchProps): JSX.Element {
                 <Form.Group controlId="editName">
                     <Form.Control
                         className="searchBar"
-                        value={props.searchInput}
+                        value={props.currentSearch}
                         placeholder="search"
-                        onKeyDown={(
-                            e: React.KeyboardEvent<HTMLInputElement>
-                        ) => {
-                            if (e.key === "Enter") {
-                                props.setCurrentSearch(props.searchInput);
-                            }
-                        }}
                         onChange={(
                             event: React.ChangeEvent<HTMLInputElement>
-                        ) => props.setSearchInput(event.target.value)}
+                        ) => props.setCurrentSearch(event.target.value)}
                     />
                 </Form.Group>
-                <Button
-                    onClick={() => props.setCurrentSearch(props.searchInput)}
-                    className="searchButton"
-                >
-                    🔍
-                </Button>
             </div>
             <div></div>
         </div>

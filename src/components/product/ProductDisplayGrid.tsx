@@ -41,10 +41,13 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
         //this function just returns a boolean representing if the product in the
         //product mapping meets filter requirements and search.
         if (
-            (product.data.name.substring(0, props.currentSearch.length) ===
-                props.currentSearch ||
+            (product.data.name
+                .toLowerCase()
+                .includes(props.currentSearch.toLowerCase()) ||
                 props.currentSearch === "" ||
-                props.currentSearch === product.data.category) &&
+                product.data.category
+                    .toLowerCase()
+                    .includes(props.currentSearch.toLowerCase())) &&
             (product.data.category === props.category ||
                 props.category === "any") &&
             ((props.isInStock === true && product.data.stock > 0) ||
