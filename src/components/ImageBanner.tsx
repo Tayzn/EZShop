@@ -4,7 +4,7 @@ import { Container, Image } from "react-bootstrap";
 export const ImageBanner = (): JSX.Element => {
     const imgList = [
         "https://i.ibb.co/BKgX1tt/bannergrad.png",
-        "https://i.ibb.co/XLNVbHW/secondbanner.png",
+        "https://i.ibb.co/rZnWCXV/Untitled-1.png",
         "https://i.ibb.co/kgLCHp3/thirdbanner.png",
         "https://i.ibb.co/wRfrX4R/fourthbanner.png"
     ];
@@ -27,7 +27,7 @@ export const ImageBanner = (): JSX.Element => {
     useEffect(() => {
         const interval = setInterval(() => {
             changeImage();
-        }, 2000);
+        }, 10500);
 
         return () => clearInterval(interval);
     });
