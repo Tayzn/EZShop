@@ -5,13 +5,14 @@ import { FilterProp } from "./Inventory";
 export function Filter({
     setBackorder,
     setIsInStock,
-    setCategory
+    setCategory,
+    setShowNoItemsFound
 }: FilterProp): JSX.Element {
     //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
     //pressed, the filter fields will remain unchanged
     const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
     const [isInStockPlaceHolder, setIsInStockPlaceHolder] = useState(true);
-    const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(false);
+    const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(true);
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
@@ -43,9 +44,9 @@ export function Filter({
                             event: React.ChangeEvent<HTMLSelectElement>
                         ) => setCategoryPlaceHolder(event.target.value)}
                     >
-                        {categories.map((color: string) => (
-                            <option key={color} value={color}>
-                                {color}
+                        {categories.map((category: string) => (
+                            <option key={category} value={category}>
+                                {category}
                             </option>
                         ))}
                     </Form.Select>
@@ -130,6 +131,7 @@ export function Filter({
                             setCategory(categoryPlaceHolder);
                             setBackorder(backorderPlaceHolder);
                             setIsInStock(isInStockPlaceHolder);
+                            setShowNoItemsFound(false);
                         }}
                     >
                         Apply
