@@ -3,6 +3,7 @@ import { Form } from "react-bootstrap";
 type searchProps = {
     currentSearch: string;
     setCurrentSearch: (setSearchInput: string) => void;
+    setShowNoItemsFound: (displayNoItemsFound: boolean) => void;
 };
 //import { ProductData } from "./../firebase/firebase_data";
 export function SearchBar(props: searchProps): JSX.Element {
@@ -16,6 +17,10 @@ export function SearchBar(props: searchProps): JSX.Element {
     //console.log("match");
     //}
     //};
+    function searchEvent(event: React.ChangeEvent<HTMLInputElement>) {
+        props.setShowNoItemsFound(false);
+        props.setCurrentSearch(event.target.value);
+    }
     return (
         <div className="wrap">
             <div className="search">
@@ -24,13 +29,10 @@ export function SearchBar(props: searchProps): JSX.Element {
                         className="searchBar"
                         value={props.currentSearch}
                         placeholder="search"
-                        onChange={(
-                            event: React.ChangeEvent<HTMLInputElement>
-                        ) => props.setCurrentSearch(event.target.value)}
+                        onChange={searchEvent}
                     />
                 </Form.Group>
             </div>
-            <div></div>
         </div>
     );
 }

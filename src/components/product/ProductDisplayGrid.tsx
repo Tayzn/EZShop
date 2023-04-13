@@ -19,6 +19,8 @@ type propData = {
     isInStock: boolean;
     backorder: boolean;
     currentSearch: string;
+    showNoItemsFound: boolean;
+    setShowNoItemsFound: (displayNoItemsFound: boolean) => void;
 };
 export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
@@ -27,6 +29,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
     const [itemCreateSuccess, setItemCreateSuccess] = useState<boolean>(false);
     const [itemEditSuccess, setItemEditSuccess] = useState<boolean>(false);
     const [itemDeleteSuccess, setItemDeleteSuccess] = useState<boolean>(false);
+    //const [showNoItemsFound, setShowNoItemsFound] = useState<boolean>(true);
     // loading data is resource intensive so we should avoid doing it
     useEffect(
         () =>
@@ -53,10 +56,12 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
             ((props.isInStock === true && product.data.stock > 0) ||
                 (props.backorder === true && product.data.stock <= 0))
         ) {
+            if (!props.showNoItemsFound) {
+                props.setShowNoItemsFound(true);
+            }
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
     return (
         <div>
@@ -100,6 +105,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     {products[0] !== undefined ? (
                         products.map((product) => {
                             if (determineShowProduct(product)) {
+                                console.log("test");
                                 return (
                                     <ProductDisplayComponent
                                         key={product.reference.id}
@@ -112,9 +118,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                             }
                         })
                     ) : (
-                        <Alert variant="undefinedProducts">
-                            No items to show
-                        </Alert>
+                        <div>No items to load</div>
                     )}
                 </div>
             )}
@@ -131,6 +135,12 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     />
                 </Modal.Body>
             </Modal>
+            <div
+                hidden={props.showNoItemsFound}
+                className="NoItemsFoundMessage"
+            >
+                No Items Found
+            </div>
         </div>
     );
 }

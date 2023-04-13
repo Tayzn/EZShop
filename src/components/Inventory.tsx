@@ -11,12 +11,14 @@ export interface FilterProp {
     setCategory: (newCategory: string) => void;
     setBackorder: (newback: boolean) => void;
     setIsInStock: (newstock: boolean) => void;
+    setShowNoItemsFound: (displayNoItemsFound: boolean) => void;
 }
 export const Inventory = (): JSX.Element => {
     const [category, setCategory] = useState("any");
     const [isInStock, setIsInStock] = useState(true);
-    const [backorder, setBackorder] = useState(false);
+    const [backorder, setBackorder] = useState(true);
     const [currentSearch, setCurrentSearch] = useState("");
+    const [showNoItemsFound, setShowNoItemsFound] = useState(true);
     return (
         <Container fluid="lg" className="side-shadow overflow-y-visible">
             <Row>
@@ -25,6 +27,7 @@ export const Inventory = (): JSX.Element => {
                     setBackorder={setBackorder}
                     setIsInStock={setIsInStock}
                     setCategory={setCategory}
+                    setShowNoItemsFound={setShowNoItemsFound}
                     category={category}
                     isInStock={isInStock}
                     backorder={backorder}
@@ -32,6 +35,7 @@ export const Inventory = (): JSX.Element => {
                 <SearchBar
                     currentSearch={currentSearch}
                     setCurrentSearch={setCurrentSearch}
+                    setShowNoItemsFound={setShowNoItemsFound}
                 />
                 <p></p>
                 <hr></hr>
@@ -42,6 +46,8 @@ export const Inventory = (): JSX.Element => {
                     isInStock={isInStock}
                     backorder={backorder}
                     currentSearch={currentSearch}
+                    showNoItemsFound={showNoItemsFound}
+                    setShowNoItemsFound={setShowNoItemsFound}
                 />
             </Row>
         </Container>
