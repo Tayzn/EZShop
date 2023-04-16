@@ -10,6 +10,7 @@ import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
 import { Badge, Button, Card, Modal, Toast } from "react-bootstrap";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "./ProductFormComponent";
+import { Image } from "react-bootstrap";
 
 export function ProductDisplayComponent({
     product,
@@ -39,6 +40,7 @@ export function ProductDisplayComponent({
     return (
         <>
             <Card className="item">
+                <Image src="https://i.ibb.co/Z8mKr4f/boxclipart.png" />
                 <Card.Title>
                     {product.data.stock} * {product.data.name}
                 </Card.Title>
