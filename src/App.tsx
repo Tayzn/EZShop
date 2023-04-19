@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { Cart } from "./components/Cart";
 import { EmptyPage } from "./components/EmptyPage";
 import { HeaderNav } from "./components/HeaderNav";
+import { AdminPage } from "./components/admin/AdminPage";
 import { Home } from "./components/Home";
 import { Footer } from "./components/Footer";
 
@@ -19,6 +20,7 @@ function App(): JSX.Element {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<Cart />} />
+                    <Route path="/admin" element={<AdminPage />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>
                 <Footer />
