@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (197 ms)
+  ✕ renders the course name somewhere (192 ms)
 
   ● renders the course name somewhere
 
@@ -148,7 +148,7 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   13.67 |    11.11 |    5.42 |   13.65 |                                
+All files                     |   15.04 |    10.14 |    5.18 |   15.06 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
  src/components               |   28.12 |       35 |   12.82 |   28.26 |                                
@@ -162,6 +162,11 @@ All files                     |   13.67 |    11.11 |    5.42 |   13.65 |
   ImageBanner.tsx             |    5.88 |        0 |       0 |    6.25 | 5-47                           
   Inventory.tsx               |   14.28 |      100 |       0 |   14.28 | 17-22                          
   SearchBar.tsx               |       0 |      100 |       0 |       0 | 21-24                          
+ src/components/admin         |   41.66 |        0 |       0 |   41.66 |                                
+  AdminInventory.tsx          |      50 |      100 |       0 |      50 | 6                              
+  AdminOrders.tsx             |      50 |      100 |       0 |      50 | 6                              
+  AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                          
+  AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
  src/components/product       |       0 |        0 |       0 |       0 |                                
   ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 26-104                         
   ProductDisplayGrid.tsx      |       0 |        0 |       0 |       0 | 26-133                         
@@ -178,5 +183,5 @@ All files                     |   13.67 |    11.11 |    5.42 |   13.65 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.231 s
+Time:        3.392 s
 Ran all test suites.
