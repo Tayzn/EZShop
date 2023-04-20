@@ -4,58 +4,75 @@
  * 4/8/2023
  */
 
-import { Product } from "./product";
-import { ReferencedObject } from "../firebase/firebase_data";
+import { auth_HookUser } from "../firebase/firebase_auth";
+import { CartData } from "../firebase/firebase_data";
+import { Product, ProductVariant } from "./product";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
  *
  * Not very useful on its own
  */
-export interface CartItemAttributes {
-    quantity: number;
-    primaryVariant: number | null;
-    secondaryVariant: number | null;
-}
 
 /**
  * An item in a Cart
  */
-export interface CartItem extends CartItemAttributes {
-    product: ReferencedObject<Product>;
-}
-
-/**
- * The same as CartItem, except that the product is stored by its string id
- */
-export interface DatabaseCartItem extends CartItemAttributes {
-    productId: string;
+export interface CartItem {
+    product: Product;
+    quantity: number;
+    variant: ProductVariant;
 }
 
 /**
  * A users Cart
  */
 export interface Cart {
-    ownerUid: string;
     items: CartItem[];
 }
 
-/**
- * The same as Cart, except with the database variant of CartItems
- */
-export interface DatabaseCart {
-    ownerUid: string;
-    items: DatabaseCartItem[];
+let cartOwner: string | null;
+let cart: Cart;
+
+export function initializeCart() {
+    auth_HookUser((user) => {
+        if (user) {
+            CartData.get(user.uid).then((newCart) => {
+                cart = newCart.data;
+                cartOwner = newCart.reference.id;
+            });
+            // TODO merge/clear localstorage
+        } else {
+            cart = { items: [] };
+            cartOwner = null;
+            // TODO load localstorage
+        }
+    });
 }
 
 /**
- * Convert a CartItem into its database representation
+ * Get the current cart
+ *
+ * This function will transparently select between a logged in users cart and a local cart
  */
-export function cart_ConvertForDatabase(cartItem: CartItem): DatabaseCartItem {
-    return {
-        productId: cartItem.product.reference.id,
-        quantity: cartItem.quantity,
-        primaryVariant: cartItem.primaryVariant,
-        secondaryVariant: cartItem.secondaryVariant
-    };
+export function getCart(): Cart {
+    return cart;
+}
+
+/**
+ * Save the current cart
+ *
+ * This function will transparently save to either the database for a logged in user, or local storage
+ */
+export function saveCart(): Promise<void> {
+    return new Promise((resolve, reject) => {
+        if (cartOwner) {
+            // save to database
+            CartData.update(cartOwner, cart)
+                .then(() => resolve())
+                .catch(reject);
+        } else {
+            // todo save localstorage
+            resolve();
+        }
+    });
 }

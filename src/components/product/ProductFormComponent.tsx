@@ -24,14 +24,17 @@ export function ProductFormComponent({
     const [category, setCategory] = useState<string>(
         product?.data.category || ""
     );
+    const [description, setDescription] = useState<string>(
+        product?.data.description || ""
+    );
+    const [price, setPrice] = useState<string>(
+        product?.data.price.toString() || ""
+    );
     const [stock, setStock] = useState<string>(
         product?.data.stock.toString() || ""
     );
-    const [primaryVariants, setPrimaryVariants] = useState<string>(
-        product?.data.primaryVariants?.join(",") || ""
-    );
-    const [secondaryVariants, setSecondaryVariants] = useState<string>(
-        product?.data.secondaryVariants?.join(",") || ""
+    const [variants, setVariants] = useState<string>(
+        product?.data.variants?.join(",") || ""
     );
 
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
@@ -46,9 +49,12 @@ export function ProductFormComponent({
             product.data = {
                 name: name,
                 category: category,
+                description: description,
+                price: parseInt(price),
                 stock: parseInt(stock),
-                primaryVariants: primaryVariants.split(","),
-                secondaryVariants: secondaryVariants.split(",")
+                variants: variants
+                    .split(",")
+                    .map((variant) => ({ name: variant, description: "" }))
             };
 
             operation = ProductData.update(product);
@@ -56,9 +62,12 @@ export function ProductFormComponent({
             operation = ProductData.create({
                 name: name,
                 category: category,
+                description: description,
+                price: parseInt(price),
                 stock: parseInt(stock),
-                primaryVariants: primaryVariants.split(","),
-                secondaryVariants: secondaryVariants.split(",")
+                variants: variants
+                    .split(",")
+                    .map((variant) => ({ name: variant, description: "" }))
             });
         }
 
@@ -99,6 +108,22 @@ export function ProductFormComponent({
                 ></Form.Control>
             </FloatingLabel>
             <br />
+            <FloatingLabel label="Description">
+                <Form.Control
+                    type="text"
+                    value={category}
+                    onChange={({ target }) => setDescription(target.value)}
+                ></Form.Control>
+            </FloatingLabel>
+            <br />
+            <FloatingLabel label="Price">
+                <Form.Control
+                    type="number"
+                    value={stock}
+                    onChange={({ target }) => setPrice(target.value)}
+                ></Form.Control>
+            </FloatingLabel>
+            <br />
             <FloatingLabel label="Stock">
                 <Form.Control
                     type="number"
@@ -107,22 +132,11 @@ export function ProductFormComponent({
                 ></Form.Control>
             </FloatingLabel>
             <br />
-            <FloatingLabel label="Primary Variants">
+            <FloatingLabel label="Variants">
                 <Form.Control
                     type="text"
-                    value={primaryVariants}
-                    onChange={({ target }) => setPrimaryVariants(target.value)}
-                ></Form.Control>
-            </FloatingLabel>
-            <Form.Text className="text-muted">Seperate with commas</Form.Text>
-            <br />
-            <FloatingLabel label="Secondary Variants">
-                <Form.Control
-                    type="text"
-                    value={secondaryVariants}
-                    onChange={({ target }) =>
-                        setSecondaryVariants(target.value)
-                    }
+                    value={variants}
+                    onChange={({ target }) => setVariants(target.value)}
                 ></Form.Control>
             </FloatingLabel>
             <Form.Text className="text-muted">Seperate with commas</Form.Text>
