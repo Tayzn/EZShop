@@ -47,6 +47,7 @@
 
 .item {
     border: 1px solid #6dee5c;
+    cursor: pointer;
 }
 
 .side-shadow {
