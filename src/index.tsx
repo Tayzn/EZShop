@@ -8,8 +8,10 @@ import reportWebVitals from "./reportWebVitals";
 import { initializeFirebase } from "./firebase/firebase";
 
 import { HashRouter } from "react-router-dom";
+import { initializeCart } from "./interface/cart";
 
 initializeFirebase();
+initializeCart();
 
 ReactDOM.render(
     <React.StrictMode>
