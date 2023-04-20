@@ -4,10 +4,16 @@
  * 4/8/2023
  */
 
+export interface ProductVariant {
+    name: string;
+    description: string;
+}
+
 export interface Product {
     name: string;
     category: string;
+    description: string;
+    price: number;
     stock: number;
-    primaryVariants: string[] | null;
-    secondaryVariants: string[] | null;
+    variants: ProductVariant[];
 }

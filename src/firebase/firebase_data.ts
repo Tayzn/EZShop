@@ -11,23 +11,17 @@ import {
     UpdateData,
     getFirestore,
     collection,
-    addDoc,
     updateDoc,
     getDoc,
     getDocs,
     doc,
-    deleteDoc
+    deleteDoc,
+    setDoc
 } from "firebase/firestore";
 import { app } from "./firebase";
 import { Product } from "../interface/product";
-import { UserAccount } from "../interface/account";
-import {
-    Cart,
-    CartItem,
-    DatabaseCart,
-    DatabaseCartItem
-} from "../interface/cart";
-import { User } from "firebase/auth";
+import { UserAccount, UserId } from "../interface/account";
+import { Cart } from "../interface/cart";
 
 export interface ReferencedObject<T> {
     data: T;
@@ -56,6 +50,8 @@ function coerce<T>(reference: CollectionReference): CollectionReference<T> {
  * @param reference The reference to coerce
  * @returns The coerced reference
  */
+// this is an important database method that isn't being used that this time
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function coerceDoc<T>(reference: DocumentReference): DocumentReference<T> {
     return reference as DocumentReference<T>;
 }
@@ -133,18 +129,23 @@ function db_Get<T>(
  */
 function db_Create<T>(
     collectionReference: CollectionReference<T>,
-    object: T
+    object: T,
+    documentId?: string
 ): Promise<ReferencedObject<T>> {
-    return new Promise((resolve, reject) =>
-        addDoc(collectionReference, object)
-            .then((documentReference) =>
+    return new Promise((resolve, reject) => {
+        const reference = documentId
+            ? doc(collectionReference, documentId)
+            : doc(collectionReference);
+
+        setDoc(reference, object)
+            .then(() =>
                 resolve({
                     data: object,
-                    reference: documentReference
+                    reference: reference
                 })
             )
-            .catch(reject)
-    );
+            .catch(reject);
+    });
 }
 
 /**
@@ -236,56 +237,34 @@ export class AccountData {
  */
 export class CartData {
     static collection = "carts";
+    static document = "items";
 
-    static get(account: User): Promise<Cart> {
-        return new Promise((resolve, reject) => {
-            db_Get(
-                coerceDoc<DatabaseCart>(
-                    doc(db, this.collection, account.uid, "items", "items")
-                )
-            )
-                .then((dbCart) => {
-                    Promise.all(dbCart.data.items.map(this.convertFromDatabase))
-                        .then((items) =>
-                            resolve({
-                                ownerUid: dbCart.data.ownerUid,
-                                items: items
-                            })
-                        )
-                        .catch(reject);
-                })
-                .catch(reject);
-        });
+    static getCartCollection(account: UserId): CollectionReference<Cart> {
+        return coerce<Cart>(
+            collection(db, this.collection, account, this.document)
+        );
     }
 
-    static create(
-        account: UserAccount
-    ): Promise<ReferencedObject<UserAccount>> {
-        return db_Create(coerce<UserAccount>(collection(db, "users")), account);
+    static getCartDoc(account: UserId): DocumentReference<Cart> {
+        return doc(this.getCartCollection(account), this.document);
+    }
+
+    static get(account: UserId): Promise<ReferencedObject<Cart>> {
+        return db_Get(this.getCartDoc(account));
+    }
+
+    static create(account: UserId): Promise<ReferencedObject<Cart>> {
+        return db_Create(
+            this.getCartCollection(account),
+            { items: [] },
+            this.document
+        );
     }
 
     static update(
-        account: ReferencedObject<UserAccount>
-    ): Promise<ReferencedObject<UserAccount>> {
-        return db_Update(account);
-    }
-
-    static convertFromDatabase(cartItem: DatabaseCartItem): Promise<CartItem> {
-        return new Promise((resolve, reject) => {
-            ProductData.get(
-                coerceDoc<Product>(
-                    doc(db, ProductData.collection, cartItem.productId)
-                )
-            )
-                .then((product) => {
-                    resolve({
-                        product: product,
-                        quantity: cartItem.quantity,
-                        primaryVariant: cartItem.primaryVariant,
-                        secondaryVariant: cartItem.secondaryVariant
-                    });
-                })
-                .catch(reject);
-        });
+        account: UserId,
+        cart: Cart
+    ): Promise<ReferencedObject<Cart>> {
+        return db_Update({ reference: this.getCartDoc(account), data: cart });
     }
 }

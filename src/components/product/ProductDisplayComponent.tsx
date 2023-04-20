@@ -40,36 +40,21 @@ export function ProductDisplayComponent({
     };
     return (
         <>
-            <Card className="item">
-                <div onClick={() => setInspectItem(true)}>
-                    <Image
-                        width="100%"
-                        height="auto"
-                        src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
-                    />
-                    <Card.Title>
-                        {product.data.stock} * {product.data.name}
-                    </Card.Title>
-                    <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                    <br />
-                    <div>
-                        {product.data.primaryVariants?.map((variant) => (
-                            <>
-                                <Badge key={variant}>{variant}</Badge>
-                                &nbsp;
-                            </>
-                        ))}
-                    </div>
-                    <div>
-                        {product.data.secondaryVariants?.map((variant) => (
-                            <>
-                                <Badge key={variant} bg="secondary">
-                                    {variant}
-                                </Badge>
-                                &nbsp;
-                            </>
-                        ))}
-                    </div>
+            <Card className="item" onClick={() => setInspectItem(true)}>
+                <Image src="https://i.ibb.co/Z8mKr4f/boxclipart.png" />
+                <Card.Title>
+                    {product.data.stock} * {product.data.name}*
+                    {product.data.price}
+                </Card.Title>
+                <Card.Subtitle>{product.data.category}</Card.Subtitle>
+                <br />
+                <div>
+                    {product.data.variants?.map((variant) => (
+                        <>
+                            <Badge key={variant.name}>{variant.name}</Badge>
+                            &nbsp;
+                        </>
+                    ))}
                 </div>
                 {admin ? (
                     <>
@@ -114,9 +99,9 @@ export function ProductDisplayComponent({
                 </Modal.Body>
             </Modal>
             <Modal
-                size="lg"
                 show={inspectItem}
                 onHide={() => setInspectItem(false)}
+                size="lg"
             >
                 <Modal.Header>
                     <Modal.Title>{product.data.name}</Modal.Title>
@@ -132,7 +117,7 @@ export function ProductDisplayComponent({
                                 />
                             </Col>
                             <Col>
-                                <Row>Price: $</Row>
+                                <Row>Price: ${product.data.price}</Row>
                                 <p></p>
                                 <Row>Stock: {product.data.stock}</Row>
                                 <p></p>
@@ -144,15 +129,14 @@ export function ProductDisplayComponent({
                                             event: React.ChangeEvent<HTMLSelectElement>
                                         ) => setColor(event.target.value)}
                                     >
-                                        {product.data.primaryVariants !=
-                                        null ? (
-                                            product.data.primaryVariants.map(
-                                                (category: string) => (
+                                        {product.data.variants != null ? (
+                                            product.data.variants?.map(
+                                                (variant) => (
                                                     <option
-                                                        key={category}
-                                                        value={category}
+                                                        key={variant.name}
+                                                        value={variant.name}
                                                     >
-                                                        {category}
+                                                        {variant.name}
                                                     </option>
                                                 )
                                             )
@@ -165,32 +149,6 @@ export function ProductDisplayComponent({
                                         )}
                                     </Form.Select>
                                     <p></p>
-                                    <Form.Select
-                                        value={color}
-                                        onChange={(
-                                            event: React.ChangeEvent<HTMLSelectElement>
-                                        ) => setColor(event.target.value)}
-                                    >
-                                        {product.data.secondaryVariants !=
-                                        null ? (
-                                            product.data.secondaryVariants.map(
-                                                (category: string) => (
-                                                    <option
-                                                        key={category}
-                                                        value={category}
-                                                    >
-                                                        {category}
-                                                    </option>
-                                                )
-                                            )
-                                        ) : (
-                                            <option
-                                                value={"No secondary Variants"}
-                                            >
-                                                {"No secondary Variants"}
-                                            </option>
-                                        )}
-                                    </Form.Select>
                                 </Row>
                             </Col>
                             <Row>
