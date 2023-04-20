@@ -40,6 +40,19 @@ export function auth_HookUserState(
 }
 
 /**
+ * Hook a receiver onto login change events
+ * @param receiver The function to attach
+ * @returns An unsubscribe function to clean up when done
+ */
+export function auth_HookUser(
+    receiver: (user: User | null) => void
+): Unsubscribe {
+    return onAuthStateChanged(auth, (user) => {
+        receiver(user);
+    });
+}
+
+/**
  * Get the current logged in user
  * @returns The user or null if not logged in
  */
