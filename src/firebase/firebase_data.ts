@@ -21,12 +21,7 @@ import {
 import { app } from "./firebase";
 import { Product } from "../interface/product";
 import { UserAccount } from "../interface/account";
-import {
-    Cart,
-    CartItem,
-    DatabaseCart,
-    DatabaseCartItem
-} from "../interface/cart";
+import { Cart, CartItem } from "../interface/cart";
 import { User } from "firebase/auth";
 
 export interface ReferencedObject<T> {
@@ -237,22 +232,26 @@ export class AccountData {
 export class CartData {
     static collection = "carts";
 
+    static prepareForDB(cart: Cart): object {
+        return {
+            items: cart.items
+        };
+    }
+
+    static prepareFromDB(cart: ReferencedObject<Cart>): ReferencedObject<Cart> {
+        cart.data.owner = cart.reference.id;
+        return cart;
+    }
+
     static get(account: User): Promise<Cart> {
         return new Promise((resolve, reject) => {
             db_Get(
-                coerceDoc<DatabaseCart>(
+                coerceDoc<Cart>(
                     doc(db, this.collection, account.uid, "items", "items")
                 )
             )
                 .then((dbCart) => {
-                    Promise.all(dbCart.data.items.map(this.convertFromDatabase))
-                        .then((items) =>
-                            resolve({
-                                ownerUid: dbCart.data.ownerUid,
-                                items: items
-                            })
-                        )
-                        .catch(reject);
+                    resolve(this.prepareFromDB(dbCart));
                 })
                 .catch(reject);
         });

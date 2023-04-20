@@ -47,19 +47,9 @@ export function ProductDisplayComponent({
                 <Card.Subtitle>{product.data.category}</Card.Subtitle>
                 <br />
                 <div>
-                    {product.data.primaryVariants?.map((variant) => (
+                    {product.data.variants?.map((variant) => (
                         <>
-                            <Badge key={variant}>{variant}</Badge>
-                            &nbsp;
-                        </>
-                    ))}
-                </div>
-                <div>
-                    {product.data.secondaryVariants?.map((variant) => (
-                        <>
-                            <Badge key={variant} bg="secondary">
-                                {variant}
-                            </Badge>
+                            <Badge key={variant.name}>{variant.name}</Badge>
                             &nbsp;
                         </>
                     ))}
