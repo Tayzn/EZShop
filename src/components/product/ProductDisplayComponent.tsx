@@ -11,6 +11,7 @@ import { Badge, Button, Card, Modal, Toast } from "react-bootstrap";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "./ProductFormComponent";
 import { Image } from "react-bootstrap";
+import { addToCart } from "../../interface/cart";
 
 export function ProductDisplayComponent({
     product,
@@ -54,6 +55,12 @@ export function ProductDisplayComponent({
                         </>
                     ))}
                 </div>
+                <Button
+                    variant="success"
+                    onClick={() => addToCart(product.data, 1, null)}
+                >
+                    Add to Cart
+                </Button>
                 {admin ? (
                     <>
                         <Toast
