@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Button, Container } from "react-bootstrap";
-import {
-    Cart,
-    addToCart,
-    cart_HookCartState,
-    getCart
-} from "../interface/cart";
-import { ProductData } from "../firebase/firebase_data";
+import { Container } from "react-bootstrap";
+import { Cart, cart_HookCartState, getCart } from "../interface/cart";
 
 export const CartPage = (): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
