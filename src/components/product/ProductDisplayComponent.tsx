@@ -46,12 +46,6 @@ export function ProductDisplayComponent({
                     {product.data.stock} * {product.data.name}
                 </Card.Title>
                 <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                <Button
-                    variant="success"
-                    onClick={() => addToCart(product.data, 1, null)}
-                >
-                    Add
-                </Button>
                 <br />
                 <div>
                     {product.data.variants?.map((variant) => (
@@ -61,6 +55,12 @@ export function ProductDisplayComponent({
                         </>
                     ))}
                 </div>
+                <Button
+                    variant="success"
+                    onClick={() => addToCart(product.data, 1, null)}
+                >
+                    Add to Cart
+                </Button>
                 {admin ? (
                     <>
                         <Toast
