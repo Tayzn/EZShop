@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Product } from "../../interface/product";
 import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
-import { Badge, Button, Card, Modal, Toast } from "react-bootstrap";
+import { Button, Card, Modal, Toast } from "react-bootstrap";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "./ProductFormComponent";
 import { Image } from "react-bootstrap";
@@ -42,52 +42,50 @@ export function ProductDisplayComponent({
         <>
             <Card className="item">
                 <Image src="https://i.ibb.co/Z8mKr4f/boxclipart.png" />
-                <Card.Title>
-                    {product.data.stock} * {product.data.name}
-                </Card.Title>
-                <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                <br />
-                <div>
-                    {product.data.variants?.map((variant, idx) => (
-                        <span key={idx}>
-                            <Badge>{variant.name}</Badge>
-                            &nbsp;
-                        </span>
-                    ))}
-                </div>
-                <Button
-                    variant="success"
-                    onClick={() => addToCart(product.data, 1, null)}
-                >
-                    Add to Cart
-                </Button>
-                {admin ? (
-                    <>
-                        <Toast
-                            bg="danger"
-                            onClose={() => setItemDeleteFail(false)}
-                            show={itemDeleteFail}
-                            delay={5000}
-                            autohide
-                            className="w-100 my-2"
-                        >
-                            <Toast.Body>Failed to delete item</Toast.Body>
-                        </Toast>
-                        <br />
-                        <Button onClick={() => setEditItem(true)}>
-                            Edit Item
-                        </Button>
-                        <br />
-                        <Button
-                            onClick={() => deleteItem(product.reference)}
-                            variant="danger"
-                        >
-                            Delete Item
-                        </Button>
-                    </>
-                ) : (
-                    <></>
-                )}
+                <Card.Body>
+                    <Card.Title>{product.data.name}</Card.Title>
+                    <Card.Subtitle>{product.data.category}</Card.Subtitle>
+                    <br />
+                    <Button
+                        variant="success"
+                        onClick={() =>
+                            addToCart({
+                                product: product.data,
+                                quantity: 1,
+                                variants: {}
+                            })
+                        }
+                    >
+                        Add to Cart
+                    </Button>
+                    {admin ? (
+                        <>
+                            <Toast
+                                bg="danger"
+                                onClose={() => setItemDeleteFail(false)}
+                                show={itemDeleteFail}
+                                delay={5000}
+                                autohide
+                                className="w-100 my-2"
+                            >
+                                <Toast.Body>Failed to delete item</Toast.Body>
+                            </Toast>
+                            <br />
+                            <Button onClick={() => setEditItem(true)}>
+                                Edit Item
+                            </Button>
+                            <br />
+                            <Button
+                                onClick={() => deleteItem(product.reference)}
+                                variant="danger"
+                            >
+                                Delete Item
+                            </Button>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+                </Card.Body>
             </Card>
             <Modal show={editItem} onHide={() => setEditItem(false)}>
                 <Modal.Header>
