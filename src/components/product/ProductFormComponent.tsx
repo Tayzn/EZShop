@@ -33,9 +33,6 @@ export function ProductFormComponent({
     const [stock, setStock] = useState<string>(
         product?.data.stock.toString() || ""
     );
-    const [variants, setVariants] = useState<string>(
-        product?.data.variants?.map((variant) => variant.name).join(",") || ""
-    );
 
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
     const [operationFailure, setOperationFailure] = useState<boolean>(false);
@@ -52,9 +49,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: variants
-                    .split(",")
-                    .map((variant) => ({ name: variant, description: "" }))
+                variants: []
             };
 
             operation = ProductData.update(product);
@@ -65,9 +60,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: variants
-                    .split(",")
-                    .map((variant) => ({ name: variant, description: "" }))
+                variants: []
             });
         }
 
@@ -131,15 +124,6 @@ export function ProductFormComponent({
                     onChange={({ target }) => setStock(target.value)}
                 ></Form.Control>
             </FloatingLabel>
-            <br />
-            <FloatingLabel label="Variants">
-                <Form.Control
-                    type="text"
-                    value={variants}
-                    onChange={({ target }) => setVariants(target.value)}
-                ></Form.Control>
-            </FloatingLabel>
-            <Form.Text className="text-muted">Seperate with commas</Form.Text>
             <br />
             <Button
                 disabled={databaseWorking}

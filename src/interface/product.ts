@@ -4,6 +4,14 @@
  * 4/8/2023
  */
 
+export type ProductVariantSelection = {
+    [key: string]: ProductVariant;
+};
+
+export type ProductVariants = {
+    [key: string]: ProductVariant[];
+};
+
 export interface ProductVariant {
     name: string;
     description: string;
@@ -15,5 +23,5 @@ export interface Product {
     description: string;
     price: number;
     stock: number;
-    variants: ProductVariant[];
+    variants: ProductVariants;
 }

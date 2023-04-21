@@ -4,9 +4,10 @@
  * 4/8/2023
  */
 
+import { User } from "firebase/auth";
 import { auth_HookUser } from "../firebase/firebase_auth";
 import { CartData } from "../firebase/firebase_data";
-import { Product, ProductVariant } from "./product";
+import { Product, ProductVariantSelection } from "./product";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
@@ -20,7 +21,7 @@ import { Product, ProductVariant } from "./product";
 export interface CartItem {
     product: Product;
     quantity: number;
-    variant: ProductVariant | null;
+    variants: ProductVariantSelection;
 }
 
 /**
@@ -50,20 +51,30 @@ export function cart_HookCartState(
     };
 }
 
+/**
+ * Call all cart listeners with the current cart
+ */
 function cart_StateChanged() {
     cartListeners.forEach((listener) => listener(cart));
 }
 
-let cartOwner: string | null = null;
+/**
+ * The owner of the current cart. This should always be the logged in user, but this is tracked seperately for safety in case the DB fails to load
+ */
+let cartOwner: User | null = null;
+
+/**
+ * The current cart. Could belong to a user or anonymous in localstorage
+ */
 let cart: Cart = { items: [] };
 
 export function initializeCart() {
     auth_HookUser((user) => {
         if (user) {
-            CartData.getOrCreate(user.uid)
+            CartData.getOrCreate(user)
                 .then((newCart) => {
                     cart = newCart.data;
-                    cartOwner = user.uid;
+                    cartOwner = user;
                     cart_StateChanged();
                 })
                 .catch((err) => console.error("failed to load cart:", err));
@@ -90,47 +101,31 @@ export function getCart(): Cart {
  * Adds a product to the cart and saves it.
  * If a product that is already in the cart is added, the quantity will be increased.
  */
-export function addToCart(
-    product: Product,
-    quantity: number,
-    variationIdx: number | null
-): void {
-    const sameProduct: number = cart.items.findIndex((item) => {
-        let variationCheck = false;
+export function addToCart(newItem: CartItem) {
+    const existingItem: number = cart.items.findIndex(
+        (item) =>
+            newItem.product === item.product &&
+            newItem.variants === item.variants
+    );
 
-        if (variationIdx !== null) {
-            variationCheck =
-                item.variant === null
-                    ? false
-                    : item.variant.name ===
-                          product.variants[variationIdx].name &&
-                      item.variant.description ===
-                          product.variants[variationIdx].description;
-        } else {
-            variationCheck = item.variant === null;
-        }
+    let newItems: CartItem[];
 
-        return item.product.name === product.name && variationCheck;
-    });
-
-    if (sameProduct !== -1) {
-        cart.items[sameProduct].quantity += 1;
-        saveCart();
-        return;
+    if (existingItem !== -1) {
+        const updatedItem = {
+            ...cart.items[existingItem],
+            quantity: cart.items[existingItem].quantity + newItem.quantity
+        };
+        newItems = [...cart.items];
+        newItems.splice(existingItem, 1, updatedItem);
+    } else {
+        newItems = [...cart.items, newItem];
     }
 
-    const newCartItem: CartItem = {
-        product: product,
-        quantity: quantity,
-        variant: variationIdx !== null ? product.variants[variationIdx] : null
+    cart = {
+        items: newItems
     };
 
-    cart = {
-        items: [...cart.items, newCartItem]
-    };
-    saveCart()
-        .then(() => cart_StateChanged())
-        .catch(console.error);
+    saveCart().then(cart_StateChanged);
 }
 
 /**
