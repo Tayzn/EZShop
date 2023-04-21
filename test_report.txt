@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (209 ms)
+  ✕ renders the course name somewhere (204 ms)
 
   ● renders the course name somewhere
 
@@ -148,12 +148,12 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   13.71 |     7.86 |    4.79 |    13.7 |                                
+All files                     |   13.66 |     7.52 |    4.43 |   13.74 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |   27.83 |       35 |    12.5 |   27.95 |                                
+ src/components               |   26.21 |    31.81 |   11.62 |   26.53 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,72-105    
-  CartPage.tsx                |   33.33 |      100 |       0 |   33.33 | 7-13                           
+  CartPage.tsx                |   11.11 |        0 |       0 |    12.5 | 13-30                          
   EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
   Filter.tsx                  |       0 |      100 |       0 |       0 | 13-134                         
   Footer.tsx                  |     100 |       50 |     100 |     100 | 14                             
@@ -171,18 +171,18 @@ All files                     |   13.71 |     7.86 |    4.79 |    13.7 |
   ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 27-101                         
   ProductDisplayGrid.tsx      |       0 |        0 |       0 |       0 | 26-133                         
   ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-139                         
- src/firebase                 |    7.35 |        0 |    1.85 |    7.35 |                                
+ src/firebase                 |    6.84 |        0 |    1.75 |    6.84 |                                
   firebase.ts                 |       0 |      100 |       0 |       0 | 15-30                          
   firebase_auth.ts            |    4.34 |      100 |       5 |    4.34 | 20-51,73-120                   
-  firebase_data.ts            |      10 |        0 |       0 |      10 | 34-164,176-199,210-231,243-268 
- src/interface                |       0 |        0 |       0 |       0 |                                
+  firebase_data.ts            |    8.88 |        0 |       0 |    8.88 | 34-164,176-199,210-231,243-282 
+ src/interface                |    7.89 |        0 |       0 |     8.1 |                                
   account.ts                  |       0 |        0 |       0 |       0 |                                
-  cart.ts                     |       0 |        0 |       0 |       0 | 37-118                         
+  cart.ts                     |    7.89 |        0 |       0 |     8.1 | 47-54,61-150                   
   order.ts                    |       0 |        0 |       0 |       0 |                                
   product.ts                  |       0 |        0 |       0 |       0 |                                
 ------------------------------|---------|----------|---------|---------|--------------------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.916 s
+Time:        3.374 s
 Ran all test suites.
