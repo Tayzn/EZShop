@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (204 ms)
+  ✕ renders the course name somewhere (253 ms)
 
   ● renders the course name somewhere
 
@@ -148,7 +148,7 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   13.66 |     7.52 |    4.43 |   13.74 |                                
+All files                     |   13.71 |     7.52 |    4.43 |   13.79 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
  src/components               |   26.21 |    31.81 |   11.62 |   26.53 |                                
@@ -169,7 +169,7 @@ All files                     |   13.66 |     7.52 |    4.43 |   13.74 |
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
  src/components/product       |       0 |        0 |       0 |       0 |                                
   ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 27-101                         
-  ProductDisplayGrid.tsx      |       0 |        0 |       0 |       0 | 26-133                         
+  ProductDisplayGrid.tsx      |       0 |        0 |       0 |       0 | 26-132                         
   ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-139                         
  src/firebase                 |    6.84 |        0 |    1.75 |    6.84 |                                
   firebase.ts                 |       0 |      100 |       0 |       0 | 15-30                          
@@ -184,5 +184,5 @@ All files                     |   13.66 |     7.52 |    4.43 |   13.74 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.374 s
+Time:        4.886 s
 Ran all test suites.
