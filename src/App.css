@@ -47,6 +47,8 @@
 
 .item {
     border: 1px solid #6dee5c;
+}
+.itemInspect {
     cursor: pointer;
 }
 

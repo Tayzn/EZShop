@@ -23,9 +23,6 @@ export const Inventory = (): JSX.Element => {
     return (
         <Container fluid="lg" className="side-shadow overflow-y-visible">
             <Row>
-                <div className="itemInspect" onClick={() => console.log(test)}>
-                    test
-                </div>
                 <h1>Catalog</h1>
                 <Filter
                     setBackorder={setBackorder}

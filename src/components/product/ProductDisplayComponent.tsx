@@ -40,14 +40,24 @@ export function ProductDisplayComponent({
     };
     return (
         <>
-            <Card className="item" onClick={() => setInspectItem(true)}>
-                <Image src="https://i.ibb.co/Z8mKr4f/boxclipart.png" />
-                <Card.Title>
-                    {product.data.stock} * {product.data.name}*
-                    {product.data.price}
-                </Card.Title>
-                <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                <br />
+            <Card className="item">
+                <div
+                    className="itemInspect"
+                    onClick={() => setInspectItem(true)}
+                >
+                    <Image
+                        width="100%"
+                        height="auto"
+                        src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
+                    />
+                    <Card.Title>
+                        {product.data.stock} * {product.data.name}
+                    </Card.Title>
+                    <Card.Subtitle>
+                        {product.data.category}*{product.data.price}
+                    </Card.Subtitle>
+                    <br />
+                </div>
                 <div>
                     {product.data.variants?.map((variant) => (
                         <>
@@ -115,6 +125,8 @@ export function ProductDisplayComponent({
                                     width="300px"
                                     src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
                                 />
+                                <p></p>
+                                {product.data.description}
                             </Col>
                             <Col>
                                 <Row>Price: ${product.data.price}</Row>
@@ -122,7 +134,9 @@ export function ProductDisplayComponent({
                                 <Row>Stock: {product.data.stock}</Row>
                                 <p></p>
                                 <Row>
-                                    options:
+                                    Options:
+                                    <p></p>
+                                    Available Variants:
                                     <Form.Select
                                         value={color}
                                         onChange={(

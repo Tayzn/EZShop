@@ -111,7 +111,7 @@ export function ProductFormComponent({
             <FloatingLabel label="Description">
                 <Form.Control
                     type="text"
-                    value={category}
+                    value={description}
                     onChange={({ target }) => setDescription(target.value)}
                 ></Form.Control>
             </FloatingLabel>
@@ -119,7 +119,7 @@ export function ProductFormComponent({
             <FloatingLabel label="Price">
                 <Form.Control
                     type="number"
-                    value={stock}
+                    value={price}
                     onChange={({ target }) => setPrice(target.value)}
                 ></Form.Control>
             </FloatingLabel>
