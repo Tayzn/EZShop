@@ -20,7 +20,7 @@ import { Product, ProductVariant } from "./product";
 export interface CartItem {
     product: Product;
     quantity: number;
-    variant: ProductVariant;
+    variant: ProductVariant | null;
 }
 
 /**
@@ -30,21 +30,49 @@ export interface Cart {
     items: CartItem[];
 }
 
-let cartOwner: string | null;
-let cart: Cart;
+const cartListeners: React.Dispatch<React.SetStateAction<Cart>>[] = [];
+
+export type Unsubscribe = () => void;
+
+/**
+ * Attach a React setState function to be called whenever the current cart is changed
+ *
+ * Always call this inside of a `useEffect` block because you must unsubscribe when the event is no longer needed
+ * @param stateDispatcher The setState function to be called
+ * @returns An unsubscribe function to remove the setState listener
+ */
+export function cart_HookCartState(
+    stateDispatcher: React.Dispatch<React.SetStateAction<Cart>>
+): Unsubscribe {
+    const idx = cartListeners.push(stateDispatcher) - 1;
+    return () => {
+        cartListeners.splice(idx, 1);
+    };
+}
+
+function cart_StateChanged() {
+    cartListeners.forEach((listener) => listener(cart));
+}
+
+let cartOwner: string | null = null;
+let cart: Cart = { items: [] };
 
 export function initializeCart() {
     auth_HookUser((user) => {
         if (user) {
-            CartData.get(user.uid).then((newCart) => {
-                cart = newCart.data;
-                cartOwner = newCart.reference.id;
-            });
+            CartData.getOrCreate(user.uid)
+                .then((newCart) => {
+                    cart = newCart.data;
+                    cartOwner = user.uid;
+                    cart_StateChanged();
+                })
+                .catch((err) => console.error("failed to load cart:", err));
             // TODO merge/clear localstorage
         } else {
             cart = { items: [] };
             cartOwner = null;
             // TODO load localstorage
+            cart_StateChanged();
         }
     });
 }
@@ -56,6 +84,53 @@ export function initializeCart() {
  */
 export function getCart(): Cart {
     return cart;
+}
+
+/**
+ * Adds a product to the cart and saves it.
+ * If a product that is already in the cart is added, the quantity will be increased.
+ */
+export function addToCart(
+    product: Product,
+    quantity: number,
+    variationIdx: number | null
+): void {
+    const sameProduct: number = cart.items.findIndex((item) => {
+        let variationCheck = false;
+
+        if (variationIdx !== null) {
+            variationCheck =
+                item.variant === null
+                    ? false
+                    : item.variant.name ===
+                          product.variants[variationIdx].name &&
+                      item.variant.description ===
+                          product.variants[variationIdx].description;
+        } else {
+            variationCheck = item.variant === null;
+        }
+
+        return item.product.name === product.name && variationCheck;
+    });
+
+    if (sameProduct !== -1) {
+        cart.items[sameProduct].quantity += 1;
+        saveCart();
+        return;
+    }
+
+    const newCartItem: CartItem = {
+        product: product,
+        quantity: quantity,
+        variant: variationIdx !== null ? product.variants[variationIdx] : null
+    };
+
+    cart = {
+        items: [...cart.items, newCartItem]
+    };
+    saveCart()
+        .then(() => cart_StateChanged())
+        .catch(console.error);
 }
 
 /**

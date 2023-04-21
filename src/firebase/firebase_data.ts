@@ -261,6 +261,20 @@ export class CartData {
         );
     }
 
+    static getOrCreate(account: UserId): Promise<ReferencedObject<Cart>> {
+        return new Promise((resolve, reject) => {
+            this.get(account)
+                .then(resolve)
+                .catch((err) => {
+                    if (err === "Not found") {
+                        this.create(account).then(resolve).catch(reject);
+                    } else {
+                        reject(err);
+                    }
+                });
+        });
+    }
+
     static update(
         account: UserId,
         cart: Cart
