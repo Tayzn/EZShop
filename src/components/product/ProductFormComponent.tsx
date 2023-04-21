@@ -34,7 +34,7 @@ export function ProductFormComponent({
         product?.data.stock.toString() || ""
     );
     const [variants, setVariants] = useState<string>(
-        product?.data.variants?.join(",") || ""
+        product?.data.variants?.map((variant) => variant.name).join(",") || ""
     );
 
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
