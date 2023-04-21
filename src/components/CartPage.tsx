@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Button, Container } from "react-bootstrap";
-import {
-    Cart,
-    addToCart,
-    cart_HookCartState,
-    getCart
-} from "../interface/cart";
-import { ProductData } from "../firebase/firebase_data";
+import { Container } from "react-bootstrap";
+import { Cart, cart_HookCartState, getCart } from "../interface/cart";
 
 export const CartPage = (): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
@@ -22,26 +16,6 @@ export const CartPage = (): JSX.Element => {
                         {item.product.name} - x{item.quantity}
                     </p>
                 ))}
-                <Button
-                    onClick={() => {
-                        ProductData.list().then((items) => {
-                            const item =
-                                items[Math.floor(Math.random() * items.length)];
-                            addToCart(
-                                item.data,
-                                Math.floor(Math.random() * items.length),
-                                item.data.variants
-                                    ? Math.floor(
-                                          Math.random() *
-                                              item.data.variants.length
-                                      )
-                                    : null
-                            );
-                        });
-                    }}
-                >
-                    Add Debug Item
-                </Button>
             </Container>
         </Container>
     );
