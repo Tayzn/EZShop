@@ -5,7 +5,7 @@ import { Col, Container } from "react-bootstrap";
 
 import { Route, Routes } from "react-router-dom";
 
-import { Cart } from "./components/Cart";
+import { CartPage } from "./components/CartPage";
 import { EmptyPage } from "./components/EmptyPage";
 import { HeaderNav } from "./components/HeaderNav";
 import { AdminPage } from "./components/admin/AdminPage";
@@ -19,7 +19,7 @@ function App(): JSX.Element {
                 <HeaderNav />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route path="/cart" element={<Cart />} />
+                    <Route path="/cart" element={<CartPage />} />
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>

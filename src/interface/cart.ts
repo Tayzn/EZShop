@@ -20,7 +20,7 @@ import { Product, ProductVariant } from "./product";
 export interface CartItem {
     product: Product;
     quantity: number;
-    variant: ProductVariant;
+    variant: ProductVariant | null;
 }
 
 /**
@@ -58,6 +58,49 @@ export function initializeCart() {
  */
 export function getCart(): Cart {
     return cart;
+}
+
+/**
+ * Adds a product to the cart and saves it.
+ * If a product that is already in the cart is added, the quantity will be increased.
+ */
+export function addToCart(
+    product: Product,
+    quantity: number,
+    variationIdx: number | null
+): void {
+    const sameProduct: number = cart.items.findIndex((item) => {
+        let variationCheck = false;
+
+        if (variationIdx !== null) {
+            variationCheck =
+                item.variant === null
+                    ? false
+                    : item.variant.name ===
+                          product.variants[variationIdx].name &&
+                      item.variant.description ===
+                          product.variants[variationIdx].description;
+        } else {
+            variationCheck = item.variant === null;
+        }
+
+        return item.product.name === product.name && variationCheck;
+    });
+
+    if (sameProduct !== -1) {
+        cart.items[sameProduct].quantity += 1;
+        saveCart();
+        return;
+    }
+
+    const newCartItem: CartItem = {
+        product: product,
+        quantity: quantity,
+        variant: variationIdx !== null ? product.variants[variationIdx] : null
+    };
+
+    cart.items = [...cart.items, newCartItem];
+    saveCart();
 }
 
 /**
