@@ -49,7 +49,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: []
+                variants: {}
             };
 
             operation = ProductData.update(product);
@@ -60,7 +60,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: []
+                variants: {}
             });
         }
 

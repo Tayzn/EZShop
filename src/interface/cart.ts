@@ -7,7 +7,7 @@
 import { User } from "firebase/auth";
 import { auth_HookUser } from "../firebase/firebase_auth";
 import { CartData } from "../firebase/firebase_data";
-import { Product, ProductVariantSelection } from "./product";
+import { Product, ProductVariantSelection, productEquals } from "./product";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
@@ -102,11 +102,15 @@ export function getCart(): Cart {
  * If a product that is already in the cart is added, the quantity will be increased.
  */
 export function addToCart(newItem: CartItem) {
-    const existingItem: number = cart.items.findIndex(
-        (item) =>
-            newItem.product === item.product &&
-            newItem.variants === item.variants
-    );
+    const existingItem: number = cart.items.findIndex((item) => {
+        if (!productEquals(newItem.product, item.product)) return false;
+        for (const key in newItem.variants) {
+            if (!(key in item.variants)) return false;
+            if (newItem.variants[key].name !== item.variants[key].name)
+                return false;
+        }
+        return true;
+    });
 
     let newItems: CartItem[];
 

@@ -22,26 +22,6 @@ export const CartPage = (): JSX.Element => {
                         {item.product.name} - x{item.quantity}
                     </p>
                 ))}
-                <Button
-                    onClick={() => {
-                        ProductData.list().then((items) => {
-                            const item =
-                                items[Math.floor(Math.random() * items.length)];
-                            addToCart(
-                                item.data,
-                                Math.floor(Math.random() * items.length),
-                                item.data.variants
-                                    ? Math.floor(
-                                          Math.random() *
-                                              item.data.variants.length
-                                      )
-                                    : null
-                            );
-                        });
-                    }}
-                >
-                    Add Debug Item
-                </Button>
             </Container>
         </Container>
     );

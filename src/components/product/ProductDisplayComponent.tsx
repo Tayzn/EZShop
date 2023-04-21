@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Product } from "../../interface/product";
 import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
-import { Badge, Button, Card, Modal, Toast } from "react-bootstrap";
+import { Button, Card, Modal, Toast } from "react-bootstrap";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "./ProductFormComponent";
 import { Image } from "react-bootstrap";
@@ -48,7 +48,13 @@ export function ProductDisplayComponent({
                     <br />
                     <Button
                         variant="success"
-                        onClick={() => addToCart(product.data, 1, null)}
+                        onClick={() =>
+                            addToCart({
+                                product: product.data,
+                                quantity: 1,
+                                variants: {}
+                            })
+                        }
                     >
                         Add to Cart
                     </Button>
