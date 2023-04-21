@@ -105,7 +105,6 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     {products[0] !== undefined ? (
                         products.map((product) => {
                             if (determineShowProduct(product)) {
-                                console.log("test");
                                 return (
                                     <ProductDisplayComponent
                                         key={product.reference.id}
