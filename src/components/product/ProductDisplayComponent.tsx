@@ -48,11 +48,11 @@ export function ProductDisplayComponent({
                 <Card.Subtitle>{product.data.category}</Card.Subtitle>
                 <br />
                 <div>
-                    {product.data.variants?.map((variant) => (
-                        <>
-                            <Badge key={variant.name}>{variant.name}</Badge>
+                    {product.data.variants?.map((variant, idx) => (
+                        <span key={idx}>
+                            <Badge>{variant.name}</Badge>
                             &nbsp;
-                        </>
+                        </span>
                     ))}
                 </div>
                 <Button
