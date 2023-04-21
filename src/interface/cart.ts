@@ -36,10 +36,12 @@ let cart: Cart;
 export function initializeCart() {
     auth_HookUser((user) => {
         if (user) {
-            CartData.get(user.uid).then((newCart) => {
-                cart = newCart.data;
-                cartOwner = newCart.reference.id;
-            });
+            CartData.getOrCreate(user.uid)
+                .then((newCart) => {
+                    cart = newCart.data;
+                    cartOwner = newCart.reference.id;
+                })
+                .catch((err) => console.error("failed to load cart:", err));
             // TODO merge/clear localstorage
         } else {
             cart = { items: [] };
