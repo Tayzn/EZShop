@@ -1,17 +1,13 @@
 import React, { useState, useEffect } from "react";
 
 import { Container, Col, Button } from "react-bootstrap";
-import { Cart, getCart } from "../../interface/cart";
+import { Cart, cart_HookCartState, getCart } from "../../interface/cart";
 
 import { CartItemDisplay } from "./CartItemDisplay";
 
 export const CartPage = (): JSX.Element => {
-    const [cart, setCart] = useState<Cart>({ items: [] });
-
-    useEffect(() => {
-        setCart(getCart());
-    });
-
+    const [cart, setCart] = useState<Cart>(getCart());
+    useEffect(() => cart_HookCartState(setCart), []);
     return (
         <Container fluid className="flex-grow-1 ez-bg">
             <Container className="h-100 side-shadow">

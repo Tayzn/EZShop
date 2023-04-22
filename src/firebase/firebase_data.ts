@@ -20,8 +20,9 @@ import {
 } from "firebase/firestore";
 import { app } from "./firebase";
 import { Product } from "../interface/product";
-import { UserAccount, UserId } from "../interface/account";
+import { UserAccount } from "../interface/account";
 import { Cart } from "../interface/cart";
+import { User } from "firebase/auth";
 
 export interface ReferencedObject<T> {
     data: T;
@@ -239,21 +240,21 @@ export class CartData {
     static collection = "carts";
     static document = "items";
 
-    static getCartCollection(account: UserId): CollectionReference<Cart> {
+    static getCartCollection(account: User): CollectionReference<Cart> {
         return coerce<Cart>(
-            collection(db, this.collection, account, this.document)
+            collection(db, this.collection, account.uid, this.document)
         );
     }
 
-    static getCartDoc(account: UserId): DocumentReference<Cart> {
+    static getCartDoc(account: User): DocumentReference<Cart> {
         return doc(this.getCartCollection(account), this.document);
     }
 
-    static get(account: UserId): Promise<ReferencedObject<Cart>> {
+    static get(account: User): Promise<ReferencedObject<Cart>> {
         return db_Get(this.getCartDoc(account));
     }
 
-    static create(account: UserId): Promise<ReferencedObject<Cart>> {
+    static create(account: User): Promise<ReferencedObject<Cart>> {
         return db_Create(
             this.getCartCollection(account),
             { items: [] },
@@ -261,10 +262,21 @@ export class CartData {
         );
     }
 
-    static update(
-        account: UserId,
-        cart: Cart
-    ): Promise<ReferencedObject<Cart>> {
+    static getOrCreate(account: User): Promise<ReferencedObject<Cart>> {
+        return new Promise((resolve, reject) => {
+            this.get(account)
+                .then(resolve)
+                .catch((err) => {
+                    if (err === "Not found") {
+                        this.create(account).then(resolve).catch(reject);
+                    } else {
+                        reject(err);
+                    }
+                });
+        });
+    }
+
+    static update(account: User, cart: Cart): Promise<ReferencedObject<Cart>> {
         return db_Update({ reference: this.getCartDoc(account), data: cart });
     }
 }
