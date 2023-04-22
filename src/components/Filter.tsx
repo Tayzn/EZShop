@@ -23,7 +23,16 @@ export function Filter({
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const categories = array;
-
+    function checkValidPrice() {
+        if (
+            parseInt(minpricePlaceHolder) < 0 ||
+            parseInt(minpricePlaceHolder) > parseInt(maxpricePlaceHolder) ||
+            parseInt(maxpricePlaceHolder) < parseInt(minpricePlaceHolder)
+        ) {
+            return false;
+        }
+        return true;
+    }
     return (
         <>
             <Button
@@ -94,6 +103,9 @@ export function Filter({
                             />
                         </Form.Group>
                     </div>
+                    <span hidden={checkValidPrice()}>
+                        Please enter a valid price Filter
+                    </span>
                     <hr></hr>
                     Availability:
                     <h1></h1>
@@ -138,6 +150,7 @@ export function Filter({
                     </Button>
                     <Button
                         variant="success"
+                        disabled={!checkValidPrice()}
                         onClick={() => {
                             handleClose();
                             setCategory(categoryPlaceHolder);

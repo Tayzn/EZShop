@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
@@ -10,12 +10,23 @@ export function CatalogComponent({
     product,
     setInspectItem
 }: ItemView): JSX.Element {
+    const [quantity, setQuantity] = useState<string>("1");
+    function checkValidQuantity() {
+        if (
+            parseInt(quantity) > product.data.stock ||
+            parseInt(quantity) <= 0
+        ) {
+            return true;
+        }
+        return false;
+    }
     return (
         <>
             <Modal
                 show={inspectItem}
                 onHide={() => setInspectItem(false)}
                 size="lg"
+                centered
             >
                 <Modal.Header>
                     <Modal.Title>{product.data.name}</Modal.Title>
@@ -29,6 +40,8 @@ export function CatalogComponent({
                                     width="300px"
                                     src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
                                 />
+                                <p></p>
+                                Description:
                                 <p></p>
                                 {product.data.description}
                             </Col>
@@ -71,11 +84,28 @@ export function CatalogComponent({
                                             </option>
                                         )}
                                     </Form.Select>
+                                    Quantity:
+                                    <Form.Group controlId="setMaxPrice">
+                                        <Form.Control
+                                            type="number"
+                                            style={{ width: "100px" }}
+                                            value={quantity}
+                                            onChange={(
+                                                event: React.ChangeEvent<HTMLInputElement>
+                                            ) =>
+                                                setQuantity(event.target.value)
+                                            }
+                                        />
+                                    </Form.Group>
+                                    <span hidden={!checkValidQuantity()}>
+                                        Not a Valid Quantity!
+                                    </span>
                                 </Row>
                             </Col>
                             <Row>
                                 <Button
                                     variant="success"
+                                    disabled={checkValidQuantity()}
                                     style={{
                                         width: "300px",
                                         marginLeft: "400px"
@@ -83,7 +113,7 @@ export function CatalogComponent({
                                     onClick={() =>
                                         addToCart({
                                             product: product.data,
-                                            quantity: 1,
+                                            quantity: parseInt(quantity),
                                             variants: {}
                                         })
                                     }
