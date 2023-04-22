@@ -29,7 +29,16 @@ export function CatalogComponent({
                 centered
             >
                 <Modal.Header>
-                    <Modal.Title>{product.data.name}</Modal.Title>
+                    <Modal.Title>
+                        {product.data.name}
+                        <Button
+                            variant="secondary"
+                            className="closeButton"
+                            onClick={() => setInspectItem(false)}
+                        >
+                            X
+                        </Button>
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Container>

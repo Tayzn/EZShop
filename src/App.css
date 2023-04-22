@@ -1,7 +1,15 @@
 .App {
     text-align: center;
 }
-
+.closeButton {
+    width: 40px;
+    height: 40px;
+    background-color: white;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    color: black;
+}
 .priceFilter {
     display: flex;
     flex-direction: row;
@@ -47,6 +55,7 @@
 
 .item {
     border: 1px solid #6dee5c;
+    max-width: 250px;
 }
 .itemInspect {
     cursor: pointer;
