@@ -11,8 +11,15 @@ import { Button, Card, Modal, Toast } from "react-bootstrap";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "./ProductFormComponent";
 import { Image } from "react-bootstrap";
+import { CatalogComponent } from "./CatalogComponent";
 
-import { addToCart } from "../../interface/cart";
+export interface ItemView {
+    inspectItem: boolean;
+    desiredVariant: string;
+    setDesiredVariant: (newDesiredVariant: string) => void;
+    product: ReferencedObject<Product>;
+    setInspectItem: (newInspectStatus: boolean) => void;
+}
 export function ProductDisplayComponent({
     product,
     admin,
@@ -26,7 +33,8 @@ export function ProductDisplayComponent({
 }): JSX.Element {
     const [itemDeleteFail, setItemDeleteFail] = useState<boolean>(false);
     const [editItem, setEditItem] = useState<boolean>(false);
-    //const [orderQuantity, setMinPriceFilter] = useState<string>("0");
+    const [inspectItem, setInspectItem] = useState<boolean>(false);
+    const [desiredVariant, setDesiredVariant] = useState("test");
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
             .then(() => {
@@ -37,26 +45,24 @@ export function ProductDisplayComponent({
                 setItemDeleteFail(true);
             });
     };
+
     return (
         <>
             <Card className="item">
-                <Image src="https://i.ibb.co/Z8mKr4f/boxclipart.png" />
                 <Card.Body>
-                    <Card.Title>{product.data.name}</Card.Title>
-                    <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                    <br />
-                    <Button
-                        variant="success"
-                        onClick={() =>
-                            addToCart({
-                                product: product.data,
-                                quantity: 1,
-                                variants: {}
-                            })
-                        }
+                    <div
+                        className="itemInspect"
+                        onClick={() => setInspectItem(true)}
                     >
-                        Add to Cart
-                    </Button>
+                        <Image
+                            width="100%"
+                            height="auto"
+                            src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
+                        />
+                        <Card.Title>{product.data.name}</Card.Title>
+                        <Card.Subtitle>{product.data.category}</Card.Subtitle>
+                        <br />
+                    </div>
                     {admin ? (
                         <>
                             <Toast
@@ -100,6 +106,13 @@ export function ProductDisplayComponent({
                     />
                 </Modal.Body>
             </Modal>
+            <CatalogComponent
+                inspectItem={inspectItem}
+                desiredVariant={desiredVariant}
+                setDesiredVariant={setDesiredVariant}
+                product={product}
+                setInspectItem={setInspectItem}
+            />
         </>
     );
 }

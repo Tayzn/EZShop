@@ -13,7 +13,7 @@ import {
 import { Product } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 import { ProductFormComponent } from "./ProductFormComponent";
-
+export let array = ["any"];
 type propData = {
     category: string;
     isInStock: boolean;
@@ -21,7 +21,10 @@ type propData = {
     currentSearch: string;
     showNoItemsFound: boolean;
     setShowNoItemsFound: (displayNoItemsFound: boolean) => void;
+    minprice: string;
+    maxprice: string;
 };
+
 export function ProductDisplayGrid(props: propData): JSX.Element {
     const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
     const [loadError, setLoadError] = useState<boolean>(false);
@@ -29,7 +32,6 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
     const [itemCreateSuccess, setItemCreateSuccess] = useState<boolean>(false);
     const [itemEditSuccess, setItemEditSuccess] = useState<boolean>(false);
     const [itemDeleteSuccess, setItemDeleteSuccess] = useState<boolean>(false);
-    //const [showNoItemsFound, setShowNoItemsFound] = useState<boolean>(true);
     // loading data is resource intensive so we should avoid doing it
     useEffect(
         () =>
@@ -40,10 +42,25 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
             ),
         [itemCreateSuccess, itemDeleteSuccess]
     );
+    function mapProductCategories() {
+        products.map((product) => {
+            if (!array.includes(product.data.category)) {
+                array = [...array, product.data.category];
+            }
+        });
+    }
+    mapProductCategories();
+    //this remaps category list if item is deleted
+    if (itemDeleteSuccess) {
+        array = ["any"];
+        mapProductCategories();
+    }
     function determineShowProduct(product: ReferencedObject<Product>) {
         //this function just returns a boolean representing if the product in the
         //product mapping meets filter requirements and search.
         if (
+            product.data.price <= parseInt(props.maxprice) &&
+            product.data.price >= parseInt(props.minprice) &&
             (product.data.name
                 .toLowerCase()
                 .includes(props.currentSearch.toLowerCase()) ||
@@ -63,6 +80,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
         }
         return false;
     }
+
     return (
         <div>
             <Stack direction="vertical" className="m-3">
