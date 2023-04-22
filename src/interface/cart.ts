@@ -31,7 +31,7 @@ export interface Cart {
 }
 
 let cartOwner: string | null;
-let cart: Cart;
+let cart: Cart = { items: [] };
 
 export function initializeCart() {
     auth_HookUser((user) => {
