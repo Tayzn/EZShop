@@ -12,6 +12,8 @@ export interface FilterProp {
     setBackorder: (newback: boolean) => void;
     setIsInStock: (newstock: boolean) => void;
     setShowNoItemsFound: (displayNoItemsFound: boolean) => void;
+    setMaxPriceFilter: (MaxPrice: string) => void;
+    setMinPriceFilter: (MinPrice: string) => void;
 }
 export const Inventory = (): JSX.Element => {
     const [category, setCategory] = useState("any");
@@ -19,6 +21,8 @@ export const Inventory = (): JSX.Element => {
     const [backorder, setBackorder] = useState(true);
     const [currentSearch, setCurrentSearch] = useState("");
     const [showNoItemsFound, setShowNoItemsFound] = useState(true);
+    const [minprice, setMinPriceFilter] = useState<string>("0");
+    const [maxprice, setMaxPriceFilter] = useState<string>("9999");
     return (
         <Container fluid="lg" className="side-shadow overflow-y-visible">
             <Row>
@@ -31,6 +35,8 @@ export const Inventory = (): JSX.Element => {
                     category={category}
                     isInStock={isInStock}
                     backorder={backorder}
+                    setMaxPriceFilter={setMaxPriceFilter}
+                    setMinPriceFilter={setMinPriceFilter}
                 />
                 <SearchBar
                     currentSearch={currentSearch}
@@ -48,6 +54,8 @@ export const Inventory = (): JSX.Element => {
                     currentSearch={currentSearch}
                     showNoItemsFound={showNoItemsFound}
                     setShowNoItemsFound={setShowNoItemsFound}
+                    minprice={minprice}
+                    maxprice={maxprice}
                 />
             </Row>
         </Container>

@@ -48,6 +48,9 @@
 .item {
     border: 1px solid #6dee5c;
 }
+.itemInspect {
+    cursor: pointer;
+}
 
 .side-shadow {
     box-shadow: 12px 0 15px -4px rgba(0, 0, 0, 0.2),

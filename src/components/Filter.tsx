@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { FilterProp } from "./Inventory";
-
+import { array } from "./product/ProductDisplayGrid";
 export function Filter({
     setBackorder,
     setIsInStock,
     setCategory,
-    setShowNoItemsFound
+    setShowNoItemsFound,
+    setMaxPriceFilter,
+    setMinPriceFilter
 }: FilterProp): JSX.Element {
     //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
     //pressed, the filter fields will remain unchanged
     const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
     const [isInStockPlaceHolder, setIsInStockPlaceHolder] = useState(true);
     const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(true);
+    const [minpricePlaceHolder, setMinPriceFilterPlaceHolder] =
+        useState<string>("0");
+    const [maxpricePlaceHolder, setMaxPriceFilterPlaceHolder] =
+        useState<string>("9999");
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    const categories = ["any", "books", "pen/pencils", "lights", "automotive"];
-    const [minprice, setMinPriceFilter] = useState<string>("0");
-    const [maxprice, setMaxPriceFilter] = useState<string>("9999");
-
+    const categories = array;
+    function checkValidPrice() {
+        if (
+            parseInt(minpricePlaceHolder) < 0 ||
+            parseInt(minpricePlaceHolder) > parseInt(maxpricePlaceHolder) ||
+            parseInt(maxpricePlaceHolder) < parseInt(minpricePlaceHolder)
+        ) {
+            return false;
+        }
+        return true;
+    }
     return (
         <>
             <Button
@@ -55,12 +68,16 @@ export function Filter({
                     <div className="priceFilter">
                         <Form.Group controlId="setMinPrice">
                             <Form.Control
-                                value={minprice}
+                                value={minpricePlaceHolder}
                                 style={{ width: "100px" }}
                                 type="number"
                                 onChange={(
                                     event: React.ChangeEvent<HTMLInputElement>
-                                ) => setMinPriceFilter(event.target.value)}
+                                ) =>
+                                    setMinPriceFilterPlaceHolder(
+                                        event.target.value
+                                    )
+                                }
                             />
                         </Form.Group>
                         <span
@@ -75,13 +92,20 @@ export function Filter({
                             <Form.Control
                                 type="number"
                                 style={{ width: "100px" }}
-                                value={maxprice}
+                                value={maxpricePlaceHolder}
                                 onChange={(
                                     event: React.ChangeEvent<HTMLInputElement>
-                                ) => setMaxPriceFilter(event.target.value)}
+                                ) =>
+                                    setMaxPriceFilterPlaceHolder(
+                                        event.target.value
+                                    )
+                                }
                             />
                         </Form.Group>
                     </div>
+                    <span hidden={checkValidPrice()}>
+                        Please enter a valid price Filter
+                    </span>
                     <hr></hr>
                     Availability:
                     <h1></h1>
@@ -126,12 +150,15 @@ export function Filter({
                     </Button>
                     <Button
                         variant="success"
+                        disabled={!checkValidPrice()}
                         onClick={() => {
                             handleClose();
                             setCategory(categoryPlaceHolder);
                             setBackorder(backorderPlaceHolder);
                             setIsInStock(isInStockPlaceHolder);
                             setShowNoItemsFound(false);
+                            setMaxPriceFilter(maxpricePlaceHolder);
+                            setMinPriceFilter(minpricePlaceHolder);
                         }}
                     >
                         Apply
