@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (256 ms)
+  ✕ renders the course name somewhere (199 ms)
 
   ● renders the course name somewhere
 
@@ -148,28 +148,29 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   13.57 |     7.44 |    4.57 |   13.79 |                                
+All files                     |   12.76 |      6.3 |    4.29 |   12.93 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |      27 |       35 |   12.19 |   27.36 |                                
+ src/components               |   25.23 |       28 |    11.9 |   25.49 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,72-105    
   CartPage.tsx                |   16.66 |      100 |       0 |      20 | 7-15                           
   EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
-  Filter.tsx                  |       0 |      100 |       0 |       0 | 13-134                         
+  Filter.tsx                  |       0 |        0 |       0 |       0 | 15-161                         
   Footer.tsx                  |     100 |       50 |     100 |     100 | 14                             
   HeaderNav.tsx               |      75 |      100 |      50 |   72.72 | 41,45,49                       
   Home.tsx                    |      50 |      100 |       0 |      50 | 8                              
   ImageBanner.tsx             |    5.88 |        0 |       0 |    6.25 | 5-47                           
-  Inventory.tsx               |   14.28 |      100 |       0 |   14.28 | 17-22                          
-  SearchBar.tsx               |       0 |      100 |       0 |       0 | 21-24                          
+  Inventory.tsx               |   11.11 |      100 |       0 |   11.11 | 19-26                          
+  SearchBar.tsx               |       0 |      100 |       0 |       0 | 10-13                          
  src/components/admin         |   41.66 |        0 |       0 |   41.66 |                                
   AdminInventory.tsx          |      50 |      100 |       0 |      50 | 6                              
   AdminOrders.tsx             |      50 |      100 |       0 |      50 | 6                              
   AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                          
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
- src/components/product       |       0 |        0 |       0 |       0 |                                
-  ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 27-99                          
-  ProductDisplayGrid.tsx      |       0 |        0 |       0 |       0 | 26-132                         
+ src/components/product       |    1.16 |        0 |       0 |     1.2 |                                
+  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 13-114                         
+  ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 34-104                         
+  ProductDisplayGrid.tsx      |    3.22 |        0 |       0 |    3.22 | 29-150                         
   ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-124                         
  src/firebase                 |    6.84 |        0 |    1.75 |    6.84 |                                
   firebase.ts                 |       0 |      100 |       0 |       0 | 15-30                          
@@ -184,5 +185,5 @@ All files                     |   13.57 |     7.44 |    4.57 |   13.79 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.794 s
+Time:        3.565 s
 Ran all test suites.
