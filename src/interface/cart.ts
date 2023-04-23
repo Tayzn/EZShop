@@ -133,6 +133,47 @@ export function addToCart(newItem: CartItem) {
 }
 
 /**
+ * Updates the quantity of an item in the cart.
+ */
+export function updateCartQuantity(item: CartItem, quantity: number) {
+    const existingItem = cart.items.findIndex((cartItem) => cartItem === item);
+    if (existingItem === -1) {
+        console.warn(
+            "Attempted to update the cart quantity of a non-existant item."
+        );
+        return;
+    }
+
+    const updatedItem = {
+        ...item,
+        quantity: quantity
+    };
+
+    const newItems: CartItem[] = [...cart.items];
+    newItems.splice(existingItem, 1, updatedItem);
+
+    cart = {
+        items: newItems
+    };
+
+    saveCart().then(cart_StateChanged);
+}
+
+/**
+ * Removes a specified item from the cart.
+ */
+export function removeFromCart(item: CartItem) {
+    const newItems: CartItem[] = cart.items.filter(
+        (cartItem) => cartItem !== item
+    );
+    cart = {
+        items: newItems
+    };
+
+    saveCart().then(cart_StateChanged);
+}
+
+/**
  * Save the current cart
  *
  * This function will transparently save to either the database for a logged in user, or local storage

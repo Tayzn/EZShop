@@ -11,7 +11,16 @@ export const CartPage = (): JSX.Element => {
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
     useEffect(() => cart_HookCartState(setCart), []);
-    useEffect(() => setTotal(shippingPrice), [shippingPrice]);
+    useEffect(() => calculateTotal(), [cart, shippingPrice]);
+
+    const calculateTotal = () => {
+        const cartTotal: number = cart.items.reduce(
+            (sum, item) => (sum += item.product.price * item.quantity),
+            0
+        );
+        setTotal(cartTotal + shippingPrice);
+    };
+
     return (
         <Container fluid className="flex-grow-1 ez-bg">
             <Container className="h-100 side-shadow">
@@ -31,7 +40,12 @@ export const CartPage = (): JSX.Element => {
                             className="p-3"
                             style={{ backgroundColor: "#e6e6e6" }}
                         >
-                            <h2>Total: ${total}</h2>
+                            <h2>
+                                Total:{" "}
+                                {cart.items.length === 0
+                                    ? "$0.00"
+                                    : "$" + total}
+                            </h2>
                             <hr></hr>
                             <div className="mt-4">
                                 <ShippingForm
@@ -39,7 +53,11 @@ export const CartPage = (): JSX.Element => {
                                     setShippingPrice={setShippingPrice}
                                 />
                             </div>
-                            <Button variant="success" size="lg">
+                            <Button
+                                variant="success"
+                                size="lg"
+                                disabled={cart.items.length === 0}
+                            >
                                 Payment »
                             </Button>
                         </Container>
