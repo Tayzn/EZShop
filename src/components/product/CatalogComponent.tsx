@@ -3,14 +3,14 @@ import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
 import { ItemView } from "../product/ProductDisplayComponent";
+//import { ProductVariantSelection } from "../../interface/product";
 export function CatalogComponent({
     inspectItem,
-    desiredVariant,
-    setDesiredVariant,
     product,
     setInspectItem
 }: ItemView): JSX.Element {
     const [quantity, setQuantity] = useState<string>("1");
+    //const [variants, setVariants] = useState<ProductVariantSelection>({});
     function checkValidQuantity() {
         if (
             parseInt(quantity) > product.data.stock ||
@@ -20,6 +20,13 @@ export function CatalogComponent({
         }
         return false;
     }
+    function test() {
+        let test = "";
+        for (const key in product.data.variants) {
+            test = key;
+        }
+        return test;
+    }
     return (
         <>
             <Modal
@@ -28,17 +35,8 @@ export function CatalogComponent({
                 size="lg"
                 centered
             >
-                <Modal.Header>
-                    <Modal.Title>
-                        {product.data.name}
-                        <Button
-                            variant="secondary"
-                            className="closeButton"
-                            onClick={() => setInspectItem(false)}
-                        >
-                            X
-                        </Button>
-                    </Modal.Title>
+                <Modal.Header closeButton>
+                    <Modal.Title>{product.data.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Container>
@@ -64,35 +62,7 @@ export function CatalogComponent({
                                     <p></p>
                                     Available Variants:
                                     <p></p>
-                                    <Form.Select
-                                        value={desiredVariant}
-                                        onChange={(
-                                            event: React.ChangeEvent<HTMLSelectElement>
-                                        ) =>
-                                            setDesiredVariant(
-                                                event.target.value
-                                            )
-                                        }
-                                    >
-                                        {product.data.variants != null ? (
-                                            product.data.variants.name?.map(
-                                                (variant) => (
-                                                    <option
-                                                        key={variant.name}
-                                                        value={variant.name}
-                                                    >
-                                                        {variant.name}
-                                                    </option>
-                                                )
-                                            )
-                                        ) : (
-                                            <option
-                                                value={"No primary Variants"}
-                                            >
-                                                {"No primary Variants"}
-                                            </option>
-                                        )}
-                                    </Form.Select>
+                                    {test()}
                                     Quantity:
                                     <Form.Group controlId="setMaxPrice">
                                         <Form.Control

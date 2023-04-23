@@ -15,8 +15,6 @@ import { CatalogComponent } from "./CatalogComponent";
 
 export interface ItemView {
     inspectItem: boolean;
-    desiredVariant: string;
-    setDesiredVariant: (newDesiredVariant: string) => void;
     product: ReferencedObject<Product>;
     setInspectItem: (newInspectStatus: boolean) => void;
 }
@@ -34,7 +32,6 @@ export function ProductDisplayComponent({
     const [itemDeleteFail, setItemDeleteFail] = useState<boolean>(false);
     const [editItem, setEditItem] = useState<boolean>(false);
     const [inspectItem, setInspectItem] = useState<boolean>(false);
-    const [desiredVariant, setDesiredVariant] = useState("test");
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
             .then(() => {
@@ -108,8 +105,6 @@ export function ProductDisplayComponent({
             </Modal>
             <CatalogComponent
                 inspectItem={inspectItem}
-                desiredVariant={desiredVariant}
-                setDesiredVariant={setDesiredVariant}
                 product={product}
                 setInspectItem={setInspectItem}
             />

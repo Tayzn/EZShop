@@ -56,7 +56,6 @@
 
 .item {
     border: 1px solid #6dee5c;
-    max-width: 250px;
 }
 .itemInspect {
     cursor: pointer;
