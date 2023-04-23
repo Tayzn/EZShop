@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (200 ms)
+  ✕ renders the course name somewhere (258 ms)
 
   ● renders the course name somewhere
 
@@ -148,12 +148,12 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   12.57 |     5.98 |    4.24 |   12.72 |                                
+All files                     |   12.53 |     5.98 |    4.04 |   12.75 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |   23.33 |    22.58 |   11.36 |   23.47 |                                
+ src/components               |   21.66 |    22.58 |   11.36 |   21.73 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,72-105    
-  CartPage.tsx                |   10.52 |        0 |       0 |   11.11 | 6-21,76-85                     
+  CartPage.tsx                |       0 |        0 |       0 |       0 | 5-85                           
   EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
   Filter.tsx                  |       0 |        0 |       0 |       0 | 15-161                         
   Footer.tsx                  |     100 |       50 |     100 |     100 | 14                             
@@ -167,6 +167,10 @@ All files                     |   12.57 |     5.98 |    4.24 |   12.72 |
   AdminOrders.tsx             |      50 |      100 |       0 |      50 | 6                              
   AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                          
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
+ src/components/cart          |   23.52 |      100 |       0 |   26.66 |                                
+  CartItemDisplay.tsx         |   66.66 |      100 |       0 |   66.66 | 10                             
+  CartPage.tsx                |      10 |      100 |       0 |    12.5 | 10-23                          
+  ShippingForm.tsx            |      25 |      100 |       0 |      25 | 12-42                          
  src/components/product       |    1.16 |        0 |       0 |     1.2 |                                
   CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 13-114                         
   ProductDisplayComponent.tsx |       0 |        0 |       0 |       0 | 34-104                         
@@ -185,5 +189,5 @@ All files                     |   12.57 |     5.98 |    4.24 |   12.72 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        3.493 s
+Time:        5.85 s
 Ran all test suites.
