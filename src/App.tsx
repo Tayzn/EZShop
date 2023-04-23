@@ -5,12 +5,13 @@ import { Col, Container } from "react-bootstrap";
 
 import { Route, Routes } from "react-router-dom";
 
+import { AdminPage } from "./components/admin/AdminPage";
 import { CartPage } from "./components/CartPage";
 import { EmptyPage } from "./components/EmptyPage";
-import { HeaderNav } from "./components/HeaderNav";
-import { AdminPage } from "./components/admin/AdminPage";
-import { Home } from "./components/Home";
 import { Footer } from "./components/Footer";
+import { HeaderNav } from "./components/HeaderNav";
+import { Home } from "./components/Home";
+import { ProfilePage } from "./components/ProfilePage";
 
 function App(): JSX.Element {
     return (
@@ -20,6 +21,7 @@ function App(): JSX.Element {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="*" element={<EmptyPage />} />
                 </Routes>
