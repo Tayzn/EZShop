@@ -58,7 +58,9 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                             <h4 className="mb-0">
                                 ${item.product.price * item.quantity}{" "}
                             </h4>
-                            <h6>${item.product.price}/pc</h6>
+                            <h6>
+                                ${item.product.price}/pc x{item.quantity}
+                            </h6>
                         </Row>
                         <Row>
                             <Container fluid>
