@@ -34,9 +34,10 @@
 }
 .item-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(299px, 299px));
     grid-gap: 20px;
     padding: 20px;
+    width: 100%;
 }
 .searchBar {
     width: 300px;
