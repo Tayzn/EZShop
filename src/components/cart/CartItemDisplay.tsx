@@ -54,8 +54,11 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                         </Row>
                     </Col>
                     <Col className="d-flex flex-column align-items-end">
-                        <Row className="mb-auto">
-                            <h4>${item.product.price * item.quantity}</h4>
+                        <Row className="mb-auto text-end">
+                            <h4 className="mb-0">
+                                ${item.product.price * item.quantity}{" "}
+                            </h4>
+                            <h6>${item.product.price}/pc</h6>
                         </Row>
                         <Row>
                             <Container fluid>
