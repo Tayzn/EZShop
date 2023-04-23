@@ -5,13 +5,13 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 
 export const ProfilePage = (): JSX.Element => {
-    const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
+    // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    //     event.preventDefault();
 
-        console.log(event.target);
-        //const formDataObj = Object.fromEntries(formData.entries());
-        //console.log(formDataObj);
-    };
+    //     console.log(event.target);
+    //     //const formDataObj = Object.fromEntries(formData.entries());
+    //     //console.log(formDataObj);
+    // };
 
     return (
         <Container fluid className="flex-grow-1 ez-bg">
