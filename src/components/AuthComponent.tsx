@@ -4,7 +4,9 @@
  * 4/8/2023
  */
 
+import { User } from "firebase/auth";
 import React, { useEffect, useState } from "react";
+import { Alert, Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 import {
     auth_CreateUser,
     auth_GetCurrentUser,
@@ -13,8 +15,6 @@ import {
     auth_SignIn,
     auth_SignOut
 } from "../firebase/firebase_auth";
-import { User } from "firebase/auth";
-import { Alert, Button, FloatingLabel, Form, Modal } from "react-bootstrap";
 
 export function AuthComponent(): JSX.Element {
     const [user, setUser] = useState<User | null>(auth_GetCurrentUser());
@@ -57,16 +57,19 @@ export function AuthComponent(): JSX.Element {
     return (
         <div>
             {user ? (
-                <span>
-                    <p className="m-0">
-                        Welcome,&nbsp;
+                <div>
+                    <a
+                        href="#/profile"
+                        className="m-2"
+                        style={{ color: "black" }}
+                    >
+                        Welcome,{" "}
                         {user.displayName ? user.displayName : user.email}
-                        &nbsp;
-                        <Button variant="secondary" onClick={auth_SignOut}>
-                            Sign Out
-                        </Button>
-                    </p>
-                </span>
+                    </a>
+                    <Button variant="secondary" onClick={auth_SignOut}>
+                        Sign Out
+                    </Button>
+                </div>
             ) : (
                 <span>
                     <Button variant="success" onClick={() => setShowForm(true)}>
