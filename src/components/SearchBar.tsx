@@ -17,7 +17,7 @@ export function SearchBar(props: searchProps): JSX.Element {
                     <Form.Control
                         className="searchBar"
                         value={props.currentSearch}
-                        placeholder="search"
+                        placeholder="Search"
                         onChange={searchEvent}
                     />
                 </Form.Group>

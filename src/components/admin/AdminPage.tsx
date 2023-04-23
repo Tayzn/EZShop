@@ -38,7 +38,6 @@ export const AdminPage = (): JSX.Element => {
                         ))}
                     </ButtonGroup>
                 </Container>
-                <hr></hr>
                 {selectedOption === "Inventory" && <AdminInventory />}
                 {selectedOption === "Orders" && <AdminOrders />}
                 {selectedOption === "Users" && <AdminUsers />}
