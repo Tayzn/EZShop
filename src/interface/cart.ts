@@ -174,6 +174,19 @@ export function removeFromCart(item: CartItem) {
 }
 
 /**
+ * Submits the cart as an order, then clears the cart.
+ */
+export function placeOrder() {
+    //TO DO: Submit order to DB
+
+    cart = {
+        items: []
+    };
+
+    saveCart().then(cart_StateChanged);
+}
+
+/**
  * Save the current cart
  *
  * This function will transparently save to either the database for a logged in user, or local storage
