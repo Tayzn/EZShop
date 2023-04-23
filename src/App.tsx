@@ -5,7 +5,7 @@ import { Col, Container } from "react-bootstrap";
 
 import { Route, Routes } from "react-router-dom";
 
-import { CartPage } from "./components/CartPage";
+import { CartPage } from "./components/cart/CartPage";
 import { EmptyPage } from "./components/EmptyPage";
 import { HeaderNav } from "./components/HeaderNav";
 import { AdminPage } from "./components/admin/AdminPage";
