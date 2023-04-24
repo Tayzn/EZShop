@@ -65,7 +65,7 @@ const ShippingForm = () => {
                     <p>${shippingPrice.toFixed(2)}</p>
                 </div>
             )}
-            <Button variant="primary" type="submit">
+            <Button variant="primary" type="submit" href="#/confirmation">
                 Complete Shipping Information
             </Button>
         </Form>
