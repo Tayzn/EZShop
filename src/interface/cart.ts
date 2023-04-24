@@ -144,6 +144,10 @@ export function updateCartQuantity(item: CartItem, quantity: number) {
         return;
     }
 
+    if (quantity > item.product.stock) {
+        quantity = item.product.stock;
+    }
+
     const updatedItem = {
         ...item,
         quantity: quantity

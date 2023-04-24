@@ -6,10 +6,8 @@
 
 import React, { useState } from "react";
 import { Product } from "../../interface/product";
-import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
-import { Button, Card, Modal, Toast } from "react-bootstrap";
-import { DocumentReference } from "firebase/firestore";
-import { ProductFormComponent } from "./ProductFormComponent";
+import { ReferencedObject } from "../../firebase/firebase_data";
+import { Card } from "react-bootstrap";
 import { Image } from "react-bootstrap";
 import { CatalogComponent } from "./CatalogComponent";
 
@@ -19,19 +17,12 @@ export interface ItemView {
     setInspectItem: (newInspectStatus: boolean) => void;
 }
 export function ProductDisplayComponent({
-    product,
-    admin,
-    deletedDispatcher,
-    editedDispatcher
+    product
 }: {
     product: ReferencedObject<Product>;
-    admin: boolean;
-    deletedDispatcher?: React.Dispatch<React.SetStateAction<boolean>>;
-    editedDispatcher?: React.Dispatch<React.SetStateAction<boolean>>;
 }): JSX.Element {
-    const [itemDeleteFail, setItemDeleteFail] = useState<boolean>(false);
-    const [editItem, setEditItem] = useState<boolean>(false);
     const [inspectItem, setInspectItem] = useState<boolean>(false);
+<<<<<<< HEAD
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
             .then(() => {
@@ -42,6 +33,9 @@ export function ProductDisplayComponent({
                 setItemDeleteFail(true);
             });
     };
+=======
+    const [desiredVariant, setDesiredVariant] = useState("test");
+>>>>>>> 98721ab726c9fa3997b02f170983c9d2623a7bbd
 
     return (
         <>
@@ -52,6 +46,7 @@ export function ProductDisplayComponent({
                         onClick={() => setInspectItem(true)}
                     >
                         <Image
+                            thumbnail
                             width="100%"
                             height="auto"
                             src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
@@ -60,49 +55,8 @@ export function ProductDisplayComponent({
                         <Card.Subtitle>{product.data.category}</Card.Subtitle>
                         <br />
                     </div>
-                    {admin ? (
-                        <>
-                            <Toast
-                                bg="danger"
-                                onClose={() => setItemDeleteFail(false)}
-                                show={itemDeleteFail}
-                                delay={5000}
-                                autohide
-                                className="w-100 my-2"
-                            >
-                                <Toast.Body>Failed to delete item</Toast.Body>
-                            </Toast>
-                            <br />
-                            <Button onClick={() => setEditItem(true)}>
-                                Edit Item
-                            </Button>
-                            <br />
-                            <Button
-                                onClick={() => deleteItem(product.reference)}
-                                variant="danger"
-                            >
-                                Delete Item
-                            </Button>
-                        </>
-                    ) : (
-                        <></>
-                    )}
                 </Card.Body>
             </Card>
-            <Modal show={editItem} onHide={() => setEditItem(false)}>
-                <Modal.Header>
-                    <Modal.Title>Edit Item</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <ProductFormComponent
-                        product={product}
-                        completedDispatcher={(success) => {
-                            if (editedDispatcher) editedDispatcher(success);
-                            setEditItem(false);
-                        }}
-                    />
-                </Modal.Body>
-            </Modal>
             <CatalogComponent
                 inspectItem={inspectItem}
                 product={product}

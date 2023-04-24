@@ -33,10 +33,8 @@ export function ProductFormComponent({
     const [stock, setStock] = useState<string>(
         product?.data.stock.toString() || ""
     );
-
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
     const [operationFailure, setOperationFailure] = useState<boolean>(false);
-
     const executeOperation = () => {
         setDatabaseWorking(true);
 
@@ -72,7 +70,9 @@ export function ProductFormComponent({
             .catch(() => setOperationFailure(true))
             .finally(() => setDatabaseWorking(false));
     };
-
+    //for (const key in product?.data.variants) {
+    //setNewVariantKey([...newVariantKey, key]);
+    //}
     return (
         <div>
             <Toast
@@ -124,6 +124,7 @@ export function ProductFormComponent({
                     onChange={({ target }) => setStock(target.value)}
                 ></Form.Control>
             </FloatingLabel>
+            <>Variants</>
             <br />
             <Button
                 disabled={databaseWorking}
