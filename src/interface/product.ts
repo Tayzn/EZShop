@@ -5,17 +5,12 @@
  */
 
 export type ProductVariantSelection = {
-    [key: string]: ProductVariant;
+    [key: string]: string;
 };
 
 export type ProductVariants = {
-    [key: string]: ProductVariant[];
+    [key: string]: string[];
 };
-
-export interface ProductVariant {
-    name: string;
-    description: string;
-}
 
 export interface Product {
     name: string;
@@ -24,6 +19,7 @@ export interface Product {
     price: number;
     stock: number;
     variants: ProductVariants;
+    image: string;
 }
 
 export function productEquals(product1: Product, product2: Product): boolean {
@@ -38,9 +34,7 @@ export function productEquals(product1: Product, product2: Product): boolean {
         if (!(key in product2.variants)) return false;
         if (
             !product1.variants[key].every((variant) =>
-                product2.variants[key].some(
-                    (other) => variant.name === other.name
-                )
+                product2.variants[key].some((other) => variant === other)
             )
         )
             return false;

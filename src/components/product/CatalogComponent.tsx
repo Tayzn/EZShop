@@ -38,7 +38,7 @@ export function CatalogComponent({
                                 <Image
                                     height="300px"
                                     width="300px"
-                                    src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
+                                    src={product.data.image}
                                 />
                                 <p></p>
                                 Description:
@@ -69,10 +69,10 @@ export function CatalogComponent({
                                             product.data.variants.name?.map(
                                                 (variant) => (
                                                     <option
-                                                        key={variant.name}
-                                                        value={variant.name}
+                                                        key={variant}
+                                                        value={variant}
                                                     >
-                                                        {variant.name}
+                                                        {variant}
                                                     </option>
                                                 )
                                             )
