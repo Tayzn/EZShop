@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
-
 import { Container, Col, Button } from "react-bootstrap";
 import {
     Cart,
@@ -35,7 +34,7 @@ export const CartPage = (): JSX.Element => {
     const submitOrder = () => {
         placeOrder();
         setOrderComplete(true);
-        setTimeout(() => navigate("/#"), 1500);
+        setTimeout(() => navigate("/confirmation"), 1500);
     };
 
     return (

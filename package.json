@@ -10,6 +10,7 @@
         "@types/jest": "^27.4.0",
         "@types/node": "^16.11.21",
         "@types/react-dom": "^17.0.11",
+        "confetti-js": "^0.0.18",
         "firebase": "^9.19.1",
         "react": "^17.0.2",
         "react-bootstrap": "^2.1.1",
