@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Badge, Button, Nav, NavDropdown } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthComponent } from "./AuthComponent";
+import { Cart, getCart, cart_HookCartState } from "../interface/cart";
 
 export const HeaderNav = (): JSX.Element => {
+    const [cart, setCart] = useState<Cart>(getCart());
+    useEffect(() => cart_HookCartState(setCart), []);
+
     return (
         <Navbar
             collapseOnSelect
@@ -25,7 +29,7 @@ export const HeaderNav = (): JSX.Element => {
                     <Button variant="outline-dark" href="#/cart">
                         Cart
                         <Badge pill style={{ marginLeft: "10px" }} bg="dark">
-                            2
+                            {cart.items.length}
                         </Badge>
                     </Button>
                 </Navbar.Collapse>
