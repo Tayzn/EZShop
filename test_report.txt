@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (196 ms)
+  ✕ renders the course name somewhere (197 ms)
 
   ● renders the course name somewhere
 
@@ -148,12 +148,11 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   11.36 |     5.34 |    4.66 |   11.43 |                                
+All files                     |   11.89 |      5.6 |    4.78 |   11.95 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
- src/components               |   22.83 |    22.58 |   12.76 |   22.68 |                                
+ src/components               |   26.85 |       28 |   14.28 |   26.73 |                                
   AuthComponent.tsx           |    42.3 |    42.85 |    9.09 |    42.3 | 23,33-35,39-44,50-52,75-108    
-  CartPage.tsx                |       0 |        0 |       0 |       0 | 5-85                           
   ConfirmationPage.tsx        |   16.66 |      100 |       0 |      20 | 7-25                           
   EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                              
   Filter.tsx                  |       0 |        0 |       0 |       0 | 15-161                         
@@ -192,5 +191,5 @@ All files                     |   11.36 |     5.34 |    4.66 |   11.43 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.036 s
+Time:        3.952 s
 Ran all test suites.
