@@ -4,7 +4,7 @@ import { Container } from "react-bootstrap";
 
 export const AdminOrders = (): JSX.Element => {
     return (
-        <Container>
+        <Container className="mt-3">
             <h2>Orders</h2>
         </Container>
     );

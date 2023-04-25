@@ -24,6 +24,10 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
             return;
         }
 
+        if (newQuantity > item.product.stock) {
+            newQuantity = item.product.stock;
+        }
+
         if (newQuantity <= 0) {
             removeFromCart(item);
         } else {
@@ -38,11 +42,14 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                     <Image fluid thumbnail src={displayUrl} />
                 </Col>
                 <Col className="d-flex flex-row mx-3">
-                    <Col xs={10}>
+                    <Col
+                        xs={10}
+                        className="d-flex flex-column align-items-start"
+                    >
                         <Row className="mb-0 pb-0">
                             <h3 className="mb-0 pb-0">{item.product.name}</h3>
                         </Row>
-                        <Row>
+                        <Row className="mb-auto">
                             <Container className="mb-2">
                                 <Badge className="me-2" bg="secondary">
                                     Large
@@ -52,10 +59,20 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                                 </Badge>
                             </Container>
                         </Row>
+                        <Row>
+                            <Container>
+                                In Stock: {item.product.stock}
+                            </Container>
+                        </Row>
                     </Col>
                     <Col className="d-flex flex-column align-items-end">
-                        <Row className="mb-auto">
-                            <h4>${item.product.price * item.quantity}</h4>
+                        <Row className="mb-auto text-end">
+                            <h4 className="mb-0">
+                                ${item.product.price * item.quantity}{" "}
+                            </h4>
+                            <h6>
+                                ${item.product.price}/pc x{item.quantity}
+                            </h6>
                         </Row>
                         <Row>
                             <Container fluid>

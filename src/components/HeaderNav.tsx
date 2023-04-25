@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Badge, Button, Nav, NavDropdown } from "react-bootstrap";
+import { Badge, Button, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthComponent } from "./AuthComponent";
 import { Cart, getCart, cart_HookCartState } from "../interface/cart";
@@ -41,6 +41,9 @@ export const HeaderNav = (): JSX.Element => {
 // Links
 const LinkProducts = (): JSX.Element => <Nav.Link href="#/">Products</Nav.Link>;
 
+const LinkAdmin = (): JSX.Element => <Nav.Link href="#/admin">Admin</Nav.Link>;
+
+/*
 const LinkOrders = (): JSX.Element => (
     <NavDropdown.Item href="#/admin">View Orders</NavDropdown.Item>
 );
@@ -52,6 +55,7 @@ const LinkInventory = (): JSX.Element => (
 const LinkUsers = (): JSX.Element => (
     <NavDropdown.Item href="#/admin">Manage Users</NavDropdown.Item>
 );
+*/
 
 // Link Bundles by Role
 // const UserLinks = (): JSX.Element => {
@@ -88,12 +92,7 @@ const AdminLinks = (): JSX.Element => {
     return (
         <Nav className="me-auto">
             <LinkProducts />
-            <NavDropdown title="Admin" id="collasible-nav-dropdown">
-                <LinkInventory />
-                <LinkOrders />
-                <NavDropdown.Divider />
-                <LinkUsers />
-            </NavDropdown>
+            <LinkAdmin />
         </Nav>
     );
 };
