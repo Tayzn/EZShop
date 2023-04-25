@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (195 ms)
+  ✕ renders the course name somewhere (196 ms)
 
   ● renders the course name somewhere
 
@@ -148,7 +148,7 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|--------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s              
 ------------------------------|---------|----------|---------|---------|--------------------------------
-All files                     |   11.62 |     5.42 |    4.68 |   11.65 |                                
+All files                     |   11.36 |     5.34 |    4.66 |   11.43 |                                
  src                          |     100 |      100 |     100 |     100 |                                
   App.tsx                     |     100 |      100 |     100 |     100 |                                
  src/components               |   22.83 |    22.58 |   12.76 |   22.68 |                                
@@ -169,28 +169,28 @@ All files                     |   11.62 |     5.42 |    4.68 |   11.65 |
   AdminOrders.tsx             |      50 |      100 |       0 |      50 | 6                              
   AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                          
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
- src/components/cart          |   12.19 |        0 |       0 |   13.15 |                                
-  CartItemDisplay.tsx         |   15.38 |        0 |       0 |   15.38 | 22-99                          
+ src/components/cart          |      10 |        0 |       0 |   10.81 |                                
+  CartItemDisplay.tsx         |    8.33 |        0 |       0 |    8.33 | 20-97                          
   CartPage.tsx                |    4.54 |        0 |       0 |    5.26 | 17-76                          
   OrderModal.tsx              |      50 |      100 |       0 |      50 | 10                             
   ShippingForm.tsx            |      25 |      100 |       0 |      25 | 12-42                          
- src/components/product       |    1.75 |        0 |       0 |    1.78 |                                
+ src/components/product       |    1.69 |        0 |       0 |    1.72 |                                
   CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 13-114                         
   ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 26-35                          
   ProductDisplayGrid.tsx      |    5.88 |        0 |       0 |    5.88 | 28-84                          
-  ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-124                         
+  ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-137                         
  src/firebase                 |    6.84 |        0 |    1.75 |    6.84 |                                
   firebase.ts                 |       0 |      100 |       0 |       0 | 15-30                          
   firebase_auth.ts            |    4.34 |      100 |       5 |    4.34 | 20-51,73-120                   
   firebase_data.ts            |    8.88 |        0 |       0 |    8.88 | 35-165,177-200,211-232,244-280 
- src/interface                |    5.88 |        0 |    4.54 |    6.34 |                                
+ src/interface                |    5.88 |        0 |    4.54 |    6.55 |                                
   account.ts                  |       0 |        0 |       0 |       0 |                                
-  cart.ts                     |    6.89 |        0 |    5.26 |     7.4 | 48-58,72-86,105-207            
+  cart.ts                     |    6.89 |        0 |    5.26 |    7.54 | 48-58,72-86,105-206            
   order.ts                    |       0 |        0 |       0 |       0 |                                
-  product.ts                  |       0 |        0 |       0 |       0 | 30-49                          
+  product.ts                  |       0 |        0 |       0 |       0 | 26-43                          
 ------------------------------|---------|----------|---------|---------|--------------------------------
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.305 s
+Time:        4.036 s
 Ran all test suites.
