@@ -7,7 +7,7 @@
 import React, { useState } from "react";
 import { Product } from "../../interface/product";
 import { ReferencedObject } from "../../firebase/firebase_data";
-import { Card, Image, Ratio } from "react-bootstrap";
+import { Card, Image, Ratio, Container } from "react-bootstrap";
 import { CatalogComponent } from "./CatalogComponent";
 
 export interface ItemView {
@@ -33,7 +33,12 @@ export function ProductDisplayComponent({
             >
                 <Card.Body>
                     <Ratio aspectRatio={"1x1"}>
-                        <Image fluid src={product.data.image} />
+                        <Container
+                            fluid
+                            className="d-flex align-items-center justify-content-center overflow-hidden"
+                        >
+                            <Image fluid src={product.data.image} />
+                        </Container>
                     </Ratio>
                     <Card.Title>
                         {product.data.name}
