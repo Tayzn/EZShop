@@ -106,8 +106,7 @@ export function addToCart(newItem: CartItem) {
         if (!productEquals(newItem.product, item.product)) return false;
         for (const key in newItem.variants) {
             if (!(key in item.variants)) return false;
-            if (newItem.variants[key].name !== item.variants[key].name)
-                return false;
+            if (newItem.variants[key] !== item.variants[key]) return false;
         }
         return true;
     });
