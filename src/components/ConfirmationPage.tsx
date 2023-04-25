@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { Container, Image, Button, Col } from "react-bootstrap";
+import React, { useEffect, useState } from "react";
+import { Container, Button, Col } from "react-bootstrap";
 import { CartItemDisplay } from "./cart/CartItemDisplay";
-import { Cart, getCart } from "../interface/cart";
+import { Cart, cart_HookCartState, getCart } from "../interface/cart";
 
 export const ConfirmationPage = (): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
+    useEffect(() => cart_HookCartState(setCart), []);
 
     return (
         <Container fluid style={{ height: "90%" }}>
