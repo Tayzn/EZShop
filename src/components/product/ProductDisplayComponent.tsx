@@ -35,7 +35,7 @@ export function ProductDisplayComponent({
                             thumbnail
                             width="100%"
                             height="auto"
-                            src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
+                            src={product.data.image}
                         />
                         <Card.Title>{product.data.name}</Card.Title>
                         <Card.Subtitle>{product.data.category}</Card.Subtitle>

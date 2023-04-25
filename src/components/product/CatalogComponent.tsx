@@ -20,13 +20,6 @@ export function CatalogComponent({
         }
         return false;
     }
-    function test() {
-        let test = "";
-        for (const key in product.data.variants) {
-            test = key;
-        }
-        return test;
-    }
     return (
         <>
             <Modal
@@ -45,7 +38,7 @@ export function CatalogComponent({
                                 <Image
                                     height="300px"
                                     width="300px"
-                                    src="https://i.ibb.co/Z8mKr4f/boxclipart.png"
+                                    src={product.data.image}
                                 />
                                 <p></p>
                                 Description:
@@ -62,7 +55,6 @@ export function CatalogComponent({
                                     <p></p>
                                     Available Variants:
                                     <p></p>
-                                    {test()}
                                     Quantity:
                                     <Form.Group controlId="setMaxPrice">
                                         <Form.Control

@@ -33,6 +33,10 @@ export function ProductFormComponent({
     const [stock, setStock] = useState<string>(
         product?.data.stock.toString() || ""
     );
+    const [image, setImage] = useState<string>(
+        product?.data.image.toString() || ""
+    );
+
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
     const [operationFailure, setOperationFailure] = useState<boolean>(false);
     const executeOperation = () => {
@@ -47,7 +51,8 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: {}
+                variants: {},
+                image: image
             };
 
             operation = ProductData.update(product);
@@ -58,7 +63,8 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: {}
+                variants: {},
+                image: image
             });
         }
 
@@ -125,6 +131,14 @@ export function ProductFormComponent({
                 ></Form.Control>
             </FloatingLabel>
             <>Variants</>
+            <br />
+            <FloatingLabel label="Image URL">
+                <Form.Control
+                    type="text"
+                    value={image}
+                    onChange={({ target }) => setImage(target.value)}
+                ></Form.Control>
+            </FloatingLabel>
             <br />
             <Button
                 disabled={databaseWorking}

@@ -82,3 +82,19 @@
 .h-80 {
     height: 80%;
 }
+
+.confirm {
+    padding: 90px;
+    text-align: center;
+}
+
+.confirmButton {
+    margin-left: 40%;
+    margin-right: 40%;
+    margin-top: 20rem;
+    display: block;
+}
+
+.items {
+    text-align: center;
+}
