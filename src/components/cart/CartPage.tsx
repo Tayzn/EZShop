@@ -60,7 +60,10 @@ export const CartPage = (): JSX.Element => {
                                 Total:{" "}
                                 {cart.items.length === 0
                                     ? "$0.00"
-                                    : "$" + total}
+                                    : "$" +
+                                      total.toLocaleString(undefined, {
+                                          minimumFractionDigits: 2
+                                      })}
                             </h2>
                             <hr></hr>
                             <div className="mt-4">

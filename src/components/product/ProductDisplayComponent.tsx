@@ -7,8 +7,7 @@
 import React, { useState } from "react";
 import { Product } from "../../interface/product";
 import { ReferencedObject } from "../../firebase/firebase_data";
-import { Card } from "react-bootstrap";
-import { Image } from "react-bootstrap";
+import { Card, Image, Ratio } from "react-bootstrap";
 import { CatalogComponent } from "./CatalogComponent";
 
 export interface ItemView {
@@ -28,22 +27,28 @@ export function ProductDisplayComponent({
 
     return (
         <>
-            <Card className="item">
+            <Card
+                className="item itemInspect"
+                onClick={() => setInspectItem(true)}
+            >
                 <Card.Body>
-                    <div
-                        className="itemInspect"
-                        onClick={() => setInspectItem(true)}
-                    >
-                        <Image
-                            thumbnail
-                            width="100%"
-                            height="auto"
-                            src={product.data.image}
-                        />
-                        <Card.Title>{product.data.name}</Card.Title>
-                        <Card.Subtitle>{product.data.category}</Card.Subtitle>
-                        <br />
-                    </div>
+                    <Ratio aspectRatio={"1x1"}>
+                        <Image fluid src={product.data.image} />
+                    </Ratio>
+                    <Card.Title>
+                        {product.data.name}
+                        <span className="category-label">
+                            {" - "}
+                            {product.data.category}
+                        </span>
+                    </Card.Title>
+                    <Card.Subtitle>
+                        $
+                        {product.data.price.toLocaleString(undefined, {
+                            minimumFractionDigits: 2
+                        })}
+                    </Card.Subtitle>
+                    <br />
                 </Card.Body>
             </Card>
             <CatalogComponent
