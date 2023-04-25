@@ -22,20 +22,6 @@ export function ProductDisplayComponent({
     product: ReferencedObject<Product>;
 }): JSX.Element {
     const [inspectItem, setInspectItem] = useState<boolean>(false);
-<<<<<<< HEAD
-    const deleteItem = (reference: DocumentReference<Product>) => {
-        ProductData.delete(reference)
-            .then(() => {
-                if (deletedDispatcher) deletedDispatcher(true);
-                setItemDeleteFail(false);
-            })
-            .catch(() => {
-                setItemDeleteFail(true);
-            });
-    };
-=======
-    const [desiredVariant, setDesiredVariant] = useState("test");
->>>>>>> 98721ab726c9fa3997b02f170983c9d2623a7bbd
 
     return (
         <>
