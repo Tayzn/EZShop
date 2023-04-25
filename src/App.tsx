@@ -7,6 +7,7 @@ import { Route, Routes } from "react-router-dom";
 
 import { AdminPage } from "./components/admin/AdminPage";
 import { CartPage } from "./components/cart/CartPage";
+import { ConfirmationPage } from "./components/ConfirmationPage";
 import { EmptyPage } from "./components/EmptyPage";
 import { Footer } from "./components/Footer";
 import { HeaderNav } from "./components/HeaderNav";
@@ -21,6 +22,10 @@ function App(): JSX.Element {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<CartPage />} />
+                    <Route
+                        path="/confirmation"
+                        element={<ConfirmationPage />}
+                    />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/admin" element={<AdminPage />} />
                     <Route path="*" element={<EmptyPage />} />
