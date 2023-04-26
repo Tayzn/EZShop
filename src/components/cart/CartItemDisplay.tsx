@@ -7,7 +7,8 @@ import {
     Row,
     Form,
     Button,
-    Badge
+    Badge,
+    Ratio
 } from "react-bootstrap";
 
 import {
@@ -37,7 +38,14 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
         <>
             <Container className="d-flex flex-row">
                 <Col xs={2}>
-                    <Image fluid thumbnail src={item.product.image} />
+                    <Ratio aspectRatio={"1x1"}>
+                        <Container
+                            fluid
+                            className="d-flex align-items-center justify-content-center overflow-hidden"
+                        >
+                            <Image fluid src={item.product.image} />
+                        </Container>
+                    </Ratio>
                 </Col>
                 <Col className="d-flex flex-row mx-3">
                     <Col
