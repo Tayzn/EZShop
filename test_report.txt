@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (243 ms)
+  ✕ renders the course name somewhere (207 ms)
 
   ● renders the course name somewhere
 
@@ -169,13 +169,13 @@ All files                     |   11.89 |      5.6 |    4.78 |   11.95 |
   AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                          
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                              
  src/components/cart          |      10 |        0 |       0 |   10.81 |                                
-  CartItemDisplay.tsx         |    8.33 |        0 |       0 |    8.33 | 20-97                          
-  CartPage.tsx                |    4.54 |        0 |       0 |    5.26 | 17-76                          
+  CartItemDisplay.tsx         |    8.33 |        0 |       0 |    8.33 | 21-105                         
+  CartPage.tsx                |    4.54 |        0 |       0 |    5.26 | 17-79                          
   OrderModal.tsx              |      50 |      100 |       0 |      50 | 10                             
   ShippingForm.tsx            |      25 |      100 |       0 |      25 | 12-42                          
  src/components/product       |    1.69 |        0 |       0 |    1.72 |                                
-  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 13-114                         
-  ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 26-35                          
+  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 13-117                         
+  ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 25-32                          
   ProductDisplayGrid.tsx      |    5.88 |        0 |       0 |    5.88 | 28-84                          
   ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-137                         
  src/firebase                 |    6.84 |        0 |    1.75 |    6.84 |                                
@@ -191,5 +191,5 @@ All files                     |   11.89 |      5.6 |    4.78 |   11.95 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.9 s
+Time:        4.026 s
 Ran all test suites.
