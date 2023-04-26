@@ -39,7 +39,12 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
             <Container className="d-flex flex-row">
                 <Col xs={2}>
                     <Ratio aspectRatio={"1x1"}>
-                        <Image fluid thumbnail src={item.product.image} />
+                        <Container
+                            fluid
+                            className="d-flex align-items-center justify-content-center overflow-hidden"
+                        >
+                            <Image fluid src={item.product.image} />
+                        </Container>
                     </Ratio>
                 </Col>
                 <Col className="d-flex flex-row mx-3">
