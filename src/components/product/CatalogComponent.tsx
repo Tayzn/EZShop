@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { Image } from "react-bootstrap";
+import { Image, Ratio } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
 import { ItemView } from "../product/ProductDisplayComponent";
 //import { ProductVariantSelection } from "../../interface/product";
@@ -35,11 +35,14 @@ export function CatalogComponent({
                     <Container>
                         <Row>
                             <Col>
-                                <Image
-                                    height="300px"
-                                    width="300px"
-                                    src={product.data.image}
-                                />
+                                <Ratio aspectRatio={"1x1"}>
+                                    <Container
+                                        fluid
+                                        className="d-flex align-items-center justify-content-center overflow-hidden"
+                                    >
+                                        <Image fluid src={product.data.image} />
+                                    </Container>
+                                </Ratio>
                                 <p></p>
                                 Description:
                                 <p></p>

@@ -98,3 +98,8 @@
 .items {
     text-align: center;
 }
+
+.category-label {
+    color: #686868;
+    font-size: small;
+}
