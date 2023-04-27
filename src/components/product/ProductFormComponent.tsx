@@ -5,7 +5,7 @@
  */
 
 import React, { useState } from "react";
-import { Product } from "../../interface/product";
+import { Product, ProductVariants } from "../../interface/product";
 import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
 import { Button, FloatingLabel, Form, Spinner, Toast } from "react-bootstrap";
 
@@ -36,14 +36,20 @@ export function ProductFormComponent({
     const [image, setImage] = useState<string>(
         product?.data.image.toString() || ""
     );
-
+    const [variants, setVariants] = useState<ProductVariants>(
+        product?.data.variants || {}
+    );
+    const [editGroup, setEditGroup] = useState<string>("");
+    const [editVariant, setEditVariant] = useState<string>("");
+    const [oldEditGroup, setOldEditGroup] = useState<string>("");
+    const [oldEditVariant, setOldEditVariant] = useState<string>("");
+    const [editing, setEditing] = useState<boolean>(false);
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
     const [operationFailure, setOperationFailure] = useState<boolean>(false);
     const executeOperation = () => {
         setDatabaseWorking(true);
 
         let operation: Promise<ReferencedObject<Product>>;
-
         if (product) {
             product.data = {
                 name: name,
@@ -51,7 +57,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: {},
+                variants: variants,
                 image: image
             };
 
@@ -63,7 +69,7 @@ export function ProductFormComponent({
                 description: description,
                 price: parseInt(price),
                 stock: parseInt(stock),
-                variants: {},
+                variants: variants,
                 image: image
             });
         }
@@ -76,9 +82,97 @@ export function ProductFormComponent({
             .catch(() => setOperationFailure(true))
             .finally(() => setDatabaseWorking(false));
     };
-    //for (const key in product?.data.variants) {
-    //setNewVariantKey([...newVariantKey, key]);
-    //}
+    function addVariant(group: string, variant: string) {
+        //this function
+        const updated = variant.split(",");
+        setVariants(Object.assign(variants, { [group]: updated }));
+    }
+    function removeVariant(group: string) {
+        //const updated = [...variants[group]].filter((v) => v !== variant);
+        const temp = {};
+        Object.entries(variants).map(([group1]) => {
+            if (group1 !== group) {
+                console.log(group1);
+                Object.assign(temp, { [group1]: variants[group1] });
+            }
+        });
+        setVariants(temp);
+        mapOptions();
+    }
+    function changeVariant(
+        group: string,
+        variant: string,
+        newGroup: string,
+        newVariant: string
+    ) {
+        removeVariant(group);
+        addVariant(newGroup, newVariant);
+    }
+    function mapOptions() {
+        return Object.entries(variants).map(([group, variant]) => (
+            <p key="group">
+                {group} - {variant.join(",")}
+                <Button
+                    onClick={() => {
+                        setEditing(true);
+                        setOldEditGroup(group);
+                        setEditGroup(group);
+                        setOldEditVariant(variant.join(","));
+                        setEditVariant(variant.join(","));
+                    }}
+                >
+                    Edit
+                </Button>
+                <Button
+                    onClick={() => {
+                        removeVariant(group);
+                    }}
+                >
+                    Delete
+                </Button>
+            </p>
+        ));
+    }
+    function mapVariants() {
+        return (
+            <div>
+                {mapOptions()}
+                <Form.Control
+                    type="text"
+                    value={editGroup}
+                    placeholder="edit group"
+                    onChange={({ target }) => setEditGroup(target.value)}
+                ></Form.Control>
+                <Form.Control
+                    type="text"
+                    value={editVariant}
+                    placeholder="edit variant"
+                    onChange={({ target }) => setEditVariant(target.value)}
+                ></Form.Control>
+                <Button
+                    onClick={() => {
+                        if (editing) {
+                            changeVariant(
+                                oldEditGroup,
+                                oldEditVariant,
+                                editGroup,
+                                editVariant
+                            );
+                            setEditing(false);
+                            setOldEditGroup("");
+                            setOldEditVariant("");
+                        } else {
+                            addVariant(editGroup, editVariant);
+                        }
+                        setEditGroup("");
+                        setEditVariant("");
+                    }}
+                >
+                    Save
+                </Button>
+            </div>
+        );
+    }
     return (
         <div>
             <Toast
@@ -130,7 +224,6 @@ export function ProductFormComponent({
                     onChange={({ target }) => setStock(target.value)}
                 ></Form.Control>
             </FloatingLabel>
-            <>Variants</>
             <br />
             <FloatingLabel label="Image URL">
                 <Form.Control
@@ -140,6 +233,8 @@ export function ProductFormComponent({
                 ></Form.Control>
             </FloatingLabel>
             <br />
+            <>Variants:</>
+            {mapVariants()}
             <Button
                 disabled={databaseWorking}
                 variant="success"
