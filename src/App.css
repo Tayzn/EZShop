@@ -35,10 +35,9 @@
     display: flex;
 }
 .wrap {
-    width: 30%;
-    position: flex;
-    top: 50%;
-    left: 100%;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
 }
 .item-grid {
     display: grid;

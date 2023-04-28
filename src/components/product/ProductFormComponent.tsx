@@ -46,6 +46,7 @@ export function ProductFormComponent({
     const [editing, setEditing] = useState<boolean>(false);
     const [databaseWorking, setDatabaseWorking] = useState<boolean>(false);
     const [operationFailure, setOperationFailure] = useState<boolean>(false);
+    const [changingVariant, setChangingVariant] = useState<boolean>(true);
     const executeOperation = () => {
         setDatabaseWorking(true);
 
@@ -83,16 +84,15 @@ export function ProductFormComponent({
             .finally(() => setDatabaseWorking(false));
     };
     function addVariant(group: string, variant: string) {
-        //this function
-        const updated = variant.split(",");
-        setVariants(Object.assign(variants, { [group]: updated }));
+        if (group !== "") {
+            const updated = variant.split(",");
+            setVariants(Object.assign(variants, { [group]: updated }));
+        }
     }
     function removeVariant(group: string) {
-        //const updated = [...variants[group]].filter((v) => v !== variant);
         const temp = {};
         Object.entries(variants).map(([group1]) => {
             if (group1 !== group) {
-                console.log(group1);
                 Object.assign(temp, { [group1]: variants[group1] });
             }
         });
@@ -110,26 +110,32 @@ export function ProductFormComponent({
     }
     function mapOptions() {
         return Object.entries(variants).map(([group, variant]) => (
-            <p key="group">
+            <p key="group" className="wrap">
+                <hr></hr>
                 {group} - {variant.join(",")}
-                <Button
-                    onClick={() => {
-                        setEditing(true);
-                        setOldEditGroup(group);
-                        setEditGroup(group);
-                        setOldEditVariant(variant.join(","));
-                        setEditVariant(variant.join(","));
-                    }}
-                >
-                    Edit
-                </Button>
-                <Button
-                    onClick={() => {
-                        removeVariant(group);
-                    }}
-                >
-                    Delete
-                </Button>
+                <div style={{ position: "absolute", right: "5px" }}>
+                    <Button
+                        style={{ position: "relative", right: "3px" }}
+                        onClick={() => {
+                            setEditing(true);
+                            setOldEditGroup(group);
+                            setEditGroup(group);
+                            setOldEditVariant(variant.join(","));
+                            setEditVariant(variant.join(","));
+                            setChangingVariant(false);
+                        }}
+                    >
+                        Edit
+                    </Button>
+                    <Button
+                        variant="danger"
+                        onClick={() => {
+                            removeVariant(group);
+                        }}
+                    >
+                        Delete
+                    </Button>
+                </div>
             </p>
         ));
     }
@@ -137,39 +143,74 @@ export function ProductFormComponent({
         return (
             <div>
                 {mapOptions()}
-                <Form.Control
-                    type="text"
-                    value={editGroup}
-                    placeholder="edit group"
-                    onChange={({ target }) => setEditGroup(target.value)}
-                ></Form.Control>
-                <Form.Control
-                    type="text"
-                    value={editVariant}
-                    placeholder="edit variant"
-                    onChange={({ target }) => setEditVariant(target.value)}
-                ></Form.Control>
+                <div className="wrap" hidden={changingVariant}>
+                    <FloatingLabel
+                        style={{ width: "150px" }}
+                        label="Variant Type"
+                    >
+                        <Form.Control
+                            type="text"
+                            value={editGroup}
+                            onChange={({ target }) =>
+                                setEditGroup(target.value)
+                            }
+                        ></Form.Control>
+                    </FloatingLabel>
+                    <span style={{ marginLeft: "15px" }}>-</span>
+                    <FloatingLabel
+                        label="Variant Options"
+                        style={{
+                            width: "200px",
+                            position: "relative",
+                            left: "15px"
+                        }}
+                    >
+                        <Form.Control
+                            type="text"
+                            value={editVariant}
+                            onChange={({ target }) =>
+                                setEditVariant(target.value)
+                            }
+                        ></Form.Control>
+                    </FloatingLabel>
+                    <Button
+                        style={{ position: "relative", left: "25px" }}
+                        onClick={() => {
+                            if (editing) {
+                                changeVariant(
+                                    oldEditGroup,
+                                    oldEditVariant,
+                                    editGroup,
+                                    editVariant
+                                );
+                                setEditing(false);
+                                setOldEditGroup("");
+                                setOldEditVariant("");
+                            } else {
+                                addVariant(editGroup, editVariant);
+                            }
+                            setChangingVariant(true);
+                            setEditGroup("");
+                            setEditVariant("");
+                        }}
+                    >
+                        Save
+                    </Button>
+                </div>
+                <p></p>
                 <Button
-                    onClick={() => {
-                        if (editing) {
-                            changeVariant(
-                                oldEditGroup,
-                                oldEditVariant,
-                                editGroup,
-                                editVariant
-                            );
-                            setEditing(false);
-                            setOldEditGroup("");
-                            setOldEditVariant("");
-                        } else {
-                            addVariant(editGroup, editVariant);
-                        }
-                        setEditGroup("");
-                        setEditVariant("");
+                    hidden={!changingVariant}
+                    variant="primary"
+                    style={{
+                        borderRadius: "60px",
+                        backgroundColor: "#198754",
+                        borderWidth: "0px"
                     }}
+                    onClick={() => setChangingVariant(false)}
                 >
-                    Save
+                    +
                 </Button>
+                <p></p>
             </div>
         );
     }
