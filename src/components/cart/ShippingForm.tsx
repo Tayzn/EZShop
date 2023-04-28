@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Col, Form, Row } from "react-bootstrap";
 
 export const ShippingForm = ({
@@ -11,8 +10,10 @@ export const ShippingForm = ({
 }): JSX.Element => {
     return (
         <Form>
-            <h2 className="mb-4">Shipping</h2>
-            <div className="mb-4">
+            <h2 className="mb-4" style={{ marginBottom: "1rem" }}>
+                Shipping
+            </h2>
+            <div className="mb-4" style={{ marginTop: "1.5rem" }}>
                 <h4>Delivery Option</h4>
                 <Row>
                     <Col>
@@ -46,16 +47,80 @@ export const ShippingForm = ({
                 </Row>
             </div>
             <div className="mb-4">
-                <h4>Shipping Address</h4>
-                <Form.Label>
-                    Enter your shipping address (e.g. 123 StName, CityName, USA
-                    12345)
-                </Form.Label>
-                <Form.Control
-                    type="text"
-                    placeholder="Shipping address"
-                    required
-                />
+                <h4 style={{ marginBottom: "1rem" }}>Shipping Address</h4>
+                <Form.Group
+                    as={Row}
+                    controlId="formStreetAddress"
+                    className="mb-3"
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="Street Address"
+                            required
+                        />
+                    </Col>
+                </Form.Group>
+
+                <Form.Group
+                    as={Row}
+                    controlId="formCity"
+                    className="mb-3"
+                    style={{ marginBottom: "0px" }}
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="Town/City"
+                            required
+                        />
+                    </Col>
+                </Form.Group>
+
+                <Form.Group
+                    as={Row}
+                    controlId="formState"
+                    className="mb-3"
+                    style={{ marginBottom: "0px" }}
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="State/Province/Region"
+                            required
+                        />
+                    </Col>
+                </Form.Group>
+
+                <Form.Group
+                    as={Row}
+                    controlId="formZipCode"
+                    className="mb-3"
+                    style={{ marginBottom: "0px" }}
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="ZIP/Postal Code"
+                            required
+                        />
+                    </Col>
+                </Form.Group>
+
+                <Form.Group
+                    as={Row}
+                    controlId="formCountry"
+                    className="mb-3"
+                    style={{ marginBottom: "0px" }}
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="Country"
+                            required
+                        />
+                    </Col>
+                </Form.Group>
             </div>
         </Form>
     );
