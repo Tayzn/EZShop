@@ -12,12 +12,18 @@ import {
 import { CartItemDisplay } from "./CartItemDisplay";
 import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
+import { PaymentModal } from "./PaymentModal";
 
-export const CartPage = (): JSX.Element => {
+export const CartPage = ({
+    setReceiptCart
+}: {
+    setReceiptCart: (newReceiptCart: Cart) => void;
+}): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
+    const [confirmation, setConfirmation] = useState<boolean>(false);
     useEffect(() => cart_HookCartState(setCart), []);
     useEffect(() => calculateTotal(), [cart, shippingPrice]);
 
@@ -32,6 +38,8 @@ export const CartPage = (): JSX.Element => {
     };
 
     const submitOrder = () => {
+        setConfirmation(false);
+        setReceiptCart(cart);
         placeOrder();
         setOrderComplete(true);
         setTimeout(() => navigate("/confirmation"), 1500);
@@ -76,7 +84,7 @@ export const CartPage = (): JSX.Element => {
                                 variant="success"
                                 size="lg"
                                 disabled={cart.items.length === 0}
-                                onClick={() => submitOrder()}
+                                onClick={() => setConfirmation(true)}
                             >
                                 Payment »
                             </Button>
@@ -84,6 +92,11 @@ export const CartPage = (): JSX.Element => {
                     </Col>
                 </Container>
                 <OrderModal orderComplete={orderComplete} />
+                <PaymentModal
+                    confirmation={confirmation}
+                    setConfirmation={setConfirmation}
+                    submitOrder={submitOrder}
+                />
             </Container>
         </Container>
     );
