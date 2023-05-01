@@ -39,4 +39,3 @@ export const ConfirmationPage = (): JSX.Element => {
         </Container>
     );
 };
-
