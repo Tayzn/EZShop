@@ -34,7 +34,11 @@ export const CartPage = (): JSX.Element => {
     const submitOrder = () => {
         placeOrder();
         setOrderComplete(true);
-        setTimeout(() => navigate("/confirmation"), 1500);
+        setTimeout(
+            () =>
+                navigate("/confirmation", { state: { cartItems: cart.items } }),
+            1500
+        );
     };
 
     return (
@@ -88,3 +92,4 @@ export const CartPage = (): JSX.Element => {
         </Container>
     );
 };
+
