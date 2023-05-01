@@ -86,7 +86,7 @@ export const ShippingForm = ({
                     <Col sm={12}>
                         <Form.Control
                             type="text"
-                            placeholder="State/Province/Region"
+                            placeholder="State"
                             required
                         />
                     </Col>
@@ -101,7 +101,7 @@ export const ShippingForm = ({
                     <Col sm={12}>
                         <Form.Control
                             type="text"
-                            placeholder="ZIP/Postal Code"
+                            placeholder="ZIP Code"
                             required
                         />
                     </Col>
