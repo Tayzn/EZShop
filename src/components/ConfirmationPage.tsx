@@ -1,42 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { Container, Button, Col } from "react-bootstrap";
-import { CartItemDisplay } from "./cart/CartItemDisplay";
+import React from "react";
+import { Container, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import { Cart, CartItem, cart_HookCartState, getCart } from "../interface/cart";
+import { BasicDisplayCard } from "../components/cart/BasicDisplayCard";
+import { CartItem } from "../interface/cart";
 
 export const ConfirmationPage = (): JSX.Element => {
-    const [cart, setCart] = useState<Cart>(getCart());
-    useEffect(() => cart_HookCartState(setCart), []);
     const location = useLocation();
     const cartItems = location.state?.cartItems || [];
-
+    const total = location.state?.total || 0;
     return (
-        <Container fluid style={{ height: "90%" }}>
-            <h1
-                style={{
-                    fontFamily: "Arial",
-                    fontSize: "3rem",
-                    marginBottom: "2rem"
-                }}
-            >
-                Order Placed!
+        <Container
+            fluid
+            className="d-flex flex-column flex-grow-1 align-items-center justify-content-center"
+        >
+            <h1 className="mb-4">
+                Receipt - $
+                {total.toLocaleString(undefined, {
+                    minimumFractionDigits: 2
+                })}
             </h1>
-            <Col xs={8}>
-                <h4>Items in Cart</h4>
+            <Container className="d-flex flex-column w-25">
                 {cartItems.map((item: CartItem, idx: number) => (
-                    <CartItemDisplay key={idx} item={item} />
+                    <BasicDisplayCard key={idx} item={item} />
                 ))}
-            </Col>
-            <Button
-                variant="success"
-                type="submit"
-                className="confirmButton"
-                href="#/"
-                style={{ marginTop: "2rem" }}
-            >
+            </Container>
+            <Button variant="success" size="lg" href="#/" className="mt-4">
                 Return Home
             </Button>
         </Container>
     );
 };
-
