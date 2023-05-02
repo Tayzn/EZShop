@@ -2,12 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Button } from "react-bootstrap";
-import {
-    Cart,
-    cart_HookCartState,
-    getCart,
-    placeOrder
-} from "../../interface/cart";
+import { placeOrder, useCart } from "../../interface/cart";
 
 import { CartItemDisplay } from "./CartItemDisplay";
 import { ShippingForm } from "./ShippingForm";
@@ -15,12 +10,11 @@ import { OrderModal } from "./OrderModal";
 import { PaymentModal } from "./PaymentModal";
 
 export const CartPage = (): JSX.Element => {
-    const [cart, setCart] = useState<Cart>(getCart());
+    const cart = useCart();
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
     const [confirmation, setConfirmation] = useState<boolean>(false);
-    useEffect(() => cart_HookCartState(setCart), []);
     useEffect(() => calculateTotal(), [cart, shippingPrice]);
 
     const navigate = useNavigate();

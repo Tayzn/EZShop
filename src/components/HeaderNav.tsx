@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Badge, Button, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
 import { AuthComponent } from "./AuthComponent";
-import { Cart, getCart, cart_HookCartState } from "../interface/cart";
+import { useCart } from "../interface/cart";
 
 export const HeaderNav = (): JSX.Element => {
-    const [cart, setCart] = useState<Cart>(getCart());
-    useEffect(() => cart_HookCartState(setCart), []);
+    const cart = useCart();
 
     return (
         <Navbar

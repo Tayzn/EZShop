@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     Container,
@@ -10,17 +10,16 @@ import {
     Modal
 } from "react-bootstrap";
 
-import {
-    ProductData,
-    ReferencedObject,
-    data_HookPromiseState
-} from "../../firebase/firebase_data";
-import { Product } from "../../interface/product";
+import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
+import { Product, useProducts } from "../../interface/product";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "../product/ProductFormComponent";
 
 export const AdminInventory = (): JSX.Element => {
-    const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
+    const [databaseUpdate, setDatabaseUpdate] = useState<number>(0);
+    const products = useProducts([databaseUpdate], undefined, () =>
+        setLoadError(true)
+    );
     const [loadError, setLoadError] = useState<boolean>(false);
     const [showToast, setShowToast] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState<string>("");
@@ -29,11 +28,7 @@ export const AdminInventory = (): JSX.Element => {
     const [editProduct, setEditProduct] = useState<ReferencedObject<Product>>();
     const [newItem, setNewItem] = useState<boolean>(false);
 
-    useEffect(() => updateProductDisplay(), []);
-
-    const updateProductDisplay = () => {
-        data_HookPromiseState(ProductData.list(), setProducts, setLoadError);
-    };
+    const updateProductDisplay = () => setDatabaseUpdate(databaseUpdate + 1);
 
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
