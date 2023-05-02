@@ -39,7 +39,9 @@ export const CartPage = (): JSX.Element => {
         setOrderComplete(true);
         setTimeout(
             () =>
-                navigate("/confirmation", { state: { cartItems: cart.items } }),
+                navigate("/confirmation", {
+                    state: { cartItems: cart.items, total: total }
+                }),
             1500
         );
     };
