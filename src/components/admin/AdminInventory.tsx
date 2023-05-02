@@ -149,7 +149,7 @@ export const AdminInventory = (): JSX.Element => {
                 </Toast>
             </ToastContainer>
             <Modal show={editItem} onHide={() => setEditItem(false)}>
-                <Modal.Header>
+                <Modal.Header closeButton>
                     <Modal.Title>Edit Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -162,7 +162,7 @@ export const AdminInventory = (): JSX.Element => {
                 </Modal.Body>
             </Modal>
             <Modal show={newItem} onHide={() => setNewItem(false)}>
-                <Modal.Header>
+                <Modal.Header closeButton>
                     <Modal.Title>New Item</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
