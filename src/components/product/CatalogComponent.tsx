@@ -3,14 +3,14 @@ import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { Image, Ratio } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
 import { ItemView } from "../product/ProductDisplayComponent";
+//import { ProductVariantSelection } from "../../interface/product";
 export function CatalogComponent({
     inspectItem,
-    desiredVariant,
-    setDesiredVariant,
     product,
     setInspectItem
 }: ItemView): JSX.Element {
     const [quantity, setQuantity] = useState<string>("1");
+    //const [variants, setVariants] = useState<ProductVariantSelection>({});
     function checkValidQuantity() {
         if (
             parseInt(quantity) > product.data.stock ||
@@ -28,7 +28,7 @@ export function CatalogComponent({
                 size="lg"
                 centered
             >
-                <Modal.Header>
+                <Modal.Header closeButton>
                     <Modal.Title>{product.data.name}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -58,35 +58,6 @@ export function CatalogComponent({
                                     <p></p>
                                     Available Variants:
                                     <p></p>
-                                    <Form.Select
-                                        value={desiredVariant}
-                                        onChange={(
-                                            event: React.ChangeEvent<HTMLSelectElement>
-                                        ) =>
-                                            setDesiredVariant(
-                                                event.target.value
-                                            )
-                                        }
-                                    >
-                                        {product.data.variants != null ? (
-                                            product.data.variants.name?.map(
-                                                (variant) => (
-                                                    <option
-                                                        key={variant}
-                                                        value={variant}
-                                                    >
-                                                        {variant}
-                                                    </option>
-                                                )
-                                            )
-                                        ) : (
-                                            <option
-                                                value={"No primary Variants"}
-                                            >
-                                                {"No primary Variants"}
-                                            </option>
-                                        )}
-                                    </Form.Select>
                                     Quantity:
                                     <Form.Group controlId="setMaxPrice">
                                         <Form.Control
