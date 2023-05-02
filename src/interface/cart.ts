@@ -8,6 +8,7 @@ import { User } from "firebase/auth";
 import { auth_HookUser } from "../firebase/firebase_auth";
 import { CartData } from "../firebase/firebase_data";
 import { Product, ProductVariantSelection, productEquals } from "./product";
+import { useEffect, useState } from "react";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
@@ -41,14 +42,30 @@ export type Unsubscribe = () => void;
  * Always call this inside of a `useEffect` block because you must unsubscribe when the event is no longer needed
  * @param stateDispatcher The setState function to be called
  * @returns An unsubscribe function to remove the setState listener
+ * @deprecated useCart()
  */
 export function cart_HookCartState(
+    stateDispatcher: React.Dispatch<React.SetStateAction<Cart>>
+): Unsubscribe {
+    return addCartListener(stateDispatcher);
+}
+
+function addCartListener(
     stateDispatcher: React.Dispatch<React.SetStateAction<Cart>>
 ): Unsubscribe {
     const idx = cartListeners.push(stateDispatcher) - 1;
     return () => {
         cartListeners.splice(idx, 1);
     };
+}
+
+/**
+ * Get the current cart
+ */
+export function useCart(): Cart {
+    const [cart, setCart] = useState<Cart>(getCart());
+    useEffect(() => addCartListener(setCart), []);
+    return cart;
 }
 
 /**

@@ -5,24 +5,26 @@
  */
 
 import {
+    getFirestore,
     Firestore,
+    UpdateData,
     CollectionReference,
     DocumentReference,
-    UpdateData,
-    getFirestore,
     collection,
-    updateDoc,
+    doc,
     getDoc,
     getDocs,
-    doc,
-    deleteDoc,
-    setDoc
+    setDoc,
+    updateDoc,
+    deleteDoc
 } from "firebase/firestore";
 import { app } from "./firebase";
 import { Product } from "../interface/product";
 import { UserAccount } from "../interface/account";
 import { Cart } from "../interface/cart";
 import { User } from "firebase/auth";
+import { Order } from "../interface/order";
+import { useEffect, useState } from "react";
 
 export interface ReferencedObject<T> {
     data: T;
@@ -51,8 +53,6 @@ function coerce<T>(reference: CollectionReference): CollectionReference<T> {
  * @param reference The reference to coerce
  * @returns The coerced reference
  */
-// this is an important database method that isn't being used that this time
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function coerceDoc<T>(reference: DocumentReference): DocumentReference<T> {
     return reference as DocumentReference<T>;
 }
@@ -65,6 +65,7 @@ function coerceDoc<T>(reference: DocumentReference): DocumentReference<T> {
  * @param promise The promise that will be unpacked
  * @param stateDispatcher The state dispatcher that accepts the data
  * @param errorStateDispatcher A boolean state dispatcher for if the Promise rejects
+ * @deprecated Use the objects corresponding hook instead of calling this function
  */
 export function data_HookPromiseState<T>(
     promise: Promise<T>,
@@ -74,6 +75,44 @@ export function data_HookPromiseState<T>(
     promise
         .then((object) => stateDispatcher(object))
         .catch(() => errorStateDispatcher(true));
+}
+
+/**
+ * Wraps unpacking a Promise into a state variable. This is probably not what you're looking for.
+ * You should probably be using the state hook that corresponds to the data you're trying to access
+ * @param databaseFunction A function that will execute the database call
+ * @param defaultValue The value to use while waiting on the database
+ * @param stateDependencies A list of state variables that should cause the database to refresh
+ * @param onSuccess An optional function that will be called on successful loading
+ * @param onError An optional functio that will be called on loading failure
+ * @returns A state variable that will contains the data when the Promise resolves
+ */
+export function useDatabase<T>(
+    databaseFunction: () => Promise<T>,
+    defaultValue: T,
+    stateDependencies?: React.DependencyList,
+    onSuccess?: () => void,
+    onError?: (reason: string) => void
+): T {
+    const [result, setResult] = useState<T>(defaultValue);
+    useEffect(() => {
+        databaseFunction()
+            .then((object) => {
+                setResult(object);
+                if (onSuccess) onSuccess();
+            })
+            .catch((reason) => {
+                if (onError) {
+                    // Firebase puts the actual reason in .message
+                    if (reason.message) {
+                        onError(reason.message);
+                    } else {
+                        onError(reason);
+                    }
+                }
+            });
+    }, stateDependencies);
+    return result;
 }
 
 /**
@@ -207,6 +246,10 @@ export class ProductData {
 export class AccountData {
     static collection = "users";
 
+    static getAccountReference(user: User): DocumentReference<UserAccount> {
+        return coerceDoc<UserAccount>(doc(db, this.collection, user.uid));
+    }
+
     static list(): Promise<ReferencedObject<UserAccount>[]> {
         return db_List(coerce<UserAccount>(collection(db, this.collection)));
     }
@@ -278,5 +321,42 @@ export class CartData {
 
     static update(account: User, cart: Cart): Promise<ReferencedObject<Cart>> {
         return db_Update({ reference: this.getCartDoc(account), data: cart });
+    }
+}
+
+/**
+ * Stored in /orders/{userId}/orders/{orderId}
+ */
+export class OrderData {
+    static collection = "orders";
+
+    static getUserOrders(user: User): CollectionReference<Order> {
+        return coerce<Order>(
+            collection(db, this.collection, user.uid, this.collection)
+        );
+    }
+
+    static list(user: User): Promise<ReferencedObject<Order>[]> {
+        return db_List(this.getUserOrders(user));
+    }
+
+    static get(
+        order: DocumentReference<Order>
+    ): Promise<ReferencedObject<Order>> {
+        return db_Get(order);
+    }
+
+    static create(user: User, order: Order): Promise<ReferencedObject<Order>> {
+        return db_Create(this.getUserOrders(user), order);
+    }
+
+    static update(
+        order: ReferencedObject<Order>
+    ): Promise<ReferencedObject<Order>> {
+        return db_Update(order);
+    }
+
+    static delete(order: DocumentReference<Order>): Promise<void> {
+        return deleteDoc(order);
     }
 }

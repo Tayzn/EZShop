@@ -4,6 +4,13 @@
  * 4/8/2023
  */
 
+import React from "react";
+import {
+    ProductData,
+    ReferencedObject,
+    useDatabase
+} from "../firebase/firebase_data";
+
 export type ProductVariantSelection = {
     [key: string]: string;
 };
@@ -41,4 +48,25 @@ export function productEquals(product1: Product, product2: Product): boolean {
     }
 
     return true;
+}
+
+/**
+ * Get the list of products
+ * @param stateDependencies The state variables that should cause the data to reload
+ * @param onSuccess The function to run on successful loading
+ * @param onError The function to run if an error occurs
+ * @returns The list of products, intially empty until the database loads
+ */
+export function useProducts(
+    stateDependencies?: React.DependencyList,
+    onSuccess?: () => void,
+    onError?: (reason: string) => void
+): ReferencedObject<Product>[] {
+    return useDatabase(
+        () => ProductData.list(),
+        [],
+        stateDependencies,
+        onSuccess,
+        onError
+    );
 }
