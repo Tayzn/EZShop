@@ -3,14 +3,10 @@
  * merematt@udel.edu & nlago@udel.edu
  * 4/9/2023
  */
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Alert } from "react-bootstrap";
-import {
-    ProductData,
-    ReferencedObject,
-    data_HookPromiseState
-} from "../../firebase/firebase_data";
-import { Product } from "../../interface/product";
+import { ReferencedObject } from "../../firebase/firebase_data";
+import { Product, useProducts } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
 export let array = ["any"];
 type propData = {
@@ -25,18 +21,25 @@ type propData = {
 };
 
 export function ProductDisplayGrid(props: propData): JSX.Element {
-    const [products, setProducts] = useState<ReferencedObject<Product>[]>([]);
+    const [loaded, setLoaded] = useState<boolean>(false);
     const [loadError, setLoadError] = useState<boolean>(false);
-    // loading data is resource intensive so we should avoid doing it
-    useEffect(
-        () =>
-            data_HookPromiseState(
-                ProductData.list(),
-                setProducts,
-                setLoadError
-            ),
-        []
+    const products = useProducts(
+        [],
+        () => setLoaded(true),
+        () => {
+            setLoaded(true);
+            setLoadError(true);
+        }
     );
+
+    if (!loaded) {
+        return (
+            <div>
+                <p>Loading items</p>
+            </div>
+        );
+    }
+
     function mapProductCategories() {
         products.map((product) => {
             if (!array.includes(product.data.category)) {
