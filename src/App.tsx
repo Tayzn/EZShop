@@ -14,24 +14,17 @@ import { HeaderNav } from "./components/HeaderNav";
 import { Home } from "./components/Home";
 import { ProfilePage } from "./components/ProfilePage";
 
-import { Cart } from "./interface/cart";
-
 function App(): JSX.Element {
-    const [receiptCart, setReceiptCart] = useState<Cart>({ items: [] });
-
     return (
         <Container fluid className="m-0 p-0 vh-100">
             <Col className="h-100 d-flex flex-column">
                 <HeaderNav />
                 <Routes>
                     <Route path="/" element={<Home />} />
-                    <Route
-                        path="/cart"
-                        element={<CartPage setReceiptCart={setReceiptCart} />}
-                    />
+                    <Route path="/cart" element={<CartPage />} />
                     <Route
                         path="/confirmation"
-                        element={<ConfirmationPage cart={receiptCart} />}
+                        element={<ConfirmationPage />}
                     />
                     <Route path="/profile" element={<ProfilePage />} />
                     <Route path="/admin" element={<AdminPage />} />

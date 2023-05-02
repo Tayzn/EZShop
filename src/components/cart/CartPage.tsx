@@ -14,11 +14,7 @@ import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
 import { PaymentModal } from "./PaymentModal";
 
-export const CartPage = ({
-    setReceiptCart
-}: {
-    setReceiptCart: (newReceiptCart: Cart) => void;
-}): JSX.Element => {
+export const CartPage = (): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
@@ -39,10 +35,13 @@ export const CartPage = ({
 
     const submitOrder = () => {
         setConfirmation(false);
-        setReceiptCart(cart);
         placeOrder();
         setOrderComplete(true);
-        setTimeout(() => navigate("/confirmation"), 1500);
+        setTimeout(
+            () =>
+                navigate("/confirmation", { state: { cartItems: cart.items } }),
+            1500
+        );
     };
 
     return (

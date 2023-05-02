@@ -1,9 +1,12 @@
 import React from "react";
 import { Container, Button } from "react-bootstrap";
-import { Cart } from "../interface/cart";
+import { useLocation } from "react-router-dom";
 import { BasicDisplayCard } from "../components/cart/BasicDisplayCard";
+import { CartItem } from "../interface/cart";
 
-export const ConfirmationPage = ({ cart }: { cart: Cart }): JSX.Element => {
+export const ConfirmationPage = (): JSX.Element => {
+    const location = useLocation();
+    const cartItems = location.state?.cartItems || [];
     return (
         <Container
             fluid
@@ -11,7 +14,7 @@ export const ConfirmationPage = ({ cart }: { cart: Cart }): JSX.Element => {
         >
             <h1 className="mb-4">Receipt</h1>
             <Container className="d-flex flex-column w-25">
-                {cart.items.map((item, idx) => (
+                {cartItems.map((item: CartItem, idx: number) => (
                     <BasicDisplayCard key={idx} item={item} />
                 ))}
             </Container>
