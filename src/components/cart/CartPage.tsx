@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Button } from "react-bootstrap";
 import {
@@ -12,14 +11,17 @@ import {
 import { CartItemDisplay } from "./CartItemDisplay";
 import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
+import { PaymentModal } from "./PaymentModal";
 
 export const CartPage = (): JSX.Element => {
     const [cart, setCart] = useState<Cart>(getCart());
-    const [shippingPrice, setShippingPrice] = useState<number>(5.99);
+    const [shippingOption, setShippingOption] = useState<string>("standard");
+    const [shippingPrice, setShippingPrice] = useState<number>(0);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
+    const [confirmation, setConfirmation] = useState<boolean>(false);
     useEffect(() => cart_HookCartState(setCart), []);
-    useEffect(() => calculateTotal(), [cart, shippingPrice]);
+    useEffect(() => calculateTotal(), [cart, shippingOption]);
 
     const navigate = useNavigate();
 
@@ -28,15 +30,24 @@ export const CartPage = (): JSX.Element => {
             (sum, item) => (sum += item.product.price * item.quantity),
             0
         );
-        setTotal(cartTotal + shippingPrice);
+        const standardShipping = 0.05 * cartTotal;
+        const expressShipping = 0.1 * cartTotal;
+
+        const newShippingPrice =
+            shippingOption === "standard" ? standardShipping : expressShipping;
+        setShippingPrice(newShippingPrice);
+        setTotal(cartTotal + newShippingPrice);
     };
 
     const submitOrder = () => {
+        setConfirmation(false);
         placeOrder();
         setOrderComplete(true);
         setTimeout(
             () =>
-                navigate("/confirmation", { state: { cartItems: cart.items } }),
+                navigate("/confirmation", {
+                    state: { cartItems: cart.items, total: total }
+                }),
             1500
         );
     };
@@ -73,14 +84,14 @@ export const CartPage = (): JSX.Element => {
                             <div className="mt-4">
                                 <ShippingForm
                                     shippingPrice={shippingPrice}
-                                    setShippingPrice={setShippingPrice}
+                                    setShippingOption={setShippingOption}
                                 />
                             </div>
                             <Button
                                 variant="success"
                                 size="lg"
                                 disabled={cart.items.length === 0}
-                                onClick={() => submitOrder()}
+                                onClick={() => setConfirmation(true)}
                             >
                                 Payment »
                             </Button>
@@ -88,8 +99,14 @@ export const CartPage = (): JSX.Element => {
                     </Col>
                 </Container>
                 <OrderModal orderComplete={orderComplete} />
+                <PaymentModal
+                    confirmation={confirmation}
+                    setConfirmation={setConfirmation}
+                    submitOrder={submitOrder}
+                />
             </Container>
         </Container>
     );
 };
+
 
