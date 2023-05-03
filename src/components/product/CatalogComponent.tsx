@@ -39,9 +39,8 @@ export function CatalogComponent({
         const options: JSX.Element[] = [];
         Object.entries(product.data.variants).forEach(([key]) => {
             options.push(
-                <div style={{ marginLeft: "5px" }}>
+                <div style={{ marginLeft: "5px", marginTop: "10px" }}>
                     {[key]}
-                    <p></p>
                     <Form.Select
                         style={{ width: "250px" }}
                         value={variantSelection[key]}
