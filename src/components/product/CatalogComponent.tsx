@@ -20,6 +20,25 @@ export function CatalogComponent({
         }
         return false;
     }
+    function mapOptions() {
+        const options: JSX.Element[] = [];
+        Object.entries(product.data.variants).forEach(([key]) => {
+            options.push(
+                <>
+                    {[key]}
+                    <Form.Select>
+                        {product.data.variants[key].map((option: string) => (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    <p></p>
+                </>
+            );
+        });
+        return options;
+    }
     return (
         <>
             <Modal
@@ -56,7 +75,7 @@ export function CatalogComponent({
                                 <Row>
                                     Options:
                                     <p></p>
-                                    Available Variants:
+                                    {mapOptions()}
                                     <p></p>
                                     Quantity:
                                     <Form.Group controlId="setMaxPrice">
