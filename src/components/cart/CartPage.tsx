@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Container, Col, Button } from "react-bootstrap";
-import {
-    Cart,
-    cart_HookCartState,
-    getCart,
-    placeOrder
-} from "../../interface/cart";
+import { placeOrder, useCart } from "../../interface/cart";
 
 import { CartItemDisplay } from "./CartItemDisplay";
 import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
 import { PaymentModal } from "./PaymentModal";
 
+import { useLoggedInUser } from "../../firebase/firebase_auth";
+import { User } from "firebase/auth";
+
 export const CartPage = (): JSX.Element => {
-    const [cart, setCart] = useState<Cart>(getCart());
+    const cart = useCart();
+    const user: User | null = useLoggedInUser();
     const [shippingOption, setShippingOption] = useState<string>("standard");
     const [shippingPrice, setShippingPrice] = useState<number>(0);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
     const [confirmation, setConfirmation] = useState<boolean>(false);
-    useEffect(() => cart_HookCartState(setCart), []);
     useEffect(() => calculateTotal(), [cart, shippingOption]);
 
     const navigate = useNavigate();
@@ -41,7 +39,7 @@ export const CartPage = (): JSX.Element => {
 
     const submitOrder = () => {
         setConfirmation(false);
-        placeOrder();
+        placeOrder(user);
         setOrderComplete(true);
         setTimeout(
             () =>
