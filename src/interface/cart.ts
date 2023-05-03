@@ -9,6 +9,8 @@ import { auth_HookUser } from "../firebase/firebase_auth";
 import { CartData } from "../firebase/firebase_data";
 import { Product, ProductVariantSelection, productEquals } from "./product";
 import { useEffect, useState } from "react";
+import { Order, createOrder } from "./order";
+import { UserAddress, UserPayment } from "./account";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
@@ -196,8 +198,34 @@ export function removeFromCart(item: CartItem) {
 /**
  * Submits the cart as an order, then clears the cart.
  */
-export function placeOrder() {
+export function placeOrder(user: User | null) {
     //TO DO: Submit order to DB
+    //temp address & payment
+    const address: UserAddress = {
+        addr1: "1234 Main St",
+        addr2: null,
+        city: "Newark",
+        state: "Delaware",
+        zip: "12345"
+    };
+
+    const payment: UserPayment = {
+        cardholderName: "Tyler N",
+        cardNumber: "0123 4444 3333 2222",
+        expiration: new Date(),
+        cvv: "333",
+        zip: "12345"
+    };
+
+    const order: Order = {
+        date: new Date(),
+        items: cart.items,
+        user: user === null ? "anonymous" : user.uid,
+        status: "pending",
+        address: address,
+        payment: payment
+    };
+    createOrder(null, order);
 
     cart = {
         items: []

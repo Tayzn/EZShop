@@ -17,7 +17,7 @@ export type OrderStatus = "pending" | "shipped" | "complete";
 
 export interface Order {
     date: Date;
-    items: CartItem;
+    items: CartItem[];
     user: UserId;
     status: OrderStatus;
     address: UserAddress;
@@ -37,10 +37,30 @@ export function useOrders(
     onError?: (reason: string) => void
 ): ReferencedObject<Order>[] {
     return useDatabase(
-        () => (user ? OrderData.list(user) : Promise.resolve([])),
+        () => OrderData.list(user),
         [],
         stateDependencies,
         onSuccess,
         onError
     );
+}
+
+export function createOrder(user: User | null, order: Order): Promise<void> {
+    return new Promise((resolve, reject) => {
+        OrderData.create(user, order)
+            .then(() => resolve())
+            .catch(reject);
+    });
+}
+
+export function setOrderStatus(
+    order: ReferencedObject<Order>,
+    newStatus: OrderStatus
+) {
+    order.data = { ...order.data, status: newStatus };
+    OrderData.update(order);
+}
+
+export function deleteOrder(order: ReferencedObject<Order>) {
+    OrderData.delete(order.reference);
 }

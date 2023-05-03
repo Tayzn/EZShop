@@ -23,7 +23,7 @@ export interface UserAccount {
 
 export interface UserAddress {
     addr1: string;
-    addr2: string;
+    addr2: string | null;
     city: string;
     state: string;
     zip: string;

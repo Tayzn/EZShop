@@ -9,8 +9,12 @@ import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
 import { PaymentModal } from "./PaymentModal";
 
+import { useLoggedInUser } from "../../firebase/firebase_auth";
+import { User } from "firebase/auth";
+
 export const CartPage = (): JSX.Element => {
     const cart = useCart();
+    const user: User | null = useLoggedInUser();
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
@@ -29,7 +33,7 @@ export const CartPage = (): JSX.Element => {
 
     const submitOrder = () => {
         setConfirmation(false);
-        placeOrder();
+        placeOrder(user);
         setOrderComplete(true);
         setTimeout(
             () =>

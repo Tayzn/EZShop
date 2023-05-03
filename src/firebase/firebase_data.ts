@@ -330,13 +330,18 @@ export class CartData {
 export class OrderData {
     static collection = "orders";
 
-    static getUserOrders(user: User): CollectionReference<Order> {
+    static getUserOrders(user: User | null): CollectionReference<Order> {
         return coerce<Order>(
-            collection(db, this.collection, user.uid, this.collection)
+            collection(
+                db,
+                this.collection,
+                user === null ? "anonymous" : user.uid,
+                this.collection
+            )
         );
     }
 
-    static list(user: User): Promise<ReferencedObject<Order>[]> {
+    static list(user: User | null): Promise<ReferencedObject<Order>[]> {
         return db_List(this.getUserOrders(user));
     }
 
@@ -346,7 +351,10 @@ export class OrderData {
         return db_Get(order);
     }
 
-    static create(user: User, order: Order): Promise<ReferencedObject<Order>> {
+    static create(
+        user: User | null,
+        order: Order
+    ): Promise<ReferencedObject<Order>> {
         return db_Create(this.getUserOrders(user), order);
     }
 
