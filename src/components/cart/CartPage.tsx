@@ -108,5 +108,3 @@ export const CartPage = (): JSX.Element => {
         </Container>
     );
 };
-
-
