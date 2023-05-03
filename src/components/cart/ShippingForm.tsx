@@ -3,10 +3,10 @@ import { Col, Form, Row } from "react-bootstrap";
 
 export const ShippingForm = ({
     shippingPrice,
-    setShippingPrice
+    setShippingOption
 }: {
     shippingPrice: number;
-    setShippingPrice: (newNumber: number) => void;
+    setShippingOption: (option: string) => void;
 }): JSX.Element => {
     return (
         <Form>
@@ -19,14 +19,13 @@ export const ShippingForm = ({
                     <Col>
                         <Form.Check
                             type="radio"
-                            label="Standard Delivery - $5.99"
+                            label={`Standard Delivery - $${shippingPrice.toFixed(
+                                2
+                            )}`}
                             name="deliveryOption"
-                            value="5.99"
+                            value="standard"
                             id="standardDelivery"
-                            checked={shippingPrice == 5.99}
-                            onChange={(e) =>
-                                setShippingPrice(parseFloat(e.target.value))
-                            }
+                            onChange={(e) => setShippingOption(e.target.value)}
                         />
                     </Col>
                 </Row>
@@ -34,14 +33,13 @@ export const ShippingForm = ({
                     <Col>
                         <Form.Check
                             type="radio"
-                            label="Express Delivery - $9.99"
+                            label={`Express Delivery - $${(
+                                shippingPrice * 2
+                            ).toFixed(2)}`}
                             name="deliveryOption"
-                            value="9.99"
+                            value="express"
                             id="expressDelivery"
-                            checked={shippingPrice == 9.99}
-                            onChange={(e) =>
-                                setShippingPrice(parseFloat(e.target.value))
-                            }
+                            onChange={(e) => setShippingOption(e.target.value)}
                         />
                     </Col>
                 </Row>
