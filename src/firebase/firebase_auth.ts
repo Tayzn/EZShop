@@ -11,6 +11,7 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { app } from "./firebase";
+import { useEffect, useState } from "react";
 
 let auth: Auth;
 let googleProvider: GoogleAuthProvider;
@@ -30,6 +31,7 @@ export function auth_Initialize() {
  * Hook a state dispatcher onto login change events
  * @param stateDispatcher The state dispatcher to attach
  * @returns An unsubscribe function to clean up when done
+ * @deprecated useLoggedInUser()
  */
 export function auth_HookUserState(
     stateDispatcher: React.Dispatch<React.SetStateAction<User | null>>
@@ -37,6 +39,16 @@ export function auth_HookUserState(
     return onAuthStateChanged(auth, (user) => {
         stateDispatcher(user);
     });
+}
+
+/**
+ * React Hook to get the currently logged in user
+ * @returns A state variable containing the logged in user
+ */
+export function useLoggedInUser(): User | null {
+    const [user, setUser] = useState<User | null>(currentUser);
+    useEffect(() => onAuthStateChanged(auth, setUser), []);
+    return user;
 }
 
 /**
