@@ -39,9 +39,11 @@ export function CatalogComponent({
         const options: JSX.Element[] = [];
         Object.entries(product.data.variants).forEach(([key]) => {
             options.push(
-                <>
+                <div style={{ marginLeft: "5px" }}>
                     {[key]}
+                    <p></p>
                     <Form.Select
+                        style={{ width: "250px" }}
                         value={variantSelection[key]}
                         onChange={(
                             event: React.ChangeEvent<HTMLSelectElement>
@@ -68,7 +70,7 @@ export function CatalogComponent({
                         ))}
                     </Form.Select>
                     <p></p>
-                </>
+                </div>
             );
         });
         return options;
@@ -109,12 +111,11 @@ export function CatalogComponent({
                                 <Row>
                                     <>
                                         {optionsAvailable === true ? (
-                                            <>Options</>
+                                            <>Options:</>
                                         ) : (
-                                            <>This Product has no variants</>
+                                            <>No Product Options</>
                                         )}
                                     </>
-                                    <p></p>
                                     {mapOptions()}
                                     <p></p>
                                     Quantity:
