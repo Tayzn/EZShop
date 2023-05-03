@@ -95,7 +95,7 @@ Browserslist: caniuse-lite is outdated. Please run:
       at HTMLUnknownElement.callCallback (node_modules/react-dom/cjs/react-dom.development.js:3945:14)
 
 FAIL src/App.test.tsx
-  ✕ renders the course name somewhere (223 ms)
+  ✕ renders the course name somewhere (199 ms)
 
   ● renders the course name somewhere
 
@@ -148,7 +148,7 @@ FAIL src/App.test.tsx
 ------------------------------|---------|----------|---------|---------|----------------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                      
 ------------------------------|---------|----------|---------|---------|----------------------------------------
-All files                     |    10.5 |     4.57 |    4.32 |    10.5 |                                        
+All files                     |   10.07 |     4.45 |    4.14 |   10.05 |                                        
  src                          |     100 |      100 |     100 |     100 |                                        
   App.tsx                     |     100 |      100 |     100 |     100 |                                        
  src/components               |   26.41 |    24.13 |      15 |   25.74 |                                        
@@ -168,18 +168,18 @@ All files                     |    10.5 |     4.57 |    4.32 |    10.5 |
   AdminOrders.tsx             |    9.09 |        0 |       0 |    9.09 | 7-46                                   
   AdminPage.tsx               |   33.33 |        0 |       0 |   33.33 | 14-33                                  
   AdminUsers.tsx              |      50 |      100 |       0 |      50 | 6                                      
- src/components/cart          |   12.76 |        0 |       0 |   13.04 |                                        
+ src/components/cart          |   11.76 |        0 |       0 |      12 |                                        
   BasicDisplayCard.tsx        |      50 |      100 |       0 |      50 | 8                                      
-  CartItemDisplay.tsx         |    8.33 |        0 |       0 |    8.33 | 21-105                                 
+  CartItemDisplay.tsx         |    6.25 |        0 |       0 |    6.25 | 21-110                                 
   CartPage.tsx                |    4.34 |        0 |       0 |    4.54 | 16-86                                  
   OrderModal.tsx              |      50 |      100 |       0 |      50 | 10                                     
   PaymentModal.tsx            |      25 |      100 |       0 |      25 | 14-47                                  
   ShippingForm.tsx            |      25 |      100 |       0 |      25 | 11-43                                  
- src/components/product       |       1 |        0 |       0 |    1.01 |                                        
-  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 12-88                                  
-  ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 23-29                                  
+ src/components/product       |    0.84 |        0 |       0 |    0.85 |                                        
+  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 14-147                                 
+  ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 22-27                                  
   ProductDisplayGrid.tsx      |    4.76 |        0 |       0 |    4.76 | 24-87                                  
-  ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-273                                 
+  ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-272                                 
  src/firebase                 |    6.25 |        0 |    1.42 |    6.38 |                                        
   firebase.ts                 |       0 |      100 |       0 |       0 | 15-30                                  
   firebase_auth.ts            |     3.7 |      100 |    4.54 |    3.84 | 21-63,85-132                           
@@ -193,5 +193,5 @@ All files                     |    10.5 |     4.57 |    4.32 |    10.5 |
 Test Suites: 1 failed, 1 total
 Tests:       1 failed, 1 total
 Snapshots:   0 total
-Time:        4.787 s
+Time:        4.434 s
 Ran all test suites.
