@@ -97,7 +97,6 @@ export function ProductFormComponent({
             }
         });
         setVariants(temp);
-        mapOptions();
     }
     function changeVariant(
         group: string,

@@ -9,7 +9,6 @@ import { Product } from "../../interface/product";
 import { ReferencedObject } from "../../firebase/firebase_data";
 import { Card, Image, Ratio, Container } from "react-bootstrap";
 import { CatalogComponent } from "./CatalogComponent";
-
 export interface ItemView {
     inspectItem: boolean;
     product: ReferencedObject<Product>;
@@ -21,7 +20,6 @@ export function ProductDisplayComponent({
     product: ReferencedObject<Product>;
 }): JSX.Element {
     const [inspectItem, setInspectItem] = useState<boolean>(false);
-
     return (
         <>
             <Card

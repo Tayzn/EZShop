@@ -39,6 +39,12 @@
     flex-flow: row wrap;
     align-items: center;
 }
+.searchWrap {
+    width: 30%;
+    position: flex;
+    top: 50%;
+    left: 100%;
+}
 .item-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(299px, 299px));

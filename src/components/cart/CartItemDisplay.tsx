@@ -33,7 +33,17 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
             updateCartQuantity(item, newQuantity);
         }
     };
-
+    function getSelectedOptions() {
+        const options: JSX.Element[] = [];
+        Object.entries(item.variants).forEach(([value]) => {
+            options.push(
+                <Badge className="me-2" bg="secondary">
+                    {value}: {item.variants[value]}
+                </Badge>
+            );
+        });
+        return options;
+    }
     return (
         <>
             <Container className="d-flex flex-row">
@@ -57,12 +67,7 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                         </Row>
                         <Row className="mb-auto">
                             <Container className="mb-2">
-                                <Badge className="me-2" bg="secondary">
-                                    Large
-                                </Badge>
-                                <Badge className="me-2" bg="secondary">
-                                    Green
-                                </Badge>
+                                {getSelectedOptions()}
                             </Container>
                         </Row>
                         <Row>

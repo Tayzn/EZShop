@@ -1,16 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
 import { Image, Ratio } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
 import { ItemView } from "../product/ProductDisplayComponent";
-//import { ProductVariantSelection } from "../../interface/product";
+import { ProductVariantSelection } from "../../interface/product";
+
 export function CatalogComponent({
     inspectItem,
     product,
     setInspectItem
 }: ItemView): JSX.Element {
+    const [variantSelection, setVariantSelection] =
+        useState<ProductVariantSelection>({});
     const [quantity, setQuantity] = useState<string>("1");
-    //const [variants, setVariants] = useState<ProductVariantSelection>({});
+    const [optionsAvailable, setOptionsAvailable] = useState<boolean>(false);
+    useEffect(() => {
+        setDefaultSelection();
+    }, []);
+    function setDefaultSelection() {
+        //defaults to first in variant selection
+        const temp = {};
+        Object.entries(product.data.variants).forEach(([key]) => {
+            Object.assign(temp, { [key]: product.data.variants[key][0] });
+            setOptionsAvailable(true);
+        });
+        setVariantSelection(temp);
+    }
     function checkValidQuantity() {
         if (
             parseInt(quantity) > product.data.stock ||
@@ -19,6 +34,45 @@ export function CatalogComponent({
             return true;
         }
         return false;
+    }
+    function mapOptions() {
+        const options: JSX.Element[] = [];
+        Object.entries(product.data.variants).forEach(([key]) => {
+            options.push(
+                <div style={{ marginLeft: "5px", marginTop: "10px" }}>
+                    {[key]}
+                    <Form.Select
+                        style={{ width: "250px" }}
+                        value={variantSelection[key]}
+                        onChange={(
+                            event: React.ChangeEvent<HTMLSelectElement>
+                        ) => {
+                            const temp = {};
+                            Object.entries(variantSelection).map(([group1]) => {
+                                if (group1 !== key) {
+                                    Object.assign(temp, {
+                                        [group1]: variantSelection[group1]
+                                    });
+                                }
+                            });
+                            setVariantSelection(
+                                Object.assign(temp, {
+                                    [key]: event.target.value
+                                })
+                            );
+                        }}
+                    >
+                        {product.data.variants[key].map((option: string) => (
+                            <option key={option} value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </Form.Select>
+                    <p></p>
+                </div>
+            );
+        });
+        return options;
     }
     return (
         <>
@@ -54,9 +108,14 @@ export function CatalogComponent({
                                 <Row>Stock: {product.data.stock}</Row>
                                 <p></p>
                                 <Row>
-                                    Options:
-                                    <p></p>
-                                    Available Variants:
+                                    <>
+                                        {optionsAvailable === true ? (
+                                            <>Options:</>
+                                        ) : (
+                                            <>No Product Options</>
+                                        )}
+                                    </>
+                                    {mapOptions()}
                                     <p></p>
                                     Quantity:
                                     <Form.Group controlId="setMaxPrice">
@@ -88,7 +147,7 @@ export function CatalogComponent({
                                         addToCart({
                                             product: product.data,
                                             quantity: parseInt(quantity),
-                                            variants: {}
+                                            variants: variantSelection
                                         })
                                     }
                                 >
