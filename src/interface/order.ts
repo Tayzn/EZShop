@@ -4,6 +4,7 @@
  * 4/20/2023
  */
 
+import React from "react";
 import {
     OrderData,
     ReferencedObject,
@@ -26,12 +27,13 @@ export interface Order {
 
 /**
  * Get the orders for a user
+ * @param user The user to fetch
  * @param onSuccess The function to run on successful load
  * @param onError The function to run if an error occurs
  * @returns A list of orders initially empty until the database loads, or empty if there is no user provided
  */
 export function useOrders(
-    user: User | null,
+    user: User,
     stateDependencies?: React.DependencyList,
     onSuccess?: () => void,
     onError?: (reason: string) => void
@@ -45,9 +47,24 @@ export function useOrders(
     );
 }
 
-export function createOrder(user: User | null, order: Order): Promise<void> {
+export function useAllOrders(
+    user: User,
+    stateDependencies?: React.DependencyList,
+    onSuccess?: () => void,
+    onError?: (reason: string) => void
+): ReferencedObject<Order>[] {
+    return useDatabase(
+        () => OrderData.listAll(user),
+        [],
+        stateDependencies,
+        onSuccess,
+        onError
+    );
+}
+
+export function createOrder(order: Order): Promise<void> {
     return new Promise((resolve, reject) => {
-        OrderData.create(user, order)
+        OrderData.create(order)
             .then(() => resolve())
             .catch(reject);
     });
