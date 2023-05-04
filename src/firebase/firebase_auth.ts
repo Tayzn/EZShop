@@ -11,10 +11,49 @@ import {
     signInWithPopup
 } from "firebase/auth";
 import { app } from "./firebase";
+import { useEffect, useState } from "react";
+import { UserAccount } from "../interface/account";
+import { AccountData } from "./firebase_data";
 
 let auth: Auth;
 let googleProvider: GoogleAuthProvider;
+
 let currentUser: User | null;
+let currentAccount: UserAccount | null;
+
+function getDefaultAccount(): UserAccount {
+    return {
+        admin: false,
+        addresses: [],
+        payments: [],
+        role: []
+    };
+}
+
+function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
+    return user
+        ? new Promise((resolve, reject) => {
+              AccountData.get(AccountData.getAccountReference(user))
+                  .then((account) => {
+                      resolve(account.data);
+                  })
+                  .catch(reject);
+          })
+        : Promise.resolve(null);
+}
+
+function fetchUserAccountOrDefault(
+    user: User | null
+): Promise<UserAccount | null> {
+    return new Promise((resolve) => {
+        fetchUserAccount(user)
+            .then(resolve)
+            .catch((reason) => {
+                console.error("Failed to load user account", reason);
+                resolve(getDefaultAccount());
+            });
+    });
+}
 
 export function auth_Initialize() {
     auth = getAuth(app);
@@ -23,6 +62,9 @@ export function auth_Initialize() {
 
     onAuthStateChanged(auth, (user) => {
         currentUser = user;
+        fetchUserAccountOrDefault(currentUser).then(
+            (account) => (currentAccount = account)
+        );
     });
 }
 
@@ -30,6 +72,7 @@ export function auth_Initialize() {
  * Hook a state dispatcher onto login change events
  * @param stateDispatcher The state dispatcher to attach
  * @returns An unsubscribe function to clean up when done
+ * @deprecated useLoggedInUser()
  */
 export function auth_HookUserState(
     stateDispatcher: React.Dispatch<React.SetStateAction<User | null>>
@@ -37,6 +80,34 @@ export function auth_HookUserState(
     return onAuthStateChanged(auth, (user) => {
         stateDispatcher(user);
     });
+}
+
+/**
+ * React Hook to get the currently logged in user
+ * @returns A state variable containing the logged in user
+ */
+export function useLoggedInUser(): User | null {
+    const [user, setUser] = useState<User | null>(currentUser);
+    useEffect(() => onAuthStateChanged(auth, setUser), []);
+    return user;
+}
+
+/**
+ * React Hook to get the currently logged in user account
+ * @returns A state variable containing the logged in user
+ */
+export function useLoggedInUserAccount(): UserAccount | null {
+    const [userAccount, setUserAccount] = useState<UserAccount | null>(
+        currentAccount
+    );
+    useEffect(
+        () =>
+            onAuthStateChanged(auth, (user) => {
+                fetchUserAccountOrDefault(user).then(setUserAccount);
+            }),
+        []
+    );
+    return userAccount;
 }
 
 /**
@@ -58,6 +129,14 @@ export function auth_HookUser(
  */
 export function auth_GetCurrentUser(): User | null {
     return currentUser;
+}
+
+/**
+ * Get the current logged in users account
+ * @returns The user account or null if not logged in
+ */
+export function auth_GetCurrentAccount(): UserAccount | null {
+    return currentAccount;
 }
 
 /**

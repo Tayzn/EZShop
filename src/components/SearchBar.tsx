@@ -11,7 +11,7 @@ export function SearchBar(props: searchProps): JSX.Element {
         props.setCurrentSearch(event.target.value);
     }
     return (
-        <div className="wrap">
+        <div className="searchWrap">
             <div className="search">
                 <Form.Group controlId="editName">
                     <Form.Control
