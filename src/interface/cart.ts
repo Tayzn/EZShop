@@ -225,7 +225,7 @@ export function placeOrder(user: User | null) {
         address: address,
         payment: payment
     };
-    createOrder(null, order);
+    createOrder(order);
 
     cart = {
         items: []
