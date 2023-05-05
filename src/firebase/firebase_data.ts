@@ -16,15 +16,19 @@ import {
     getDocs,
     setDoc,
     updateDoc,
-    deleteDoc
+    deleteDoc,
+    query,
+    where,
+    QueryConstraint
 } from "firebase/firestore";
 import { app } from "./firebase";
 import { Product } from "../interface/product";
-import { UserAccount } from "../interface/account";
+import { UserAccount, UserAccountPrivilege } from "../interface/account";
 import { Cart } from "../interface/cart";
 import { User } from "firebase/auth";
 import { Order } from "../interface/order";
 import { useEffect, useState } from "react";
+import { fetchUserAccountPrivilegeOrDefault } from "./firebase_auth";
 
 export interface ReferencedObject<T> {
     data: T;
@@ -162,6 +166,30 @@ function db_Get<T>(
 }
 
 /**
+ * Get all document from the database matching the constraints
+ * @param collectionReference The document to retrieve
+ * @param constraints The constraints to check against
+ * @returns A Promise that resolves to a (potentially empty) list of documents, or rejects if an error occurs
+ */
+function db_Query<T>(
+    collectionReference: CollectionReference<T>,
+    ...constraints: QueryConstraint[]
+): Promise<ReferencedObject<T>[]> {
+    return new Promise((resolve, reject) => {
+        getDocs(query(collectionReference, ...constraints))
+            .then((querySnapshot) => {
+                resolve(
+                    querySnapshot.docs.map((documentSnapshot) => ({
+                        data: documentSnapshot.data(),
+                        reference: documentSnapshot.ref
+                    }))
+                );
+            })
+            .catch(reject);
+    });
+}
+
+/**
  * Create a document in a collection
  * @param collectionReference The collection to create the document
  * @param object The object that contains the document fields
@@ -245,9 +273,18 @@ export class ProductData {
  */
 export class AccountData {
     static collection = "users";
+    static privilege = "privilege";
 
     static getAccountReference(user: User): DocumentReference<UserAccount> {
         return coerceDoc<UserAccount>(doc(db, this.collection, user.uid));
+    }
+
+    static getAccountPrivilegeReference(
+        user: User
+    ): DocumentReference<UserAccountPrivilege> {
+        return coerceDoc<UserAccountPrivilege>(
+            doc(db, this.collection, user.uid, this.privilege, this.privilege)
+        );
     }
 
     static list(): Promise<ReferencedObject<UserAccount>[]> {
@@ -260,6 +297,10 @@ export class AccountData {
         return db_Get(account);
     }
 
+    static getPrivilege(privilege: DocumentReference<UserAccountPrivilege>) {
+        return db_Get(privilege);
+    }
+
     static create(
         account: UserAccount
     ): Promise<ReferencedObject<UserAccount>> {
@@ -269,10 +310,29 @@ export class AccountData {
         );
     }
 
+    static createPrivilege(
+        user: User,
+        privilege: UserAccountPrivilege
+    ): Promise<ReferencedObject<UserAccountPrivilege>> {
+        return db_Create(
+            coerce<UserAccountPrivilege>(
+                collection(db, this.collection, user.uid, this.privilege)
+            ),
+            privilege,
+            this.privilege
+        );
+    }
+
     static update(
         account: ReferencedObject<UserAccount>
     ): Promise<ReferencedObject<UserAccount>> {
         return db_Update(account);
+    }
+
+    static updatePrivilege(
+        privilege: ReferencedObject<UserAccountPrivilege>
+    ): Promise<ReferencedObject<UserAccountPrivilege>> {
+        return db_Update(privilege);
     }
 }
 
@@ -325,24 +385,48 @@ export class CartData {
 }
 
 /**
- * Stored in /orders/{userId}/orders/{orderId}
+ * Stored in /orders/{orderId}
  */
 export class OrderData {
     static collection = "orders";
 
-    static getUserOrders(user: User | null): CollectionReference<Order> {
-        return coerce<Order>(
-            collection(
-                db,
-                this.collection,
-                user === null ? "anonymous" : user.uid,
-                this.collection
-            )
-        );
+    /**
+     * @returns The orders for a user, or an empty array if no user
+     */
+    static list(user: User | null): Promise<ReferencedObject<Order>[]> {
+        return user
+            ? db_Query(
+                  coerce<Order>(collection(db, this.collection)),
+                  where("user", "==", user.uid)
+              )
+            : Promise.resolve([]);
     }
 
-    static list(user: User | null): Promise<ReferencedObject<Order>[]> {
-        return db_List(this.getUserOrders(user));
+    static listAll(
+        currentUser: User | null
+    ): Promise<ReferencedObject<Order>[]> {
+        return new Promise((resolve, reject) => {
+            if (currentUser) {
+                fetchUserAccountPrivilegeOrDefault(currentUser).then(
+                    (privilege) => {
+                        if (privilege && privilege.admin) {
+                            // todo role checking
+                            resolve(
+                                db_List(
+                                    coerce<Order>(
+                                        collection(db, this.collection)
+                                    )
+                                )
+                            );
+                        } else {
+                            reject("Insufficient privileges");
+                        }
+                    }
+                );
+            } else {
+                reject("Must be logged in to list all orders");
+            }
+        });
     }
 
     static get(
@@ -351,11 +435,8 @@ export class OrderData {
         return db_Get(order);
     }
 
-    static create(
-        user: User | null,
-        order: Order
-    ): Promise<ReferencedObject<Order>> {
-        return db_Create(this.getUserOrders(user), order);
+    static create(order: Order): Promise<ReferencedObject<Order>> {
+        return db_Create(coerce<Order>(collection(db, this.collection)), order);
     }
 
     static update(

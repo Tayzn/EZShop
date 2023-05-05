@@ -12,7 +12,7 @@ import {
 } from "firebase/auth";
 import { app } from "./firebase";
 import { useEffect, useState } from "react";
-import { UserAccount } from "../interface/account";
+import { UserAccount, UserAccountPrivilege } from "../interface/account";
 import { AccountData } from "./firebase_data";
 
 let auth: Auth;
@@ -20,13 +20,19 @@ let googleProvider: GoogleAuthProvider;
 
 let currentUser: User | null;
 let currentAccount: UserAccount | null;
+let currentAccountPrivilege: UserAccountPrivilege | null;
+
+function getDefaultAccountPrivilege(): UserAccountPrivilege {
+    return {
+        admin: false,
+        role: []
+    };
+}
 
 function getDefaultAccount(): UserAccount {
     return {
-        admin: false,
         addresses: [],
-        payments: [],
-        role: []
+        payments: []
     };
 }
 
@@ -42,7 +48,23 @@ function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
         : Promise.resolve(null);
 }
 
-function fetchUserAccountOrDefault(
+function fetchUserAccountPrivilege(
+    user: User | null
+): Promise<UserAccountPrivilege | null> {
+    return user
+        ? new Promise((resolve, reject) => {
+              AccountData.getPrivilege(
+                  AccountData.getAccountPrivilegeReference(user)
+              )
+                  .then((account) => {
+                      resolve(account.data);
+                  })
+                  .catch(reject);
+          })
+        : Promise.resolve(null);
+}
+
+export function fetchUserAccountOrDefault(
     user: User | null
 ): Promise<UserAccount | null> {
     return new Promise((resolve) => {
@@ -50,7 +72,20 @@ function fetchUserAccountOrDefault(
             .then(resolve)
             .catch((reason) => {
                 console.error("Failed to load user account", reason);
-                resolve(getDefaultAccount());
+                resolve(getDefaultAccount()); // TODO save default
+            });
+    });
+}
+
+export function fetchUserAccountPrivilegeOrDefault(
+    user: User | null
+): Promise<UserAccountPrivilege | null> {
+    return new Promise((resolve) => {
+        fetchUserAccountPrivilege(user)
+            .then(resolve)
+            .catch((reason) => {
+                console.error("Failed to load user account privilege", reason);
+                resolve(getDefaultAccountPrivilege());
             });
     });
 }
@@ -64,6 +99,9 @@ export function auth_Initialize() {
         currentUser = user;
         fetchUserAccountOrDefault(currentUser).then(
             (account) => (currentAccount = account)
+        );
+        fetchUserAccountPrivilegeOrDefault(currentUser).then(
+            (privilege) => (currentAccountPrivilege = privilege)
         );
     });
 }
@@ -104,6 +142,24 @@ export function useLoggedInUserAccount(): UserAccount | null {
         () =>
             onAuthStateChanged(auth, (user) => {
                 fetchUserAccountOrDefault(user).then(setUserAccount);
+            }),
+        []
+    );
+    return userAccount;
+}
+
+/**
+ * React Hook to get the currently logged in user account privilege
+ * @returns A state variable containing the logged in user
+ */
+export function useLoggedInUserAccountPrivilege(): UserAccountPrivilege | null {
+    const [userAccount, setUserAccount] = useState<UserAccountPrivilege | null>(
+        currentAccountPrivilege
+    );
+    useEffect(
+        () =>
+            onAuthStateChanged(auth, (user) => {
+                fetchUserAccountPrivilegeOrDefault(user).then(setUserAccount);
             }),
         []
     );
