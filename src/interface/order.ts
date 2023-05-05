@@ -48,7 +48,7 @@ export function useOrders(
 }
 
 export function useAllOrders(
-    user: User,
+    user: User | null,
     stateDependencies?: React.DependencyList,
     onSuccess?: () => void,
     onError?: (reason: string) => void
