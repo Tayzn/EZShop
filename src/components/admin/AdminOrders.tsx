@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 
 import { Container, Table, Alert } from "react-bootstrap";
-import { useOrders } from "../../interface/order";
+import { useAllOrders } from "../../interface/order";
+import { useLoggedInUser } from "../../firebase/firebase_auth";
+import { User } from "firebase/auth";
 
 export const AdminOrders = (): JSX.Element => {
     const [loaded, setLoaded] = useState<boolean>(false);
     const [loadError, setLoadError] = useState<boolean>(false);
 
-    const orders = useOrders(
-        null,
+    const user: User | null = useLoggedInUser();
+
+    const orders = useAllOrders(
+        user,
         [],
         () => setLoaded(true),
         () => {
