@@ -10,7 +10,7 @@ import { CartData } from "../firebase/firebase_data";
 import { Product, ProductVariantSelection, productEquals } from "./product";
 import { useEffect, useState } from "react";
 import { Order, createOrder } from "./order";
-import { UserAddress, UserPayment } from "./account";
+import { UserAddress, UserPayment, saveAccount } from "./account";
 
 /**
  * Shared attributes for both the local and database versions of CartItem
@@ -201,7 +201,9 @@ export function removeFromCart(item: CartItem) {
 export function placeOrder(
     user: User | null,
     address: UserAddress,
-    payment: UserPayment
+    payment: UserPayment,
+    saveShipping: boolean,
+    savePayment: boolean
 ) {
     const order: Order = {
         date: new Date(),
@@ -218,6 +220,10 @@ export function placeOrder(
     };
 
     saveCart().then(cart_StateChanged);
+
+    if (user !== null && (saveShipping || savePayment)) {
+        saveAccount(user, address, payment, saveShipping, savePayment);
+    }
 }
 
 /**

@@ -14,7 +14,13 @@ import {
     useLoggedInUserAccount
 } from "../../firebase/firebase_auth";
 import { User } from "firebase/auth";
-import { UserAddress, UserAccount, UserPayment } from "../../interface/account";
+import {
+    UserAddress,
+    UserAccount,
+    UserPayment,
+    firstAddress,
+    firstPayment
+} from "../../interface/account";
 
 export const CartPage = (): JSX.Element => {
     const cart = useCart();
@@ -24,28 +30,16 @@ export const CartPage = (): JSX.Element => {
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
     const [confirmation, setConfirmation] = useState<boolean>(false);
-    const [address, setAddress] = useState<UserAddress>(
-        !account
-            ? {
-                  addr1: "",
-                  addr2: "",
-                  city: "",
-                  state: "",
-                  zip: ""
-              }
-            : account.addresses[0]
-    );
-    const [payment, setPayment] = useState<UserPayment>(
-        !account
-            ? {
-                  cardholderName: "",
-                  cardNumber: "",
-                  expiration: new Date(),
-                  cvv: "",
-                  zip: ""
-              }
-            : account.payments[0]
-    );
+    const [address, setAddress] = useState<UserAddress>(firstAddress(account));
+    const [payment, setPayment] = useState<UserPayment>(firstPayment(account));
+    const [saveShipping, setSaveShipping] = useState<boolean>(true);
+    const [savePayment, setSavePayment] = useState<boolean>(true);
+
+    useEffect(() => {
+        setAddress(firstAddress(account));
+        setPayment(firstPayment(account));
+    }, [account]);
+
     useEffect(() => calculateTotal(), [cart, shippingPrice]);
 
     const navigate = useNavigate();
@@ -60,7 +54,7 @@ export const CartPage = (): JSX.Element => {
 
     const submitOrder = () => {
         setConfirmation(false);
-        placeOrder(user, address, payment);
+        placeOrder(user, address, payment, saveShipping, savePayment);
         setOrderComplete(true);
         setTimeout(
             () =>
@@ -102,10 +96,13 @@ export const CartPage = (): JSX.Element => {
                             <hr></hr>
                             <div className="mt-4">
                                 <ShippingForm
+                                    user={user !== null}
                                     shippingPrice={shippingPrice}
                                     setShippingPrice={setShippingPrice}
                                     address={address}
                                     setAddress={setAddress}
+                                    saveShipping={saveShipping}
+                                    setSaveShipping={setSaveShipping}
                                 />
                             </div>
                             <Button
@@ -127,11 +124,14 @@ export const CartPage = (): JSX.Element => {
                 </Container>
                 <OrderModal orderComplete={orderComplete} />
                 <PaymentModal
+                    user={user !== null}
                     confirmation={confirmation}
                     setConfirmation={setConfirmation}
                     submitOrder={submitOrder}
                     payment={payment}
                     setPayment={setPayment}
+                    savePayment={savePayment}
+                    setSavePayment={setSavePayment}
                 />
             </Container>
         </Container>
