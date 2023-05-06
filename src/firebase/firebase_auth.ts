@@ -59,7 +59,18 @@ function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
                   .then((account) => {
                       resolve(account.data);
                   })
-                  .catch(reject);
+                  .catch((reason) => {
+                      if (reason === "Not found") {
+                          AccountData.create(user, getDefaultAccount())
+                              .then((account) => {
+                                  console.log("New user account created");
+                                  resolve(account.data);
+                              })
+                              .catch(reject);
+                      } else {
+                          reject(reason);
+                      }
+                  });
           })
         : Promise.resolve(null);
 }
@@ -75,7 +86,21 @@ function fetchUserAccountPrivilege(
                   .then((account) => {
                       resolve(account.data);
                   })
-                  .catch(reject);
+                  .catch((reason) => {
+                      if (reason === "Not found") {
+                          AccountData.createPrivilege(
+                              user,
+                              getDefaultAccountPrivilege()
+                          )
+                              .then((privilige) => {
+                                  console.log("New user privilege created");
+                                  resolve(privilige.data);
+                              })
+                              .catch(reject);
+                      } else {
+                          reject(reason);
+                      }
+                  });
           })
         : Promise.resolve(null);
 }
@@ -87,7 +112,7 @@ export function fetchUserAccountOrDefault(
         fetchUserAccount(user)
             .then(resolve)
             .catch((reason) => {
-                console.error("Failed to load user account", reason);
+                console.error("Failed to load user account: ", reason);
                 resolve(getDefaultAccount()); // TODO save default
             });
     });
@@ -100,7 +125,10 @@ export function fetchUserAccountPrivilegeOrDefault(
         fetchUserAccountPrivilege(user)
             .then(resolve)
             .catch((reason) => {
-                console.error("Failed to load user account privilege", reason);
+                console.error(
+                    "Failed to load user account privilege: ",
+                    reason
+                );
                 resolve(getDefaultAccountPrivilege());
             });
     });
