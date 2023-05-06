@@ -9,16 +9,43 @@ import { ShippingForm } from "./ShippingForm";
 import { OrderModal } from "./OrderModal";
 import { PaymentModal } from "./PaymentModal";
 
-import { useLoggedInUser } from "../../firebase/firebase_auth";
+import {
+    useLoggedInUser,
+    useLoggedInUserAccount
+} from "../../firebase/firebase_auth";
 import { User } from "firebase/auth";
+import { UserAddress, UserAccount, UserPayment } from "../../interface/account";
 
 export const CartPage = (): JSX.Element => {
     const cart = useCart();
     const user: User | null = useLoggedInUser();
+    const account: UserAccount | null = useLoggedInUserAccount();
     const [shippingPrice, setShippingPrice] = useState<number>(5.99);
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
     const [confirmation, setConfirmation] = useState<boolean>(false);
+    const [address, setAddress] = useState<UserAddress>(
+        !account
+            ? {
+                  addr1: "",
+                  addr2: "",
+                  city: "",
+                  state: "",
+                  zip: ""
+              }
+            : account.addresses[0]
+    );
+    const [payment, setPayment] = useState<UserPayment>(
+        !account
+            ? {
+                  cardholderName: "",
+                  cardNumber: "",
+                  expiration: new Date(),
+                  cvv: "",
+                  zip: ""
+              }
+            : account.payments[0]
+    );
     useEffect(() => calculateTotal(), [cart, shippingPrice]);
 
     const navigate = useNavigate();
@@ -33,7 +60,7 @@ export const CartPage = (): JSX.Element => {
 
     const submitOrder = () => {
         setConfirmation(false);
-        placeOrder(user);
+        placeOrder(user, address, payment);
         setOrderComplete(true);
         setTimeout(
             () =>
@@ -77,12 +104,20 @@ export const CartPage = (): JSX.Element => {
                                 <ShippingForm
                                     shippingPrice={shippingPrice}
                                     setShippingPrice={setShippingPrice}
+                                    address={address}
+                                    setAddress={setAddress}
                                 />
                             </div>
                             <Button
                                 variant="success"
                                 size="lg"
-                                disabled={cart.items.length === 0}
+                                disabled={
+                                    cart.items.length === 0 ||
+                                    address.addr1 === "" ||
+                                    address.city === "" ||
+                                    address.state === "" ||
+                                    address.zip === ""
+                                }
                                 onClick={() => setConfirmation(true)}
                             >
                                 Payment »
@@ -95,6 +130,8 @@ export const CartPage = (): JSX.Element => {
                     confirmation={confirmation}
                     setConfirmation={setConfirmation}
                     submitOrder={submitOrder}
+                    payment={payment}
+                    setPayment={setPayment}
                 />
             </Container>
         </Container>

@@ -37,9 +37,12 @@ export function CatalogComponent({
     }
     function mapOptions() {
         const options: JSX.Element[] = [];
-        Object.entries(product.data.variants).forEach(([key]) => {
+        Object.entries(product.data.variants).forEach(([key], index) => {
             options.push(
-                <div style={{ marginLeft: "5px", marginTop: "10px" }}>
+                <div
+                    style={{ marginLeft: "5px", marginTop: "10px" }}
+                    key={index}
+                >
                     {[key]}
                     <Form.Select
                         style={{ width: "250px" }}
@@ -62,11 +65,13 @@ export function CatalogComponent({
                             );
                         }}
                     >
-                        {product.data.variants[key].map((option: string) => (
-                            <option key={option} value={option}>
-                                {option}
-                            </option>
-                        ))}
+                        {product.data.variants[key].map(
+                            (option: string, index) => (
+                                <option key={index} value={option}>
+                                    {option}
+                                </option>
+                            )
+                        )}
                     </Form.Select>
                     <p></p>
                 </div>

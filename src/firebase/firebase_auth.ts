@@ -31,8 +31,24 @@ function getDefaultAccountPrivilege(): UserAccountPrivilege {
 
 function getDefaultAccount(): UserAccount {
     return {
-        addresses: [],
-        payments: []
+        addresses: [
+            {
+                addr1: "",
+                addr2: "",
+                city: "",
+                state: "",
+                zip: ""
+            }
+        ],
+        payments: [
+            {
+                cardholderName: "",
+                cardNumber: "",
+                expiration: new Date(),
+                cvv: "",
+                zip: ""
+            }
+        ]
     };
 }
 

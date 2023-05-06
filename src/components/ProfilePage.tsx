@@ -3,12 +3,11 @@ import React from "react";
 import { Button, Container, Form, Alert } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
-import { useAccount } from "../interface/account";
 import { useLoggedInUser } from "../firebase/firebase_auth";
 
 export const ProfilePage = (): JSX.Element => {
     const user = useLoggedInUser();
-    const account = useAccount(user);
+    //const account = useAccount(user);
     // const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     //     event.preventDefault();
 
@@ -22,7 +21,7 @@ export const ProfilePage = (): JSX.Element => {
             <Container className="h-100 side-shadow">
                 <h1 className="p-4">Your Profile</h1>
                 <hr></hr>
-                {!account ? (
+                {!user ? (
                     <Alert variant="danger">You are not logged in!</Alert>
                 ) : (
                     <Container fluid>
@@ -60,7 +59,8 @@ export const ProfilePage = (): JSX.Element => {
                                         </Col>
                                         <Col sm={6} lg={2}>
                                             <Form.Label>Expiry</Form.Label>
-                                            <Form.Control placeholder="MM/YY" />
+                                            <Form.Control placeholder="MM" />
+                                            <Form.Control placeholder="YY" />
                                         </Col>
                                         <Col sm={6} lg={2}>
                                             <Form.Label>CVV</Form.Label>
@@ -75,7 +75,7 @@ export const ProfilePage = (): JSX.Element => {
                                         controlId="formAddress"
                                     >
                                         <Form.Label>Address</Form.Label>
-                                        <Form.Control placeholder="1234 Main St" />
+                                        <Form.Control placeholder="Street Address" />
                                     </Form.Group>
 
                                     <Form.Group

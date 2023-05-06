@@ -52,6 +52,8 @@ export const AdminOrders = (): JSX.Element => {
                                     <td>{order.data.user}</td>
                                     <td>{order.data.status}</td>
                                     <td>{order.data.items[0].product.name}</td>
+                                    <td>{order.data.address.addr1}</td>
+                                    <td>{order.data.payment.cardholderName}</td>
                                 </tr>
                             );
                         })}
