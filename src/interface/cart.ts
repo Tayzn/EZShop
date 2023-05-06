@@ -198,25 +198,11 @@ export function removeFromCart(item: CartItem) {
 /**
  * Submits the cart as an order, then clears the cart.
  */
-export function placeOrder(user: User | null) {
-    //TO DO: Submit order to DB
-    //temp address & payment
-    const address: UserAddress = {
-        addr1: "1234 Main St",
-        addr2: null,
-        city: "Newark",
-        state: "Delaware",
-        zip: "12345"
-    };
-
-    const payment: UserPayment = {
-        cardholderName: "Tyler N",
-        cardNumber: "0123 4444 3333 2222",
-        expiration: new Date(),
-        cvv: "333",
-        zip: "12345"
-    };
-
+export function placeOrder(
+    user: User | null,
+    address: UserAddress,
+    payment: UserPayment
+) {
     const order: Order = {
         date: new Date(),
         items: cart.items,

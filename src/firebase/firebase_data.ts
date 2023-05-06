@@ -274,9 +274,12 @@ export class ProductData {
 export class AccountData {
     static collection = "users";
     static privilege = "privilege";
+    static account = "account";
 
     static getAccountReference(user: User): DocumentReference<UserAccount> {
-        return coerceDoc<UserAccount>(doc(db, this.collection, user.uid));
+        return coerceDoc<UserAccount>(
+            doc(db, this.collection, user.uid, this.account, this.account)
+        );
     }
 
     static getAccountPrivilegeReference(
@@ -302,11 +305,15 @@ export class AccountData {
     }
 
     static create(
+        user: User,
         account: UserAccount
     ): Promise<ReferencedObject<UserAccount>> {
         return db_Create(
-            coerce<UserAccount>(collection(db, this.collection)),
-            account
+            coerce<UserAccount>(
+                collection(db, this.collection, user.uid, this.account)
+            ),
+            account,
+            this.account
         );
     }
 

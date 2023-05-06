@@ -35,9 +35,9 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
     };
     function getSelectedOptions() {
         const options: JSX.Element[] = [];
-        Object.entries(item.variants).forEach(([value]) => {
+        Object.entries(item.variants).forEach(([value], index) => {
             options.push(
-                <Badge className="me-2" bg="secondary">
+                <Badge className="me-2" bg="secondary" key={index}>
                     {value}: {item.variants[value]}
                 </Badge>
             );

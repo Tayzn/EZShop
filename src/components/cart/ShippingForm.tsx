@@ -1,12 +1,18 @@
 import React from "react";
 import { Col, Form, Row } from "react-bootstrap";
 
+import { UserAddress } from "../../interface/account";
+
 export const ShippingForm = ({
     shippingPrice,
-    setShippingPrice
+    setShippingPrice,
+    address,
+    setAddress
 }: {
     shippingPrice: number;
     setShippingPrice: (newNumber: number) => void;
+    address: UserAddress;
+    setAddress: (newAddress: UserAddress) => void;
 }): JSX.Element => {
     return (
         <Form>
@@ -58,6 +64,33 @@ export const ShippingForm = ({
                             type="text"
                             placeholder="Street Address"
                             required
+                            value={address.addr1}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    addr1: e.target.value
+                                })
+                            }
+                        />
+                    </Col>
+                </Form.Group>
+
+                <Form.Group
+                    as={Row}
+                    controlId="formStreetAddress2"
+                    className="mb-3"
+                >
+                    <Col sm={12}>
+                        <Form.Control
+                            type="text"
+                            placeholder="Apartment"
+                            value={!address.addr2 ? "" : address.addr2}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    addr2: e.target.value
+                                })
+                            }
                         />
                     </Col>
                 </Form.Group>
@@ -71,8 +104,15 @@ export const ShippingForm = ({
                     <Col sm={12}>
                         <Form.Control
                             type="text"
-                            placeholder="Town/City"
+                            placeholder="City"
                             required
+                            value={address.city}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    city: e.target.value
+                                })
+                            }
                         />
                     </Col>
                 </Form.Group>
@@ -88,6 +128,13 @@ export const ShippingForm = ({
                             type="text"
                             placeholder="State"
                             required
+                            value={address.state}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    state: e.target.value
+                                })
+                            }
                         />
                     </Col>
                 </Form.Group>
@@ -101,23 +148,15 @@ export const ShippingForm = ({
                     <Col sm={12}>
                         <Form.Control
                             type="text"
-                            placeholder="ZIP Code"
+                            placeholder="Zip"
                             required
-                        />
-                    </Col>
-                </Form.Group>
-
-                <Form.Group
-                    as={Row}
-                    controlId="formCountry"
-                    className="mb-3"
-                    style={{ marginBottom: "0px" }}
-                >
-                    <Col sm={12}>
-                        <Form.Control
-                            type="text"
-                            placeholder="Country"
-                            required
+                            value={address.zip}
+                            onChange={(e) =>
+                                setAddress({
+                                    ...address,
+                                    zip: e.target.value
+                                })
+                            }
                         />
                     </Col>
                 </Form.Group>
