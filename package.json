@@ -10,7 +10,6 @@
         "@types/jest": "^27.4.0",
         "@types/node": "^16.11.21",
         "@types/react-dom": "^17.0.11",
-        "confetti-js": "^0.0.18",
         "firebase": "^9.19.1",
         "react": "^17.0.2",
         "react-bootstrap": "^2.1.1",
@@ -58,6 +57,7 @@
         "eslint-plugin-prettier": "^4.0.0",
         "eslint-plugin-react": "^7.28.0",
         "gh-pages": "^3.2.3",
+        "jest": "^27.5.1",
         "prettier": "2.5.1",
         "prettier-eslint": "^13.0.0"
     },
