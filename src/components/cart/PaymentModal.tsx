@@ -4,17 +4,23 @@ import { Modal, Container, Button, Form, Row, Col } from "react-bootstrap";
 import { UserPayment } from "../../interface/account";
 
 export const PaymentModal = ({
+    user,
     confirmation,
     setConfirmation,
     submitOrder,
     payment,
-    setPayment
+    setPayment,
+    savePayment,
+    setSavePayment
 }: {
+    user: boolean;
     confirmation: boolean;
     setConfirmation: (newConfirmation: boolean) => void;
     submitOrder: () => void;
     payment: UserPayment;
     setPayment: (newPayment: UserPayment) => void;
+    savePayment: boolean;
+    setSavePayment: (newSave: boolean) => void;
 }): JSX.Element => {
     return (
         <Modal
@@ -124,6 +130,20 @@ export const PaymentModal = ({
                                         })
                                     }
                                 />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                {user && (
+                                    <Form.Check
+                                        label="Save payment info for next time"
+                                        id="save-payment-info"
+                                        checked={savePayment}
+                                        onChange={(e) =>
+                                            setSavePayment(e.target.checked)
+                                        }
+                                    />
+                                )}
                             </Col>
                         </Row>
                     </Form>

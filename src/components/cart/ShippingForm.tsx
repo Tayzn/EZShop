@@ -4,19 +4,25 @@ import { Col, Form, Row } from "react-bootstrap";
 import { UserAddress } from "../../interface/account";
 
 export const ShippingForm = ({
+    user,
     shippingOption,
     setShippingOption,
     standardShippingPercent,
     expressShippingPercent,
     address,
-    setAddress
+    setAddress,
+    saveShipping,
+    setSaveShipping
 }: {
+    user: boolean;
     shippingOption: string;
     setShippingOption: (newOption: string) => void;
     standardShippingPercent: number;
     expressShippingPercent: number;
     address: UserAddress;
     setAddress: (newAddress: UserAddress) => void;
+    saveShipping: boolean;
+    setSaveShipping: (newShipping: boolean) => void;
 }): JSX.Element => {
     return (
         <Form>
@@ -161,6 +167,14 @@ export const ShippingForm = ({
                         />
                     </Col>
                 </Form.Group>
+                {user && (
+                    <Form.Check
+                        label="Save shipping info for next time"
+                        id="save-shipping-info"
+                        checked={saveShipping}
+                        onChange={(e) => setSaveShipping(e.target.checked)}
+                    />
+                )}
             </div>
         </Form>
     );

@@ -7,7 +7,7 @@ import { User } from "firebase/auth";
 
 export const AdminOrders = (): JSX.Element => {
     const [loaded, setLoaded] = useState<boolean>(false);
-    const [loadError, setLoadError] = useState<boolean>(false);
+    const [loadError, setLoadError] = useState<string>("");
 
     const user: User | null = useLoggedInUser();
 
@@ -15,9 +15,9 @@ export const AdminOrders = (): JSX.Element => {
         user,
         [],
         () => setLoaded(true),
-        () => {
+        (reason) => {
             setLoaded(true);
-            setLoadError(true);
+            setLoadError(reason);
         }
     );
 
@@ -34,7 +34,9 @@ export const AdminOrders = (): JSX.Element => {
         <Container className="mt-3">
             <h2>Orders</h2>
             {loadError ? (
-                <Alert variant="danger">Failed to load products</Alert>
+                <Alert variant="danger">
+                    Failed to load products - {loadError}
+                </Alert>
             ) : (
                 <Table striped className="mt-2">
                     <thead>
