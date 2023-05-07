@@ -20,7 +20,7 @@ export const CartPage = (): JSX.Element => {
     const cart = useCart();
     const user: User | null = useLoggedInUser();
     const account: UserAccount | null = useLoggedInUserAccount();
-    const [shippingPrice, setShippingPrice] = useState<number>(5.99);
+    const [shippingOption, setShippingOption] = useState<string>("standard");
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
     const [confirmation, setConfirmation] = useState<boolean>(false);
@@ -46,15 +46,24 @@ export const CartPage = (): JSX.Element => {
               }
             : account.payments[0]
     );
-    useEffect(() => calculateTotal(), [cart, shippingPrice]);
+
+    useEffect(() => calculateTotal(), [cart, shippingOption]);
 
     const navigate = useNavigate();
+
+    const standardShippingPercent = 5;
+    const expressShippingPercent = 8;
 
     const calculateTotal = () => {
         const cartTotal: number = cart.items.reduce(
             (sum, item) => (sum += item.product.price * item.quantity),
             0
         );
+
+        const shippingPrice =
+            shippingOption === "standard"
+                ? cartTotal * (standardShippingPercent / 100)
+                : cartTotal * (expressShippingPercent / 100);
         setTotal(cartTotal + shippingPrice);
     };
 
@@ -102,8 +111,14 @@ export const CartPage = (): JSX.Element => {
                             <hr></hr>
                             <div className="mt-4">
                                 <ShippingForm
-                                    shippingPrice={shippingPrice}
-                                    setShippingPrice={setShippingPrice}
+                                    shippingOption={shippingOption}
+                                    setShippingOption={setShippingOption}
+                                    standardShippingPercent={
+                                        standardShippingPercent
+                                    }
+                                    expressShippingPercent={
+                                        expressShippingPercent
+                                    }
                                     address={address}
                                     setAddress={setAddress}
                                 />
