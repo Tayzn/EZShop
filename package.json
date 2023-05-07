@@ -24,6 +24,7 @@
         "build": "react-scripts build",
         "test": "react-scripts test",
         "test:cov": "react-scripts test --coverage --watchAll",
+        "test:all": "react-scripts test --watchAll",
         "eject": "react-scripts eject",
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build",
