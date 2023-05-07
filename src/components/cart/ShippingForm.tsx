@@ -4,13 +4,17 @@ import { Col, Form, Row } from "react-bootstrap";
 import { UserAddress } from "../../interface/account";
 
 export const ShippingForm = ({
-    shippingPrice,
-    setShippingPrice,
+    shippingOption,
+    setShippingOption,
+    standardShippingPercent,
+    expressShippingPercent,
     address,
     setAddress
 }: {
-    shippingPrice: number;
-    setShippingPrice: (newNumber: number) => void;
+    shippingOption: string;
+    setShippingOption: (newOption: string) => void;
+    standardShippingPercent: number;
+    expressShippingPercent: number;
     address: UserAddress;
     setAddress: (newAddress: UserAddress) => void;
 }): JSX.Element => {
@@ -25,14 +29,12 @@ export const ShippingForm = ({
                     <Col>
                         <Form.Check
                             type="radio"
-                            label="Standard Delivery - $5.99"
+                            label={`Standard Delivery - ${standardShippingPercent}%`}
                             name="deliveryOption"
-                            value="5.99"
+                            value="standard"
                             id="standardDelivery"
-                            checked={shippingPrice == 5.99}
-                            onChange={(e) =>
-                                setShippingPrice(parseFloat(e.target.value))
-                            }
+                            checked={shippingOption === "standard"}
+                            onChange={(e) => setShippingOption(e.target.value)}
                         />
                     </Col>
                 </Row>
@@ -40,18 +42,17 @@ export const ShippingForm = ({
                     <Col>
                         <Form.Check
                             type="radio"
-                            label="Express Delivery - $9.99"
+                            label={`Express Delivery - ${expressShippingPercent}%`}
                             name="deliveryOption"
-                            value="9.99"
+                            value="express"
                             id="expressDelivery"
-                            checked={shippingPrice == 9.99}
-                            onChange={(e) =>
-                                setShippingPrice(parseFloat(e.target.value))
-                            }
+                            checked={shippingOption === "express"}
+                            onChange={(e) => setShippingOption(e.target.value)}
                         />
                     </Col>
                 </Row>
             </div>
+
             <div className="mb-4">
                 <h4 style={{ marginBottom: "1rem" }}>Shipping Address</h4>
                 <Form.Group
