@@ -16,15 +16,17 @@ import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "../product/ProductFormComponent";
 import { User } from "firebase/auth";
 import { useAllOrders } from "../../interface/order";
-import { useLoggedInUser } from "../../firebase/firebase_auth";
+import {
+    useLoggedInUser,
+    useLoggedInUserAccountPrivilege
+} from "../../firebase/firebase_auth";
+import { UserAccount, UserAccountPrivilege } from "./../../interface/account";
 
 export const AdminInventory = (): JSX.Element => {
     const [databaseUpdate, setDatabaseUpdate] = useState<number>(0);
     const products = useProducts([databaseUpdate], undefined, () =>
         setLoadError("Could not load inventory")
     );
-
-    const [loadError, setLoadError] = useState<string>("");
     const [showToast, setShowToast] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState<string>("");
     const [toastFail, setToastFail] = useState<boolean>(false);
@@ -36,9 +38,14 @@ export const AdminInventory = (): JSX.Element => {
 
     const user: User | null = useLoggedInUser();
 
-    useAllOrders(user, [], undefined, (reason) => {
-        setLoadError(reason);
-    });
+    const accountPrivilege: UserAccountPrivilege | null =
+        useLoggedInUserAccountPrivilege();
+
+    const [loadError, setLoadError] = useState<string>(
+        accountPrivilege && accountPrivilege.admin
+            ? ""
+            : "Insufficient Privileges"
+    );
 
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
