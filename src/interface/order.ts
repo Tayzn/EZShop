@@ -4,6 +4,7 @@
  * 4/20/2023
  */
 
+import { User } from "firebase/auth";
 import React from "react";
 import {
     OrderData,
@@ -12,9 +13,8 @@ import {
 } from "../firebase/firebase_data";
 import { UserAddress, UserId, UserPayment } from "./account";
 import { CartItem } from "./cart";
-import { User } from "firebase/auth";
 
-export type OrderStatus = "pending" | "shipped" | "complete";
+export type OrderStatus = "pending" | "cancelled" | "complete";
 
 export interface Order {
     date: Date;
