@@ -7,16 +7,16 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 PASS src/Footer.test.js
   Footer component
-    ✓ footer renders without errors (29 ms)
-    ✓ renders the NavBar (57 ms)
-    ✓ renders the NavBar with the correct text content (8 ms)
-    ✓ renders the NavBar with the correct CSS (18 ms)
-    ✓ renders the NavBar with the EZShop Text in bottom left (6 ms)
+    ✓ footer renders without errors (35 ms)
+    ✓ renders the NavBar (71 ms)
+    ✓ renders the NavBar with the correct text content (23 ms)
+    ✓ renders the NavBar with the correct CSS (24 ms)
+    ✓ renders the NavBar with the EZShop Text in bottom left (9 ms)
 
 ------------------------------|---------|----------|---------|---------|-------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------|---------|----------|---------|---------|-------------------
-All files                     |    0.28 |     0.42 |     0.3 |    0.29 |                   
+All files                     |    0.28 |     0.41 |     0.3 |    0.29 |                   
  src                          |       0 |      100 |       0 |       0 |                   
   App.tsx                     |       0 |      100 |       0 |       0 | 18                
  src/components               |    1.45 |     2.38 |    1.72 |    1.51 |                   
@@ -32,7 +32,7 @@ All files                     |    0.28 |     0.42 |     0.3 |    0.29 |
   ProfilePage.tsx             |       0 |        0 |       0 |       0 | 19-289            
   SearchBar.tsx               |       0 |      100 |       0 |       0 | 10-13             
  src/components/admin         |       0 |        0 |       0 |       0 |                   
-  AdminInventory.tsx          |       0 |        0 |       0 |       0 | 18-166            
+  AdminInventory.tsx          |       0 |        0 |       0 |       0 | 20-183            
   AdminOrders.tsx             |       0 |        0 |       0 |       0 | 9-150             
   AdminPage.tsx               |       0 |        0 |       0 |       0 | 11-33             
   AdminUsers.tsx              |       0 |      100 |       0 |       0 | 5-6               
@@ -61,5 +61,5 @@ All files                     |    0.28 |     0.42 |     0.3 |    0.29 |
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        4.467 s
+Time:        6.087 s
 Ran all test suites.
