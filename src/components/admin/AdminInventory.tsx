@@ -14,12 +14,7 @@ import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
 import { Product, useProducts } from "../../interface/product";
 import { DocumentReference } from "firebase/firestore";
 import { ProductFormComponent } from "../product/ProductFormComponent";
-import { User } from "firebase/auth";
-import { useAllOrders } from "../../interface/order";
-import {
-    useLoggedInUser,
-    useLoggedInUserAccountPrivilege
-} from "../../firebase/firebase_auth";
+import { useLoggedInUserAccountPrivilege } from "../../firebase/firebase_auth";
 import { UserAccountPrivilege } from "./../../interface/account";
 
 export const AdminInventory = (): JSX.Element => {
@@ -35,8 +30,6 @@ export const AdminInventory = (): JSX.Element => {
     const [newItem, setNewItem] = useState<boolean>(false);
 
     const updateProductDisplay = () => setDatabaseUpdate(databaseUpdate + 1);
-
-    const user: User | null = useLoggedInUser();
 
     const accountPrivilege: UserAccountPrivilege | null =
         useLoggedInUserAccountPrivilege();
