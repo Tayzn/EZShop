@@ -20,7 +20,7 @@ import {
     useLoggedInUser,
     useLoggedInUserAccountPrivilege
 } from "../../firebase/firebase_auth";
-import { UserAccount, UserAccountPrivilege } from "./../../interface/account";
+import { UserAccountPrivilege } from "./../../interface/account";
 
 export const AdminInventory = (): JSX.Element => {
     const [databaseUpdate, setDatabaseUpdate] = useState<number>(0);
