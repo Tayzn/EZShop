@@ -64,12 +64,17 @@ export const ViewPayment = ({
                                     type="text"
                                     value={
                                         payment.expiration instanceof Timestamp
-                                            ? `${payment.expiration
-                                                  .toDate()
-                                                  .getMonth()}/${payment.expiration
+                                            ? `${
+                                                  payment.expiration
+                                                      .toDate()
+                                                      .getMonth() + 1
+                                              }/${payment.expiration
                                                   .toDate()
                                                   .getFullYear()}`
-                                            : `${payment.expiration.getMonth()}/${payment.expiration.getFullYear()}`
+                                            : `${
+                                                  payment.expiration.getMonth() +
+                                                  1
+                                              }/${payment.expiration.getFullYear()}`
                                     }
                                     readOnly
                                 />
