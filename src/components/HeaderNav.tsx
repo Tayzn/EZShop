@@ -1,11 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Button, Nav } from "react-bootstrap";
 import Navbar from "react-bootstrap/Navbar";
-import { AuthComponent } from "./AuthComponent";
 import { useCart } from "../interface/cart";
+import { AuthComponent } from "./AuthComponent";
+
+import {
+    fetchUserAccountPrivilegeOrDefault,
+    useLoggedInUser
+} from "../firebase/firebase_auth";
 
 export const HeaderNav = (): JSX.Element => {
     const cart = useCart();
+    const [role, setRole] = useState<string>("user");
+    const user = useLoggedInUser();
+
+    if (user) {
+        fetchUserAccountPrivilegeOrDefault(user).then((privilege) => {
+            if (privilege && privilege.admin) {
+                setRole("admin");
+            } else {
+                setRole("user");
+            }
+        });
+    }
 
     return (
         <Navbar
@@ -21,7 +38,7 @@ export const HeaderNav = (): JSX.Element => {
             <Navbar.Brand href="#/">EZShop™</Navbar.Brand>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
-                <AdminLinks />
+                {role == "admin" ? <AdminLinks /> : <UserLinks />}
                 <Navbar.Collapse className="justify-content-end">
                     <AuthComponent />
                     <div style={{ marginLeft: "20px" }}></div>
@@ -56,14 +73,14 @@ const LinkUsers = (): JSX.Element => (
 );
 */
 
-// Link Bundles by Role
-// const UserLinks = (): JSX.Element => {
-//     return (
-//         <Nav className="me-auto">
-//             <LinkProducts />
-//         </Nav>
-//     );
-// };
+//Link Bundles by Role
+const UserLinks = (): JSX.Element => {
+    return (
+        <Nav className="me-auto">
+            <LinkProducts />
+        </Nav>
+    );
+};
 
 // const StockerLinks = (): JSX.Element => {
 //     return (
