@@ -1,10 +1,21 @@
 import React from "react";
 
-import { Container, Image, Col, Row, Ratio } from "react-bootstrap";
+import { Container, Image, Col, Row, Ratio, Badge } from "react-bootstrap";
 
 import { CartItem } from "../../interface/cart";
 
 export const BasicDisplayCard = ({ item }: { item: CartItem }) => {
+    function getSelectedOptions() {
+        const options: JSX.Element[] = [];
+        Object.entries(item.variants).forEach(([value], index) => {
+            options.push(
+                <Badge className="me-2" bg="secondary" key={index}>
+                    {value}: {item.variants[value]}
+                </Badge>
+            );
+        });
+        return options;
+    }
     return (
         <>
             <Container className="d-flex flex-row">
@@ -22,6 +33,9 @@ export const BasicDisplayCard = ({ item }: { item: CartItem }) => {
                     <Col className="d-flex flex-column align-items-start">
                         <Row className="mb-0 pb-0">
                             <h3 className="mb-0 pb-0">{item.product.name}</h3>
+                        </Row>
+                        <Row>
+                            <Col className="d-flex">{getSelectedOptions()}</Col>
                         </Row>
                     </Col>
                     <Col className="d-flex flex-column align-items-end">

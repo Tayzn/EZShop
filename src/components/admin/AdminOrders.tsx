@@ -3,13 +3,33 @@ import React, { useState } from "react";
 import { User } from "firebase/auth";
 import { Alert, Button, Container, Table, Badge } from "react-bootstrap";
 import { useLoggedInUser } from "../../firebase/firebase_auth";
-import { setOrderStatus, useAllOrders } from "../../interface/order";
+import {
+    setOrderStatus,
+    useAllOrders,
+    deleteOrder
+} from "../../interface/order";
 import { Timestamp } from "firebase/firestore";
+import { ViewCart } from "./ViewCart";
+import { CartItem } from "../../interface/cart";
+import {
+    UserAddress,
+    UserPayment,
+    getDefaultAddress,
+    getDefaultPayment
+} from "../../interface/account";
+import { ViewPayment } from "./ViewPayment";
+import { ViewShipping } from "./ViewShipping";
 
 export const AdminOrders = (): JSX.Element => {
     const [loaded, setLoaded] = useState<boolean>(false);
     const [loadError, setLoadError] = useState<string>("");
     const [updates, setUpdates] = useState<number>(0);
+    const [cartView, setCartView] = useState<boolean>(false);
+    const [cart, setCart] = useState<CartItem[]>([]);
+    const [paymentView, setPaymentView] = useState<boolean>(false);
+    const [payment, setPayment] = useState<UserPayment>(getDefaultPayment());
+    const [shipView, setShipView] = useState<boolean>(false);
+    const [shipping, setShipping] = useState<UserAddress>(getDefaultAddress());
 
     const user: User | null = useLoggedInUser();
 
@@ -57,8 +77,8 @@ export const AdminOrders = (): JSX.Element => {
                             <th>Order Status</th>
                             <th>Customer</th>
                             <th>Total</th>
-                            <th>Cart</th>
-                            <th>Update</th>
+                            <th>Info</th>
+                            <th>Tools</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -112,12 +132,39 @@ export const AdminOrders = (): JSX.Element => {
                                         <td>
                                             <Button
                                                 size="sm"
+                                                className="me-2"
                                                 variant="info"
                                                 onClick={() => {
-                                                    console.log("click");
+                                                    setCartView(true);
+                                                    setCart(order.data.items);
                                                 }}
                                             >
-                                                View
+                                                Cart
+                                            </Button>
+                                            <Button
+                                                size="sm"
+                                                className="me-2"
+                                                variant="info"
+                                                onClick={() => {
+                                                    setPaymentView(true);
+                                                    setPayment(
+                                                        order.data.payment
+                                                    );
+                                                }}
+                                            >
+                                                Payment
+                                            </Button>
+                                            <Button
+                                                size="sm"
+                                                variant="info"
+                                                onClick={() => {
+                                                    setShipView(true);
+                                                    setShipping(
+                                                        order.data.address
+                                                    );
+                                                }}
+                                            >
+                                                Shipping
                                             </Button>
                                         </td>
                                         <td>
@@ -137,7 +184,7 @@ export const AdminOrders = (): JSX.Element => {
                                                             );
                                                         }}
                                                     >
-                                                        Approve
+                                                        Complete
                                                     </Button>
                                                     <Button
                                                         variant="danger"
@@ -152,28 +199,64 @@ export const AdminOrders = (): JSX.Element => {
                                                             );
                                                         }}
                                                     >
-                                                        Refund
+                                                        Cancel
                                                     </Button>
                                                 </div>
                                             ) : (
-                                                <div className="d-grid gap-2">
+                                                <div>
                                                     {order.data.status ===
                                                     "complete" ? (
-                                                        <Button
-                                                            variant="success"
-                                                            size="sm"
-                                                            disabled
-                                                        >
-                                                            Approved
-                                                        </Button>
+                                                        <>
+                                                            <Button
+                                                                className="w-75 me-2"
+                                                                variant="success"
+                                                                size="sm"
+                                                                disabled
+                                                            >
+                                                                Completed
+                                                            </Button>
+                                                            <Button
+                                                                variant="danger"
+                                                                size="sm"
+                                                                onClick={() => {
+                                                                    deleteOrder(
+                                                                        order
+                                                                    );
+                                                                    setUpdates(
+                                                                        updates +
+                                                                            1
+                                                                    );
+                                                                }}
+                                                            >
+                                                                X
+                                                            </Button>
+                                                        </>
                                                     ) : (
-                                                        <Button
-                                                            variant="danger"
-                                                            size="sm"
-                                                            disabled
-                                                        >
-                                                            Refunded
-                                                        </Button>
+                                                        <>
+                                                            <Button
+                                                                className="w-75 me-2"
+                                                                variant="danger"
+                                                                size="sm"
+                                                                disabled
+                                                            >
+                                                                Cancelled
+                                                            </Button>
+                                                            <Button
+                                                                variant="danger"
+                                                                size="sm"
+                                                                onClick={() => {
+                                                                    deleteOrder(
+                                                                        order
+                                                                    );
+                                                                    setUpdates(
+                                                                        updates +
+                                                                            1
+                                                                    );
+                                                                }}
+                                                            >
+                                                                X
+                                                            </Button>
+                                                        </>
                                                     )}
                                                 </div>
                                             )}
@@ -184,6 +267,21 @@ export const AdminOrders = (): JSX.Element => {
                     </tbody>
                 </Table>
             )}
+            <ViewCart
+                cartView={cartView}
+                setCartView={setCartView}
+                cartItems={cart}
+            />
+            <ViewPayment
+                paymentView={paymentView}
+                setPaymentView={setPaymentView}
+                payment={payment}
+            />
+            <ViewShipping
+                shipView={shipView}
+                setShipView={setShipView}
+                shipping={shipping}
+            />
         </Container>
     );
 };
