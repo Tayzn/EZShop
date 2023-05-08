@@ -7,11 +7,11 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 PASS src/Footer.test.js
   Footer component
-    ✓ footer renders without errors (38 ms)
-    ✓ renders the NavBar (78 ms)
-    ✓ renders the NavBar with the correct text content (10 ms)
-    ✓ renders the NavBar with the correct CSS (23 ms)
-    ✓ renders the NavBar with the EZShop Text in bottom left (7 ms)
+    ✓ footer renders without errors (29 ms)
+    ✓ renders the NavBar (50 ms)
+    ✓ renders the NavBar with the correct text content (14 ms)
+    ✓ renders the NavBar with the correct CSS (18 ms)
+    ✓ renders the NavBar with the EZShop Text in bottom left (5 ms)
 
 ------------------------------|---------|----------|---------|---------|-------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
@@ -64,5 +64,5 @@ All files                     |    0.27 |      0.4 |    0.29 |    0.28 |
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        6.248 s
+Time:        4.702 s
 Ran all test suites.
