@@ -23,7 +23,13 @@ export const HeaderNav = (): JSX.Element => {
                 boxShadow: "0 4px 6px -6px #222"
             }}
         >
-            <Navbar.Brand href="#/">EZShop™</Navbar.Brand>
+            <a className="navbar-brand" href="#/">
+                <img
+                    src={process.env.PUBLIC_URL + "/brand.png"}
+                    height="30"
+                    alt=""
+                ></img>
+            </a>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav">
                 {admin ? <AdminLinks /> : <UserLinks />}
