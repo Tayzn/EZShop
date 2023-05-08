@@ -426,12 +426,12 @@ export class OrderData {
                                 )
                             );
                         } else {
-                            reject("Insufficient privileges");
+                            reject("Insufficient Privileges");
                         }
                     }
                 );
             } else {
-                reject("Must be logged in to list all orders");
+                reject("Insufficient Privileges");
             }
         });
     }
