@@ -35,7 +35,7 @@ export const AdminOrders = (): JSX.Element => {
             <h2>Orders</h2>
             {loadError ? (
                 <Alert variant="danger">
-                    Failed to load products - {loadError}
+                    {loadError} - Failed to load orders
                 </Alert>
             ) : (
                 <Table striped className="mt-2">
