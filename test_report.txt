@@ -7,16 +7,16 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 PASS src/Footer.test.js
   Footer component
-    ✓ footer renders without errors (29 ms)
-    ✓ renders the NavBar (50 ms)
-    ✓ renders the NavBar with the correct text content (14 ms)
-    ✓ renders the NavBar with the correct CSS (18 ms)
-    ✓ renders the NavBar with the EZShop Text in bottom left (5 ms)
+    ✓ footer renders without errors (30 ms)
+    ✓ renders the NavBar (60 ms)
+    ✓ renders the NavBar with the correct text content (9 ms)
+    ✓ renders the NavBar with the correct CSS (19 ms)
+    ✓ renders the NavBar with the EZShop Text in bottom left (6 ms)
 
 ------------------------------|---------|----------|---------|---------|-------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ------------------------------|---------|----------|---------|---------|-------------------
-All files                     |    0.27 |      0.4 |    0.29 |    0.28 |                   
+All files                     |    0.26 |     0.37 |    0.29 |    0.27 |                   
  src                          |       0 |      100 |       0 |       0 |                   
   App.tsx                     |       0 |      100 |       0 |       0 | 18                
  src/components               |    1.45 |     2.38 |    1.72 |    1.51 |                   
@@ -44,8 +44,8 @@ All files                     |    0.27 |      0.4 |    0.29 |    0.28 |
   CartItemDisplay.tsx         |       0 |        0 |       0 |       0 | 20-110            
   CartPage.tsx                |       0 |        0 |       0 |       0 | 25-132            
   OrderModal.tsx              |       0 |      100 |       0 |       0 | 5-10              
-  PaymentModal.tsx            |       0 |        0 |       0 |       0 | 6-154             
-  ShippingForm.tsx            |       0 |        0 |       0 |       0 | 6-175             
+  PaymentModal.tsx            |       0 |        0 |       0 |       0 | 5-227             
+  ShippingForm.tsx            |       0 |        0 |       0 |       0 | 17-205            
  src/components/product       |       0 |        0 |       0 |       0 |                   
   CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 14-152            
   ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 22-27             
@@ -64,5 +64,5 @@ All files                     |    0.27 |      0.4 |    0.29 |    0.28 |
 Test Suites: 1 passed, 1 total
 Tests:       5 passed, 5 total
 Snapshots:   0 total
-Time:        4.702 s
+Time:        5.147 s
 Ran all test suites.
