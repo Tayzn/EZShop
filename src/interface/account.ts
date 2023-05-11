@@ -17,6 +17,8 @@ export interface UserAccountPrivilege {
 }
 
 export interface UserAccount {
+    name: string;
+    email: string;
     addresses: UserAddress[];
     payments: UserPayment[];
 }

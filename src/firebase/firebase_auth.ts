@@ -22,21 +22,9 @@ let currentUser: User | null;
 let currentAccount: UserAccount | null;
 let currentAccountPrivilege: UserAccountPrivilege | null;
 
-function getDefaultAccountPrivilege(): UserAccountPrivilege {
-    return {
-        admin: false,
-        role: []
-    };
-}
-
-function getDefaultAccount(): UserAccount {
-    return {
-        addresses: [],
-        payments: []
-    };
-}
-
-function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
+export function fetchUserAccount(
+    user: User | null
+): Promise<UserAccount | null> {
     return user
         ? new Promise((resolve, reject) => {
               AccountData.get(AccountData.getAccountReference(user))
@@ -45,7 +33,7 @@ function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
                   })
                   .catch((reason) => {
                       if (reason === "Not found") {
-                          AccountData.create(user, getDefaultAccount())
+                          AccountData.create(user)
                               .then((account) => {
                                   console.log("New user account created");
                                   resolve(account.data);
@@ -59,7 +47,7 @@ function fetchUserAccount(user: User | null): Promise<UserAccount | null> {
         : Promise.resolve(null);
 }
 
-function fetchUserAccountPrivilege(
+export function fetchUserAccountPrivilege(
     user: User | null
 ): Promise<UserAccountPrivilege | null> {
     return user
@@ -72,10 +60,7 @@ function fetchUserAccountPrivilege(
                   })
                   .catch((reason) => {
                       if (reason === "Not found") {
-                          AccountData.createPrivilege(
-                              user,
-                              getDefaultAccountPrivilege()
-                          )
+                          AccountData.createPrivilege(user)
                               .then((privilige) => {
                                   console.log("New user privilege created");
                                   resolve(privilige.data);
@@ -89,35 +74,6 @@ function fetchUserAccountPrivilege(
         : Promise.resolve(null);
 }
 
-export function fetchUserAccountOrDefault(
-    user: User | null
-): Promise<UserAccount | null> {
-    return new Promise((resolve) => {
-        fetchUserAccount(user)
-            .then(resolve)
-            .catch((reason) => {
-                console.error("Failed to load user account: ", reason);
-                resolve(getDefaultAccount()); // TODO save default
-            });
-    });
-}
-
-export function fetchUserAccountPrivilegeOrDefault(
-    user: User | null
-): Promise<UserAccountPrivilege | null> {
-    return new Promise((resolve) => {
-        fetchUserAccountPrivilege(user)
-            .then(resolve)
-            .catch((reason) => {
-                console.error(
-                    "Failed to load user account privilege: ",
-                    reason
-                );
-                resolve(getDefaultAccountPrivilege());
-            });
-    });
-}
-
 export function auth_Initialize() {
     auth = getAuth(app);
     googleProvider = new GoogleAuthProvider();
@@ -125,10 +81,10 @@ export function auth_Initialize() {
 
     onAuthStateChanged(auth, (user) => {
         currentUser = user;
-        fetchUserAccountOrDefault(currentUser).then(
+        fetchUserAccount(currentUser).then(
             (account) => (currentAccount = account)
         );
-        fetchUserAccountPrivilegeOrDefault(currentUser).then(
+        fetchUserAccountPrivilege(currentUser).then(
             (privilege) => (currentAccountPrivilege = privilege)
         );
     });
@@ -169,7 +125,7 @@ export function useLoggedInUserAccount(): UserAccount | null {
     useEffect(
         () =>
             onAuthStateChanged(auth, (user) => {
-                fetchUserAccountOrDefault(user).then(setUserAccount);
+                fetchUserAccount(user).then(setUserAccount);
             }),
         []
     );
@@ -187,7 +143,7 @@ export function useLoggedInUserAccountPrivilege(): UserAccountPrivilege | null {
     useEffect(
         () =>
             onAuthStateChanged(auth, (user) => {
-                fetchUserAccountPrivilegeOrDefault(user).then(setUserAccount);
+                fetchUserAccountPrivilege(user).then(setUserAccount);
             }),
         []
     );
