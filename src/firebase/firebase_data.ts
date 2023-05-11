@@ -28,7 +28,7 @@ import { Cart } from "../interface/cart";
 import { User } from "firebase/auth";
 import { Order } from "../interface/order";
 import { useEffect, useState } from "react";
-import { fetchUserAccountPrivilegeOrDefault } from "./firebase_auth";
+import { fetchUserAccountPrivilege } from "./firebase_auth";
 
 export interface ReferencedObject<T> {
     data: T;
@@ -274,12 +274,9 @@ export class ProductData {
 export class AccountData {
     static collection = "users";
     static privilege = "privilege";
-    static account = "account";
 
     static getAccountReference(user: User): DocumentReference<UserAccount> {
-        return coerceDoc<UserAccount>(
-            doc(db, this.collection, user.uid, this.account, this.account)
-        );
+        return coerceDoc<UserAccount>(doc(db, this.collection, user.uid));
     }
 
     static getAccountPrivilegeReference(
@@ -304,28 +301,27 @@ export class AccountData {
         return db_Get(privilege);
     }
 
-    static create(
-        user: User,
-        account: UserAccount
-    ): Promise<ReferencedObject<UserAccount>> {
+    static create(user: User): Promise<ReferencedObject<UserAccount>> {
         return db_Create(
-            coerce<UserAccount>(
-                collection(db, this.collection, user.uid, this.account)
-            ),
-            account,
-            this.account
+            coerce<UserAccount>(collection(db, this.collection)),
+            {
+                name: user.displayName ?? user.email ?? "Unknown User",
+                email: user.email ?? "Unknown Email",
+                payments: [],
+                addresses: []
+            },
+            user.uid
         );
     }
 
     static createPrivilege(
-        user: User,
-        privilege: UserAccountPrivilege
+        user: User
     ): Promise<ReferencedObject<UserAccountPrivilege>> {
         return db_Create(
             coerce<UserAccountPrivilege>(
                 collection(db, this.collection, user.uid, this.privilege)
             ),
-            privilege,
+            { admin: false, role: [] },
             this.privilege
         );
     }
@@ -414,22 +410,18 @@ export class OrderData {
     ): Promise<ReferencedObject<Order>[]> {
         return new Promise((resolve, reject) => {
             if (currentUser) {
-                fetchUserAccountPrivilegeOrDefault(currentUser).then(
-                    (privilege) => {
-                        if (privilege && privilege.admin) {
-                            // todo role checking
-                            resolve(
-                                db_List(
-                                    coerce<Order>(
-                                        collection(db, this.collection)
-                                    )
-                                )
-                            );
-                        } else {
-                            reject("Insufficient Privileges");
-                        }
+                fetchUserAccountPrivilege(currentUser).then((privilege) => {
+                    if (privilege && privilege.admin) {
+                        // todo role checking
+                        resolve(
+                            db_List(
+                                coerce<Order>(collection(db, this.collection))
+                            )
+                        );
+                    } else {
+                        reject("Insufficient Privileges");
                     }
-                );
+                });
             } else {
                 reject("Insufficient Privileges");
             }
