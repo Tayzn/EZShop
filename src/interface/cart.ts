@@ -13,12 +13,6 @@ import { Order, createOrder } from "./order";
 import { UserAddress, UserPayment, saveAccount } from "./account";
 
 /**
- * Shared attributes for both the local and database versions of CartItem
- *
- * Not very useful on its own
- */
-
-/**
  * An item in a Cart
  */
 export interface CartItem {
@@ -87,6 +81,19 @@ let cartOwner: User | null = null;
  */
 let cart: Cart = { items: [] };
 
+function loadLocalCart(remove: boolean) {
+    const localCart = localStorage.getItem("cart");
+    if (localCart) {
+        const parsedCart = JSON.parse(localCart) as Cart;
+        parsedCart.items.forEach((item) => addToCart(item));
+        if (remove) localStorage.removeItem("cart");
+    }
+}
+
+function saveLocalCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
+
 export function initializeCart() {
     auth_HookUser((user) => {
         if (user) {
@@ -95,13 +102,17 @@ export function initializeCart() {
                     cart = newCart.data;
                     cartOwner = user;
                     cart_StateChanged();
+                    loadLocalCart(true);
                 })
-                .catch((err) => console.error("failed to load cart:", err));
-            // TODO merge/clear localstorage
+                .catch((err) => {
+                    console.error("failed to load cart:", err);
+                    loadLocalCart(false);
+                });
         } else {
             cart = { items: [] };
             cartOwner = null;
-            // TODO load localstorage
+            // load localstorage
+            loadLocalCart(false);
             cart_StateChanged();
         }
     });
@@ -239,7 +250,8 @@ export function saveCart(): Promise<void> {
                 .then(() => resolve())
                 .catch(reject);
         } else {
-            // todo save localstorage
+            // save to localstorage
+            saveLocalCart();
             resolve();
         }
     });
