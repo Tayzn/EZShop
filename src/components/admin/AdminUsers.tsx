@@ -38,6 +38,14 @@ export const AdminUsers = (): JSX.Element => {
             : "Insufficient Privileges"
     );
 
+    useEffect(() => {
+        setLoadError(
+            accountPrivilege && accountPrivilege.admin
+                ? ""
+                : "Insufficient Privileges"
+        );
+    }, [accountPrivilege]);
+
     const updateAdmins = (
         account: ReferencedObject<UserAccount>,
         email = account.data.email
