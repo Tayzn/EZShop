@@ -64,9 +64,9 @@ export function Filter({
                         ))}
                     </Form.Select>
                     <hr></hr>
-                    Price:
                     <div className="priceFilter">
-                        <Form.Group controlId="setMinPrice">
+                        <Form.Group controlId="setMinPrice" className="me-2">
+                            <Form.Label>Price Min:</Form.Label>
                             <Form.Control
                                 value={minpricePlaceHolder}
                                 style={{ width: "100px" }}
@@ -80,15 +80,8 @@ export function Filter({
                                 }
                             />
                         </Form.Group>
-                        <span
-                            style={{
-                                paddingRight: "20px",
-                                paddingLeft: "20px"
-                            }}
-                        >
-                            to
-                        </span>
                         <Form.Group controlId="setMaxPrice">
+                            <Form.Label>Price Max:</Form.Label>
                             <Form.Control
                                 type="number"
                                 style={{ width: "100px" }}
@@ -111,7 +104,7 @@ export function Filter({
                     <h1></h1>
                     <Form.Check
                         inline
-                        label="in-stock "
+                        label="In-stock "
                         style={{
                             position: "relative",
                             display: "inline-block",
@@ -128,7 +121,7 @@ export function Filter({
                     />
                     <Form.Check
                         inline
-                        label="backorder"
+                        label="Backorder"
                         style={{
                             position: "relative",
                             display: "inline-block",

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     Container,
@@ -8,7 +8,8 @@ import {
     Form,
     Button,
     Badge,
-    Ratio
+    Ratio,
+    Modal
 } from "react-bootstrap";
 
 import {
@@ -18,6 +19,8 @@ import {
 } from "../../interface/cart";
 
 export const CartItemDisplay = ({ item }: { item: CartItem }) => {
+    const [removing, setRemoving] = useState<boolean>(false);
+
     const setQuantity = (newQuantity: number) => {
         if (isNaN(newQuantity)) {
             return;
@@ -28,7 +31,7 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
         }
 
         if (newQuantity <= 0) {
-            removeFromCart(item);
+            setRemoving(true);
         } else {
             updateCartQuantity(item, newQuantity);
         }
@@ -118,6 +121,31 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                 </Col>
             </Container>
             <hr></hr>
+            <Modal show={removing} centered onHide={() => setRemoving(false)}>
+                <Modal.Header closeButton>
+                    <h3>Confirm Cart Removal</h3>
+                </Modal.Header>
+                <Modal.Body>
+                    <h6>
+                        Are you sure you want to remove {item.product.name} from
+                        your cart?
+                    </h6>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button
+                        variant="danger"
+                        onClick={() => removeFromCart(item)}
+                    >
+                        Remove
+                    </Button>
+                    <Button
+                        variant="success"
+                        onClick={() => setRemoving(false)}
+                    >
+                        Cancel
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </>
     );
 };

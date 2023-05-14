@@ -287,6 +287,14 @@ export class AccountData {
         );
     }
 
+    static getAccountPrivilegeReferenceId(
+        uid: string
+    ): DocumentReference<UserAccountPrivilege> {
+        return coerceDoc<UserAccountPrivilege>(
+            doc(db, this.collection, uid, this.privilege, this.privilege)
+        );
+    }
+
     static list(): Promise<ReferencedObject<UserAccount>[]> {
         return db_List(coerce<UserAccount>(collection(db, this.collection)));
     }
