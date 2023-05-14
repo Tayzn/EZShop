@@ -17,7 +17,6 @@ jest.mock("react-router-dom", () => ({
     useLocation: () => mockedUsedLocation
 }));
 jest.mock("../../interface/order.ts", () => ({
-    //...jest.requireActual("../../interface/order.ts"),
     __esModule: true,
     useOrder: () => ({
         data: {
