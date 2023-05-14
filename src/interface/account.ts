@@ -4,7 +4,7 @@
  * 4/8/2023
  */
 
-import { DocumentReference, Timestamp } from "firebase/firestore";
+import { Timestamp } from "firebase/firestore";
 import {
     AccountData,
     ReferencedObject,
@@ -93,20 +93,6 @@ export function isAdmin(
         AccountData.getPrivilege(privRef).then(resolve).catch(reject);
     });
 }
-
-/*
-export function isAdmin(account: ReferencedObject<UserAccount>): boolean {
-    const privRef = AccountData.getAccountPrivilegeReferenceId(
-        account.reference.id
-    );
-
-    AccountData.getPrivilege(privRef).then((priv) => {
-        return priv.data.admin;
-    });
-
-    return false;
-}
-*/
 
 export function useAccounts(
     stateDependencies?: React.DependencyList,
