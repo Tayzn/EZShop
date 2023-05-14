@@ -8,7 +8,7 @@ import { Alert } from "react-bootstrap";
 import { ReferencedObject } from "../../firebase/firebase_data";
 import { Product, useProducts } from "../../interface/product";
 import { ProductDisplayComponent } from "./ProductDisplayComponent";
-export let array = ["any"];
+export let array = ["All"];
 type propData = {
     category: string;
     isInStock: boolean;

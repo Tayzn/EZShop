@@ -219,14 +219,6 @@ export const PaymentModal = ({
                     Submit Order
                 </Button>
             </Modal.Body>
-            <Modal.Footer>
-                <Button
-                    variant="secondary"
-                    onClick={() => setConfirmation(false)}
-                >
-                    Close
-                </Button>
-            </Modal.Footer>
         </Modal>
     );
 };
