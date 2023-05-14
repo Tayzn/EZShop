@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
-import { Image, Ratio } from "react-bootstrap";
+import { Image, Ratio, Toast, ToastContainer } from "react-bootstrap";
 import { addToCart } from "../../interface/cart";
 import { ItemView } from "../product/ProductDisplayComponent";
 import { ProductVariantSelection } from "../../interface/product";
@@ -14,6 +14,7 @@ export function CatalogComponent({
         useState<ProductVariantSelection>({});
     const [quantity, setQuantity] = useState<string>("1");
     const [optionsAvailable, setOptionsAvailable] = useState<boolean>(false);
+    const [showToast, setShowToast] = useState<boolean>(false);
     useEffect(() => {
         setDefaultSelection();
     }, []);
@@ -148,13 +149,15 @@ export function CatalogComponent({
                                         width: "300px",
                                         marginLeft: "400px"
                                     }}
-                                    onClick={() =>
+                                    onClick={() => {
                                         addToCart({
                                             product: product.data,
                                             quantity: parseInt(quantity),
                                             variants: variantSelection
-                                        })
-                                    }
+                                        });
+                                        setInspectItem(false);
+                                        setShowToast(true);
+                                    }}
                                 >
                                     Add to Cart
                                 </Button>
@@ -163,6 +166,17 @@ export function CatalogComponent({
                     </Container>
                 </Modal.Body>
             </Modal>
+            <ToastContainer className="my-5 mx-2" position="top-end">
+                <Toast
+                    bg="success"
+                    onClose={() => setShowToast(false)}
+                    show={showToast}
+                    delay={3000}
+                    autohide
+                >
+                    <Toast.Body>Item added to cart!</Toast.Body>
+                </Toast>
+            </ToastContainer>
         </>
     );
 }
