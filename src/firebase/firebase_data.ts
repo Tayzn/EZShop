@@ -240,6 +240,10 @@ function db_Update<T>(
 export class ProductData {
     static collection = "items";
 
+    static getReference(productID: string): DocumentReference<Product> {
+        return coerceDoc<Product>(doc(db, this.collection, productID));
+    }
+
     static list(): Promise<ReferencedObject<Product>[]> {
         return db_List(coerce<Product>(collection(db, this.collection)));
     }
@@ -400,6 +404,10 @@ export class CartData {
  */
 export class OrderData {
     static collection = "orders";
+
+    static getReference(orderID: string): DocumentReference<Order> {
+        return coerceDoc<Order>(doc(db, this.collection, orderID));
+    }
 
     /**
      * @returns The orders for a user, or an empty array if no user

@@ -23,7 +23,7 @@ function App(): JSX.Element {
                     <Route path="/" element={<Home />} />
                     <Route path="/cart" element={<CartPage />} />
                     <Route
-                        path="/confirmation"
+                        path="/confirmation/:orderID"
                         element={<ConfirmationPage />}
                     />
                     <Route path="/profile" element={<ProfilePage />} />

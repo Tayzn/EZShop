@@ -25,14 +25,16 @@ export const BasicDisplayCard = ({ item }: { item: CartItem }) => {
                             fluid
                             className="d-flex align-items-center justify-content-center overflow-hidden"
                         >
-                            <Image fluid src={item.product.image} />
+                            <Image fluid src={item.product.data.image} />
                         </Container>
                     </Ratio>
                 </Col>
                 <Col className="d-flex flex-row mx-3 align-items-center">
                     <Col className="d-flex flex-column align-items-start">
                         <Row className="mb-0 pb-0">
-                            <h3 className="mb-0 pb-0">{item.product.name}</h3>
+                            <h3 className="mb-0 pb-0">
+                                {item.product.data.name}
+                            </h3>
                         </Row>
                         <Row>
                             <Col className="d-flex">{getSelectedOptions()}</Col>
@@ -41,10 +43,10 @@ export const BasicDisplayCard = ({ item }: { item: CartItem }) => {
                     <Col className="d-flex flex-column align-items-end">
                         <Row className="mb-auto text-end">
                             <h4 className="mb-0">
-                                ${item.product.price * item.quantity}{" "}
+                                ${item.product.data.price * item.quantity}{" "}
                             </h4>
                             <h6>
-                                ${item.product.price}/pc x{item.quantity}
+                                ${item.product.data.price}/pc x{item.quantity}
                             </h6>
                         </Row>
                     </Col>

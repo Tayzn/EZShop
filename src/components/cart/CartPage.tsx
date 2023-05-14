@@ -29,6 +29,9 @@ export const CartPage = (): JSX.Element => {
     const [shippingOption, setShippingOption] = useState<string>("standard");
     const [total, setTotal] = useState<number>(0.0);
     const [orderComplete, setOrderComplete] = useState<boolean>(false);
+    const [orderFailureReason, setOrderFailureReason] = useState<
+        string | undefined
+    >(undefined);
     const [confirmation, setConfirmation] = useState<boolean>(false);
     const [address, setAddress] = useState<UserAddress>(firstAddress(account));
     const [payment, setPayment] = useState<UserPayment>(firstPayment(account));
@@ -49,7 +52,7 @@ export const CartPage = (): JSX.Element => {
 
     const calculateTotal = () => {
         const cartTotal: number = cart.items.reduce(
-            (sum, item) => (sum += item.product.price * item.quantity),
+            (sum, item) => (sum += item.product.data.price * item.quantity),
             0
         );
 
@@ -62,15 +65,18 @@ export const CartPage = (): JSX.Element => {
 
     const submitOrder = () => {
         setConfirmation(false);
-        placeOrder(user, address, payment, saveShipping, savePayment);
-        setOrderComplete(true);
-        setTimeout(
-            () =>
-                navigate("/confirmation", {
-                    state: { cartItems: cart.items, total: total }
-                }),
-            1500
-        );
+        placeOrder(user, address, payment, saveShipping, savePayment)
+            .then((createdOrder) => {
+                setTimeout(
+                    () =>
+                        navigate(`/confirmation/${createdOrder.reference.id}`),
+                    1500
+                );
+            })
+            .catch((reason) => {
+                setOrderFailureReason(reason);
+            })
+            .finally(() => setOrderComplete(true));
     };
 
     return (
@@ -136,7 +142,11 @@ export const CartPage = (): JSX.Element => {
                         </Container>
                     </Col>
                 </Container>
-                <OrderModal orderComplete={orderComplete} />
+                <OrderModal
+                    orderComplete={orderComplete}
+                    orderFailReason={orderFailureReason}
+                    orderReset={() => setOrderComplete(false)}
+                />
                 <PaymentModal
                     user={user !== null}
                     confirmation={confirmation}
