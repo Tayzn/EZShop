@@ -223,21 +223,25 @@ export function placeOrder(
     return new Promise((resolve, reject) => {
         // Aggregate the cart into the unique types of items
 
-        const stockReduction: {
+        type ItemAggregate = {
             [key: string]: [ReferencedObject<Product>, number];
-        } = {};
+        };
 
-        cart.items.forEach((item) => {
-            // identifier for this item
-            const id = item.product.reference.path;
+        const stockReduction = cart.items.reduce(
+            (datamap: ItemAggregate, item) => {
+                // identifier for this item
+                const id = item.product.reference.path;
 
-            // if the current item isn't already mapped add it
-            if (stockReduction[id] === undefined)
-                stockReduction[id] = [item.product, 0];
+                // if the current item isn't already mapped add it
+                if (datamap[id] === undefined) datamap[id] = [item.product, 0];
 
-            // decrement the mapped items stock
-            stockReduction[id][1] += item.quantity;
-        });
+                // decrement the mapped items stock
+                datamap[id][1] += item.quantity;
+
+                return datamap;
+            },
+            {}
+        );
 
         // Validate that there is enough stock to fulfill the order
 
