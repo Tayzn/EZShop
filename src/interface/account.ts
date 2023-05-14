@@ -5,7 +5,11 @@
  */
 
 import { Timestamp } from "firebase/firestore";
-import { AccountData } from "../firebase/firebase_data";
+import {
+    AccountData,
+    ReferencedObject,
+    useDatabase
+} from "../firebase/firebase_data";
 import { User } from "firebase/auth";
 
 export type UserRole = "stocker" | "supplier";
@@ -76,6 +80,32 @@ export function firstPayment(account: UserAccount | null): UserPayment {
     }
 
     return payment;
+}
+
+export function isAdmin(
+    account: ReferencedObject<UserAccount>
+): Promise<ReferencedObject<UserAccountPrivilege>> {
+    return new Promise((resolve, reject) => {
+        const privRef = AccountData.getAccountPrivilegeReferenceId(
+            account.reference.id
+        );
+
+        AccountData.getPrivilege(privRef).then(resolve).catch(reject);
+    });
+}
+
+export function useAccounts(
+    stateDependencies?: React.DependencyList,
+    onSuccess?: () => void,
+    onError?: (reason: string) => void
+): ReferencedObject<UserAccount>[] {
+    return useDatabase(
+        () => AccountData.list(),
+        [],
+        stateDependencies,
+        onSuccess,
+        onError
+    );
 }
 
 export function saveAccount(

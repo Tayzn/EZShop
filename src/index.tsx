@@ -10,7 +10,7 @@ import { initializeFirebase } from "./firebase/firebase";
 import { HashRouter } from "react-router-dom";
 import { initializeCart } from "./interface/cart";
 
-initializeFirebase();
+initializeFirebase(true);
 initializeCart();
 
 ReactDOM.render(

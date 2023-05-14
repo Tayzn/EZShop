@@ -9,7 +9,7 @@ import { data_Initialize } from "./firebase_data";
 export let app: FirebaseApp;
 export let analytics: Analytics;
 
-export function initializeFirebase() {
+export function initializeFirebase(useAnalytics: boolean) {
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
@@ -24,7 +24,7 @@ export function initializeFirebase() {
 
     // Initialize Firebase
     app = initializeApp(firebaseConfig);
-    analytics = getAnalytics(app);
+    useAnalytics && (analytics = getAnalytics(app));
 
     auth_Initialize();
     data_Initialize();

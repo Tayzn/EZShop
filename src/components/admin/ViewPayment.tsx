@@ -15,7 +15,7 @@ export const ViewPayment = ({
     return (
         <Modal show={paymentView} centered onHide={() => setPaymentView(false)}>
             <Modal.Header>
-                <h2>Order Payment</h2>
+                <h2>Payment Info</h2>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -91,9 +91,6 @@ export const ViewPayment = ({
                     </Row>
                 </Form>
             </Modal.Body>
-            <Modal.Footer>
-                <h3>PAID</h3>
-            </Modal.Footer>
         </Modal>
     );
 };
