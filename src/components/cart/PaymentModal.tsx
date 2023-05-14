@@ -37,7 +37,7 @@ export const PaymentModal = ({
             <Modal.Body className="d-flex flex-column">
                 <Container>
                     <Form>
-                        <Row>
+                        <Row className="mb-1">
                             <Col>
                                 <Form.Label>Cardholder</Form.Label>
                                 <Form.Control
@@ -64,8 +64,6 @@ export const PaymentModal = ({
                                     hyphens.
                                 </Form.Control.Feedback>
                             </Col>
-                        </Row>
-                        <Row className="mb-3">
                             <Col>
                                 <Form.Label>Card Number</Form.Label>
                                 <Form.Control
@@ -91,7 +89,7 @@ export const PaymentModal = ({
                             </Col>
                         </Row>
                         <Row className="mb-3">
-                            <Col>
+                            <Col xs={3}>
                                 <Form.Label>CVV</Form.Label>
                                 <Form.Control
                                     placeholder="000"
@@ -114,8 +112,6 @@ export const PaymentModal = ({
                                     This must be 3 or 4 digits.
                                 </Form.Control.Feedback>
                             </Col>
-                        </Row>
-                        <Row className="mb-3">
                             <Col>
                                 <Form.Label>Expiration</Form.Label>
                                 <Container fluid className="d-flex p-0 m-0">
@@ -164,6 +160,8 @@ export const PaymentModal = ({
                                         }}
                                     />
                                 </Container>
+                            </Col>
+                            <Col xs={4}>
                                 <Form.Label>Zipcode</Form.Label>
                                 <Form.Control
                                     placeholder="Zip"
