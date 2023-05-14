@@ -106,7 +106,6 @@ export function initializeCart() {
                 })
                 .catch((err) => {
                     console.error("failed to load cart:", err);
-                    loadLocalCart(false);
                 });
         } else {
             cart = { items: [] };
