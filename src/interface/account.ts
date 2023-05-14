@@ -4,7 +4,7 @@
  * 4/8/2023
  */
 
-import { Timestamp } from "firebase/firestore";
+import { DocumentReference, Timestamp } from "firebase/firestore";
 import {
     AccountData,
     ReferencedObject,
@@ -81,6 +81,32 @@ export function firstPayment(account: UserAccount | null): UserPayment {
 
     return payment;
 }
+
+export function isAdmin(
+    account: ReferencedObject<UserAccount>
+): Promise<ReferencedObject<UserAccountPrivilege>> {
+    return new Promise((resolve, reject) => {
+        const privRef = AccountData.getAccountPrivilegeReferenceId(
+            account.reference.id
+        );
+
+        AccountData.getPrivilege(privRef).then(resolve).catch(reject);
+    });
+}
+
+/*
+export function isAdmin(account: ReferencedObject<UserAccount>): boolean {
+    const privRef = AccountData.getAccountPrivilegeReferenceId(
+        account.reference.id
+    );
+
+    AccountData.getPrivilege(privRef).then((priv) => {
+        return priv.data.admin;
+    });
+
+    return false;
+}
+*/
 
 export function useAccounts(
     stateDependencies?: React.DependencyList,
