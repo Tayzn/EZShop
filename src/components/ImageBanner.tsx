@@ -10,7 +10,7 @@ export const ImageBanner = (): JSX.Element => {
     ];
 
     const [bannerUrl, setUrl] = useState<string>(
-        "https://i.ibb.co/N67dhCz/Untitled-2.png"
+        "https://i.ibb.co/ZH5hSq6/Untitled-2.png"
     );
     const [imgIndex, setIndex] = useState<number>(0);
 
