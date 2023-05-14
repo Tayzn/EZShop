@@ -7,9 +7,432 @@ Browserslist: caniuse-lite is outdated. Please run:
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
 PASS src/components/admin/Orders.test.tsx
 PASS src/components/cart/Checkout.test.tsx
+PASS src/components/admin/Admin.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-14T19:34:32.273Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-14T20:06:43.867Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+
+      at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
+      at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
+      at Logger.Object.<anonymous>.Logger.error (node_modules/@firebase/logger/src/logger.ts:210:5)
+      at logError (node_modules/@firebase/firestore/src/util/log.ts:59:15)
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:35:3)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+
+FAIL src/components/Login.test.tsx
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+
+  ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
+    Attempted to log "[2023-05-14T20:06:45.728Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
