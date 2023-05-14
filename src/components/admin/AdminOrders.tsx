@@ -35,7 +35,7 @@ export const AdminOrders = (): JSX.Element => {
 
     const orders = useAllOrders(
         user,
-        [updates],
+        [updates, user],
         () => setLoaded(true),
         (reason) => {
             setLoaded(true);

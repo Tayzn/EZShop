@@ -3,14 +3,14 @@ import { Container, Image } from "react-bootstrap";
 
 export const ImageBanner = (): JSX.Element => {
     const imgList = [
-        "https://i.ibb.co/BKgX1tt/bannergrad.png",
+        "https://i.ibb.co/ZH5hSq6/Untitled-2.png",
         "https://i.ibb.co/rZnWCXV/Untitled-1.png",
         "https://i.ibb.co/kgLCHp3/thirdbanner.png",
         "https://i.ibb.co/wRfrX4R/fourthbanner.png"
     ];
 
     const [bannerUrl, setUrl] = useState<string>(
-        "https://i.ibb.co/BKgX1tt/bannergrad.png"
+        "https://i.ibb.co/ZH5hSq6/Untitled-2.png"
     );
     const [imgIndex, setIndex] = useState<number>(0);
 

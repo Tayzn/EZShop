@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import {
     Container,
@@ -19,10 +19,8 @@ import { UserAccountPrivilege } from "./../../interface/account";
 
 export const AdminInventory = (): JSX.Element => {
     const [databaseUpdate, setDatabaseUpdate] = useState<number>(0);
-    const products = useProducts(
-        [databaseUpdate],
-        () => setLoadError(""),
-        () => setLoadError("Could not load inventory")
+    const products = useProducts([databaseUpdate], undefined, () =>
+        setLoadError("Could not load inventory")
     );
     const [showToast, setShowToast] = useState<boolean>(false);
     const [toastMessage, setToastMessage] = useState<string>("");
@@ -41,6 +39,14 @@ export const AdminInventory = (): JSX.Element => {
             ? ""
             : "Insufficient Privileges"
     );
+
+    useEffect(() => {
+        setLoadError(
+            accountPrivilege && accountPrivilege.admin
+                ? ""
+                : "Insufficient Privileges"
+        );
+    }, [accountPrivilege]);
 
     const deleteItem = (reference: DocumentReference<Product>) => {
         ProductData.delete(reference)
