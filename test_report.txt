@@ -5,12 +5,12 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/components/admin/Orders.test.tsx
 PASS src/components/cart/Checkout.test.tsx
+PASS src/components/admin/Orders.test.tsx
 PASS src/components/admin/Admin.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-14T21:39:03.887Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T01:35:00.518Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -458,9 +458,24 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
+  ● Login Tests › Authentication popup can be rendered with user
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+PASS src/components/Inventory.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-14T21:39:06.178Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T01:35:02.442Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -473,10 +488,345 @@ FAIL src/components/Login.test.tsx
       at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
       at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
 
-/home/runner/work/275-Final-Project/275-Final-Project/node_modules/@firebase/firestore/dist/index.node.cjs.js:242
-    throw new Error(message);
-          ^
+FAIL src/components/cart/Cart.test.tsx
+  ● Cart Tests › Cart can be rendered with database
 
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Cart Tests › Cart can be rendered with database
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+PASS src/Footer.test.js
+------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
+File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                 
+------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
+All files                     |   31.67 |     23.8 |   23.38 |   31.96 |                                                                                   
+ src                          |     100 |      100 |     100 |     100 |                                                                                   
+  App.tsx                     |     100 |      100 |     100 |     100 |                                                                                   
+ src/components               |   42.85 |       50 |   24.59 |   42.96 |                                                                                   
+  AuthComponent.tsx           |   53.84 |    57.14 |   36.36 |   53.84 | 33-35,39-44,50-52,100-108                                                         
+  ConfirmationPage.tsx        |   55.55 |     87.5 |      20 |   55.55 | 18-19,33-42                                                                       
+  EmptyPage.tsx               |      50 |      100 |       0 |      50 | 6                                                                                 
+  Filter.tsx                  |      50 |       80 |   36.36 |      50 | 32,58,77-154                                                                      
+  Footer.tsx                  |     100 |       50 |     100 |     100 | 14                                                                                
+  HeaderNav.tsx               |   84.61 |       60 |      60 |    90.9 | 102                                                                               
+  Home.tsx                    |      50 |      100 |       0 |      50 | 8                                                                                 
+  ImageBanner.tsx             |    5.88 |        0 |       0 |    6.25 | 5-47                                                                              
+  Inventory.tsx               |     100 |      100 |     100 |     100 |                                                                                   
+  ProfilePage.tsx             |    3.44 |        0 |       0 |    3.44 | 20-289                                                                            
+  SearchBar.tsx               |   33.33 |      100 |      50 |   33.33 | 10-11                                                                             
+ src/components/admin         |   39.39 |    34.32 |   22.03 |   40.37 |                                                                                   
+  AdminInventory.tsx          |   32.14 |     37.5 |   11.11 |   32.72 | 23,52-62,67-77,81-91,109-191                                                      
+  AdminOrders.tsx             |   33.96 |       20 |   14.28 |   33.96 | 39,47-52,87-252                                                                   
+  AdminPage.tsx               |     100 |      100 |     100 |     100 |                                                                                   
+  AdminUsers.tsx              |   43.58 |     23.8 |   18.75 |   47.22 | 53-61,70-73,90-181                                                                
+  ViewCart.tsx                |      40 |      100 |      25 |      40 | 16-31                                                                             
+  ViewPayment.tsx             |   66.66 |       50 |      50 |   66.66 | 16                                                                                
+  ViewShipping.tsx            |   66.66 |       50 |      50 |   66.66 | 15                                                                                
+ src/components/cart          |   44.54 |    35.41 |   24.44 |   44.03 |                                                                                   
+  BasicDisplayCard.tsx        |     100 |      100 |     100 |     100 |                                                                                   
+  CartItemDisplay.tsx         |       5 |        0 |       0 |       5 | 22-145                                                                            
+  CartPage.tsx                |   72.97 |    44.44 |   30.76 |   72.22 | 55,67-79,90-148                                                                   
+  OrderModal.tsx              |     100 |       50 |     100 |     100 | 16                                                                                
+  PaymentModal.tsx            |   22.22 |    33.33 |      10 |   22.22 | 32-207                                                                            
+  ShippingForm.tsx            |   38.88 |    46.15 |   22.22 |   38.88 | 49,77-205                                                                         
+ src/components/product       |    4.91 |     1.69 |    2.08 |    4.95 |                                                                                   
+  CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 14-172                                                                            
+  ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 22-27                                                                             
+  ProductDisplayGrid.tsx      |   28.57 |        4 |   14.28 |   28.57 | 28-31,44-87                                                                       
+  ProductFormComponent.tsx    |       0 |        0 |       0 |       0 | 23-272                                                                            
+ src/firebase                 |   39.31 |    17.14 |   30.39 |   39.16 |                                                                                   
+  firebase.ts                 |     100 |       50 |     100 |     100 | 27                                                                                
+  firebase_auth.ts            |   48.27 |       25 |   41.46 |   47.36 | 30-43,55-70,161-162,179-239                                                       
+  firebase_data.ts            |   29.26 |       12 |   21.66 |   29.62 | 79-81,105-106,112,133-232,254-271,283-297,309-350,362-398,409-416,429-438,450-464 
+ src/interface                |   16.31 |     8.33 |   26.78 |   16.79 |                                                                                   
+  account.ts                  |   34.78 |    27.77 |      50 |   34.78 | 79,88-93,118-143                                                                  
+  cart.ts                     |   11.45 |        0 |   16.66 |   11.36 | 50,75,89-119,138-312                                                              
+  order.ts                    |      20 |      100 |   22.22 |      20 | 41-42,71-93                                                                       
+  product.ts                  |   16.66 |        0 |      40 |      20 | 33-50                                                                             
+------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
+
+Test Suites: 2 failed, 5 passed, 7 total
+Tests:       2 failed, 21 passed, 23 total
+Snapshots:   0 total
+Time:        10.273 s
+Ran all test suites.
+Jest did not exit one second after the test run has completed.
+
+This usually means that there are asynchronous operations that weren't stopped in your tests. Consider running Jest with `--detectOpenHandles` to troubleshoot this issue.
 Error: FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
     at fail (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/@firebase/firestore/src/util/assert.ts:40:9)
     at hardAssert (/home/runner/work/275-Final-Project/275-Final-Project/node_modules/@firebase/firestore/src/util/assert.ts:54:5)
