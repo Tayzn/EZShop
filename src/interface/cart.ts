@@ -25,6 +25,12 @@ export interface CartItem {
     variants: ProductVariantSelection;
 }
 
+/**
+ * An item in a Cart
+ *
+ * Similar to CartItem, but it stored the database reference as a string
+ * since LocalStorage is "cold" and the database may be different when the item is loaded
+ */
 interface LocalCartItem {
     product: Product;
     id: string;
