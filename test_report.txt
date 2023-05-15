@@ -5,12 +5,12 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/components/cart/Checkout.test.tsx
+PASS src/components/cart/Checkout.test.tsx (5.305 s)
 PASS src/components/admin/Orders.test.tsx
 PASS src/components/admin/Admin.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-15T01:35:00.518Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T16:32:59.785Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -402,80 +402,10 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
-
-    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
-
-      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
-      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
-      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
-      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
-      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
-
-  ● Login Tests › Authentication popup can be rendered with user
-
-    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
-
-      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
-      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
-      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
-      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
-      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
-
-  ● Login Tests › Authentication popup can be rendered with user
-
-    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
-
-      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
-      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
-      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
-      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
-      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
-
-  ● Login Tests › Authentication popup can be rendered with user
-
-    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
-
-      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
-      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
-      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
-      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
-      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
-
-  ● Login Tests › Authentication popup can be rendered with user
-
-    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
-
-      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
-      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
-      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
-      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
-      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
-      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
-      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
-
 PASS src/components/Inventory.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-15T01:35:02.442Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T16:33:02.011Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -773,7 +703,7 @@ PASS src/Footer.test.js
 ------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
 File                          | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s                                                                 
 ------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
-All files                     |   31.67 |     23.8 |   23.38 |   31.96 |                                                                                   
+All files                     |   31.96 |    24.21 |   23.59 |   32.25 |                                                                                   
  src                          |     100 |      100 |     100 |     100 |                                                                                   
   App.tsx                     |     100 |      100 |     100 |     100 |                                                                                   
  src/components               |   42.85 |       50 |   24.59 |   42.96 |                                                                                   
@@ -796,13 +726,13 @@ All files                     |   31.67 |     23.8 |   23.38 |   31.96 |
   ViewCart.tsx                |      40 |      100 |      25 |      40 | 16-31                                                                             
   ViewPayment.tsx             |   66.66 |       50 |      50 |   66.66 | 16                                                                                
   ViewShipping.tsx            |   66.66 |       50 |      50 |   66.66 | 15                                                                                
- src/components/cart          |   44.54 |    35.41 |   24.44 |   44.03 |                                                                                   
+ src/components/cart          |   46.08 |    37.25 |   26.08 |   45.61 |                                                                                   
   BasicDisplayCard.tsx        |     100 |      100 |     100 |     100 |                                                                                   
   CartItemDisplay.tsx         |       5 |        0 |       0 |       5 | 22-145                                                                            
   CartPage.tsx                |   72.97 |    44.44 |   30.76 |   72.22 | 55,67-79,90-148                                                                   
   OrderModal.tsx              |     100 |       50 |     100 |     100 | 16                                                                                
   PaymentModal.tsx            |   22.22 |    33.33 |      10 |   22.22 | 32-207                                                                            
-  ShippingForm.tsx            |   38.88 |    46.15 |   22.22 |   38.88 | 49,77-205                                                                         
+  ShippingForm.tsx            |   47.82 |       50 |      30 |   47.82 | 109,137-271                                                                       
  src/components/product       |    4.91 |     1.69 |    2.08 |    4.95 |                                                                                   
   CatalogComponent.tsx        |       0 |        0 |       0 |       0 | 14-172                                                                            
   ProductDisplayComponent.tsx |       0 |      100 |       0 |       0 | 22-27                                                                             
@@ -822,7 +752,7 @@ All files                     |   31.67 |     23.8 |   23.38 |   31.96 |
 Test Suites: 2 failed, 5 passed, 7 total
 Tests:       2 failed, 21 passed, 23 total
 Snapshots:   0 total
-Time:        10.273 s
+Time:        11.116 s
 Ran all test suites.
 Jest did not exit one second after the test run has completed.
 
