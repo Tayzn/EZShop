@@ -63,7 +63,7 @@ export function ProductDisplayGrid(props: propData): JSX.Element {
                     .toLowerCase()
                     .includes(props.currentSearch.toLowerCase())) &&
             (product.data.category === props.category ||
-                props.category === "any") &&
+                props.category === "All") &&
             ((props.isInStock === true && product.data.stock > 0) ||
                 (props.backorder === true && product.data.stock <= 0))
         ) {
