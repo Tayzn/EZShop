@@ -25,6 +25,13 @@ export interface CartItem {
     variants: ProductVariantSelection;
 }
 
+interface LocalCartItem {
+    product: Product;
+    id: string;
+    quantity: number;
+    variants: ProductVariantSelection;
+}
+
 /**
  * A users Cart
  */
@@ -88,14 +95,35 @@ let cart: Cart = { items: [] };
 function loadLocalCart(remove: boolean) {
     const localCart = localStorage.getItem("cart");
     if (localCart) {
-        const parsedCart = JSON.parse(localCart) as Cart;
-        parsedCart.items.forEach((item) => addToCart(item));
+        const parsedCart = (JSON.parse(localCart) as LocalCartItem[]).map(
+            (item): CartItem => ({
+                product: {
+                    data: item.product,
+                    reference: ProductData.getReference(item.id)
+                },
+                quantity: item.quantity,
+                variants: item.variants
+            })
+        );
+        parsedCart.forEach((item) => addToCart(item));
         if (remove) localStorage.removeItem("cart");
     }
 }
 
 function saveLocalCart() {
-    localStorage.setItem("cart", JSON.stringify(cart));
+    localStorage.setItem(
+        "cart",
+        JSON.stringify(
+            cart.items.map(
+                (item): LocalCartItem => ({
+                    product: item.product.data,
+                    id: item.product.reference.id,
+                    quantity: item.quantity,
+                    variants: item.variants
+                })
+            )
+        )
+    );
 }
 
 export function initializeCart() {
