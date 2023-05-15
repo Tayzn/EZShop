@@ -12,7 +12,7 @@ export function Filter({
 }: FilterProp): JSX.Element {
     //these place holder states ensure that only on the onclick event on the "Apply" button on the filter modal, will the actual state of the item filter fields change. if cancel is
     //pressed, the filter fields will remain unchanged
-    const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("any");
+    const [categoryPlaceHolder, setCategoryPlaceHolder] = useState("All");
     const [isInStockPlaceHolder, setIsInStockPlaceHolder] = useState(true);
     const [backorderPlaceHolder, setBackorderPlaceHolder] = useState(true);
     const [minpricePlaceHolder, setMinPriceFilterPlaceHolder] =

@@ -16,7 +16,7 @@ export interface FilterProp {
     setMinPriceFilter: (MinPrice: string) => void;
 }
 export const Inventory = (): JSX.Element => {
-    const [category, setCategory] = useState("any");
+    const [category, setCategory] = useState("All");
     const [isInStock, setIsInStock] = useState(true);
     const [backorder, setBackorder] = useState(true);
     const [currentSearch, setCurrentSearch] = useState("");
