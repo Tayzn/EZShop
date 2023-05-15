@@ -19,11 +19,26 @@ const generateTrackingNumber = () => {
     return trackingNumber;
 };
 
+const generateRandomDeliveryDate = (shippingMethod: string) => {
+    const currentDate = new Date();
+    const deliveryDate = new Date(currentDate);
+    const minDays = shippingMethod === "express" ? 1 : 4;
+    const maxDays = shippingMethod === "express" ? 3 : 7;
+
+    const randomDays =
+        Math.floor(Math.random() * (maxDays - minDays + 1)) + minDays;
+    deliveryDate.setDate(currentDate.getDate() + randomDays);
+
+    return deliveryDate.toLocaleDateString();
+};
+
 export const ConfirmationPage = (): JSX.Element => {
     const location = useLocation();
     const cartItems = location.state?.cartItems || [];
     const total = location.state?.total || 0;
+    const shippingMethod = location.state?.shippingMethod || "standard";
     const trackingNumber = generateTrackingNumber();
+    const deliveryDate = generateRandomDeliveryDate(shippingMethod);
 
     return (
         <Container
@@ -42,12 +57,18 @@ export const ConfirmationPage = (): JSX.Element => {
                 ))}
             </Container>
             <p
-                className="text-center text-muted mt-3"
+                className="text-center text-muted mt-1"
                 style={{ fontSize: "smaller" }}
             >
                 <strong>Tracking Number:</strong> {trackingNumber}
             </p>
-            <Button variant="success" size="lg" href="#/" className="mt-4">
+            <p
+                className="text-center text-muted mt-1"
+                style={{ fontSize: "smaller" }}
+            >
+                <strong>Expected Delivery Date:</strong> {deliveryDate}
+            </p>
+            <Button variant="success" size="lg" href="#/" className="mt-1">
                 Return Home
             </Button>
         </Container>
