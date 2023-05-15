@@ -88,7 +88,7 @@ export const PaymentModal = ({
                                 </Form.Control.Feedback>
                             </Col>
                         </Row>
-                        <Row className="mb-3">
+                        <Row className="mb-3 mt-3">
                             <Col xs={3}>
                                 <Form.Label>CVV</Form.Label>
                                 <Form.Control
