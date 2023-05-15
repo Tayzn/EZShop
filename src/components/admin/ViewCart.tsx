@@ -28,7 +28,8 @@ export const ViewCart = ({
                     {cartItems
                         .reduce(
                             (sum, item) =>
-                                (sum += item.product.price * item.quantity),
+                                (sum +=
+                                    item.product.data.price * item.quantity),
                             0
                         )
                         .toLocaleString(undefined, {

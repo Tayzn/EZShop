@@ -26,8 +26,8 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
             return;
         }
 
-        if (newQuantity > item.product.stock) {
-            newQuantity = item.product.stock;
+        if (newQuantity > item.product.data.stock) {
+            newQuantity = item.product.data.stock;
         }
 
         if (newQuantity <= 0) {
@@ -56,7 +56,7 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                             fluid
                             className="d-flex align-items-center justify-content-center overflow-hidden"
                         >
-                            <Image fluid src={item.product.image} />
+                            <Image fluid src={item.product.data.image} />
                         </Container>
                     </Ratio>
                 </Col>
@@ -66,7 +66,9 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                         className="d-flex flex-column align-items-start"
                     >
                         <Row className="mb-0 pb-0">
-                            <h3 className="mb-0 pb-0">{item.product.name}</h3>
+                            <h3 className="mb-0 pb-0">
+                                {item.product.data.name}
+                            </h3>
                         </Row>
                         <Row className="mb-auto">
                             <Container className="mb-2">
@@ -75,17 +77,17 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                         </Row>
                         <Row>
                             <Container>
-                                In Stock: {item.product.stock}
+                                In Stock: {item.product.data.stock}
                             </Container>
                         </Row>
                     </Col>
                     <Col className="d-flex flex-column align-items-end">
                         <Row className="mb-auto text-end">
                             <h4 className="mb-0">
-                                ${item.product.price * item.quantity}{" "}
+                                ${item.product.data.price * item.quantity}{" "}
                             </h4>
                             <h6>
-                                ${item.product.price}/pc x{item.quantity}
+                                ${item.product.data.price}/pc x{item.quantity}
                             </h6>
                         </Row>
                         <Row>
@@ -127,8 +129,8 @@ export const CartItemDisplay = ({ item }: { item: CartItem }) => {
                 </Modal.Header>
                 <Modal.Body>
                     <h6>
-                        Are you sure you want to remove {item.product.name} from
-                        your cart?
+                        Are you sure you want to remove {item.product.data.name}{" "}
+                        from your cart?
                     </h6>
                 </Modal.Body>
                 <Modal.Footer>

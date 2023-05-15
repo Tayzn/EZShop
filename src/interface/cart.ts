@@ -6,7 +6,11 @@
 
 import { User } from "firebase/auth";
 import { auth_HookUser } from "../firebase/firebase_auth";
-import { CartData } from "../firebase/firebase_data";
+import {
+    CartData,
+    ProductData,
+    ReferencedObject
+} from "../firebase/firebase_data";
 import { Product, ProductVariantSelection, productEquals } from "./product";
 import { useEffect, useState } from "react";
 import { Order, createOrder } from "./order";
@@ -16,7 +20,7 @@ import { UserAddress, UserPayment, saveAccount } from "./account";
  * An item in a Cart
  */
 export interface CartItem {
-    product: Product;
+    product: ReferencedObject<Product>;
     quantity: number;
     variants: ProductVariantSelection;
 }
@@ -132,7 +136,8 @@ export function getCart(): Cart {
  */
 export function addToCart(newItem: CartItem) {
     const existingItem: number = cart.items.findIndex((item) => {
-        if (!productEquals(newItem.product, item.product)) return false;
+        if (!productEquals(newItem.product.data, item.product.data))
+            return false;
         for (const key in newItem.variants) {
             if (!(key in item.variants)) return false;
             if (newItem.variants[key] !== item.variants[key]) return false;
@@ -172,8 +177,8 @@ export function updateCartQuantity(item: CartItem, quantity: number) {
         return;
     }
 
-    if (quantity > item.product.stock) {
-        quantity = item.product.stock;
+    if (quantity > item.product.data.stock) {
+        quantity = item.product.data.stock;
     }
 
     const updatedItem = {
@@ -214,26 +219,79 @@ export function placeOrder(
     payment: UserPayment,
     saveShipping: boolean,
     savePayment: boolean
-) {
-    const order: Order = {
-        date: new Date(),
-        items: cart.items,
-        user: user === null ? "anonymous" : user.uid,
-        status: "pending",
-        address: address,
-        payment: payment
-    };
-    createOrder(order);
+): Promise<ReferencedObject<Order>> {
+    return new Promise((resolve, reject) => {
+        // Aggregate the cart into the unique types of items
 
-    cart = {
-        items: []
-    };
+        type ItemAggregate = {
+            [key: string]: [ReferencedObject<Product>, number];
+        };
 
-    saveCart().then(cart_StateChanged);
+        const stockReduction = cart.items.reduce(
+            (datamap: ItemAggregate, item) => {
+                // identifier for this item
+                const id = item.product.reference.path;
 
-    if (user !== null && (saveShipping || savePayment)) {
-        saveAccount(user, address, payment, saveShipping, savePayment);
-    }
+                // if the current item isn't already mapped add it
+                if (datamap[id] === undefined) datamap[id] = [item.product, 0];
+
+                // decrement the mapped items stock
+                datamap[id][1] += item.quantity;
+
+                return datamap;
+            },
+            {}
+        );
+
+        // Validate that there is enough stock to fulfill the order
+
+        const failedValidations: string[] = [];
+
+        Object.values(stockReduction).forEach((product) => {
+            if (product[0].data.stock < product[1]) {
+                failedValidations.push(
+                    `Invalid quantity for ${product[0].data.name}: Quantity purchased (${product[1]}) cannot exceed the item stock (${product[0].data.stock})`
+                );
+            }
+        });
+
+        if (failedValidations.length > 0) {
+            // Reject if there is not enough stock
+            reject(failedValidations.join(". \n"));
+            return;
+        }
+
+        // Update the stock
+        Object.values(stockReduction).forEach((product) => {
+            product[0].data.stock -= product[1];
+            ProductData.update(product[0]);
+        });
+
+        const order: Order = {
+            date: new Date(),
+            items: cart.items,
+            user: user === null ? "anonymous" : user.uid,
+            status: "pending",
+            address: address,
+            payment: payment
+        };
+
+        createOrder(order)
+            .then((newOrder) => {
+                resolve(newOrder);
+                // Reset the cart
+                cart = {
+                    items: []
+                };
+
+                saveCart().then(cart_StateChanged);
+            })
+            .catch(reject);
+
+        if (user !== null && (saveShipping || savePayment)) {
+            saveAccount(user, address, payment, saveShipping, savePayment);
+        }
+    });
 }
 
 /**

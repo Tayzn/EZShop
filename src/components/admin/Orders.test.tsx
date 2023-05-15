@@ -7,21 +7,26 @@ import { AdminOrders } from "./AdminOrders";
 import { BasicDisplayCard } from "../cart/BasicDisplayCard";
 import { ViewPayment } from "./ViewPayment";
 import { getDefaultPayment } from "../../interface/account";
+import { Product } from "../../interface/product";
+import { ProductData, ReferencedObject } from "../../firebase/firebase_data";
 
 initializeFirebase(false);
 
-const dummyProduct = {
-    name: "Dummy",
-    category: "Dummy Category",
-    description: "Dummy Description",
-    price: 1000,
-    stock: 100,
-    variants: {
-        color: ["Red", "Blue", "Green"],
-        size: ["Small", "Medium", "Large"],
-        material: ["Cotton", "Polyester", "Nylon"]
+const dummyProduct: ReferencedObject<Product> = {
+    data: {
+        name: "Dummy",
+        category: "Dummy Category",
+        description: "Dummy Description",
+        price: 1000,
+        stock: 100,
+        variants: {
+            color: ["Red", "Blue", "Green"],
+            size: ["Small", "Medium", "Large"],
+            material: ["Cotton", "Polyester", "Nylon"]
+        },
+        image: ""
     },
-    image: ""
+    reference: ProductData.getReference("dummy")
 };
 
 describe("Order Flow Tests", () => {

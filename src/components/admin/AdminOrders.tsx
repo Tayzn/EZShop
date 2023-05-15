@@ -109,7 +109,8 @@ export const AdminOrders = (): JSX.Element => {
                                 order.data.items.map((item) => {
                                     {
                                         total +=
-                                            item.product.price * item.quantity;
+                                            item.product.data.price *
+                                            item.quantity;
                                     }
                                 });
 

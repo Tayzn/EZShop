@@ -62,12 +62,23 @@ export function useAllOrders(
     );
 }
 
-export function createOrder(order: Order): Promise<void> {
-    return new Promise((resolve, reject) => {
-        OrderData.create(order)
-            .then(() => resolve())
-            .catch(reject);
-    });
+export function useOrder(
+    orderID: string,
+    stateDependencies?: React.DependencyList,
+    onSuccess?: () => void,
+    onError?: (reason: string) => void
+) {
+    return useDatabase(
+        () => OrderData.get(OrderData.getReference(orderID)),
+        undefined,
+        stateDependencies,
+        onSuccess,
+        onError
+    );
+}
+
+export function createOrder(order: Order): Promise<ReferencedObject<Order>> {
+    return OrderData.create(order);
 }
 
 export function setOrderStatus(

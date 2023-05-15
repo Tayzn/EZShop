@@ -151,7 +151,7 @@ export function CatalogComponent({
                                     }}
                                     onClick={() => {
                                         addToCart({
-                                            product: product.data,
+                                            product: product,
                                             quantity: parseInt(quantity),
                                             variants: variantSelection
                                         });
