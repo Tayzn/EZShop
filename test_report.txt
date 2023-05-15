@@ -5,12 +5,12 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/components/cart/Checkout.test.tsx (5.305 s)
+PASS src/components/cart/Checkout.test.tsx
 PASS src/components/admin/Orders.test.tsx
 PASS src/components/admin/Admin.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-15T16:32:59.785Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T18:55:07.748Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -304,7 +304,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -318,7 +318,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -332,7 +332,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -346,7 +346,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -360,7 +360,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -374,7 +374,7 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -388,7 +388,91 @@ FAIL src/components/Login.test.tsx
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
       at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
 
-  ● Login Tests › Authentication popup can be rendered with user
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
+
+    FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
+
+      at fail (node_modules/@firebase/firestore/src/util/assert.ts:40:9)
+      at hardAssert (node_modules/@firebase/firestore/src/util/assert.ts:54:5)
+      at fromBytes (node_modules/@firebase/firestore/src/remote/serializer.ts:265:5)
+      at fromWatchChange (node_modules/@firebase/firestore/src/remote/serializer.ts:519:25)
+      at PersistentListenStream.onMessage (node_modules/@firebase/firestore/src/remote/persistent_stream.ts:642:25)
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:517:21
+      at node_modules/@firebase/firestore/src/remote/persistent_stream.ts:570:18
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:135:7
+      at node_modules/@firebase/firestore/src/util/async_queue_impl.ts:186:14
+
+  ● Login Tests › Can login or create an account
 
     FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state
 
@@ -405,7 +489,7 @@ FAIL src/components/Login.test.tsx
 PASS src/components/Inventory.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-05-15T16:33:02.011Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-05-15T18:55:09.796Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -750,9 +834,9 @@ All files                     |   31.96 |    24.21 |   23.59 |   32.25 |
 ------------------------------|---------|----------|---------|---------|-----------------------------------------------------------------------------------
 
 Test Suites: 2 failed, 5 passed, 7 total
-Tests:       2 failed, 21 passed, 23 total
+Tests:       3 failed, 20 passed, 23 total
 Snapshots:   0 total
-Time:        11.116 s
+Time:        10.345 s
 Ran all test suites.
 Jest did not exit one second after the test run has completed.
 
