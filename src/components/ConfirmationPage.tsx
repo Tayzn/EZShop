@@ -49,7 +49,7 @@ export const ConfirmationPage = (): JSX.Element => {
                 {order.data.items
                     .reduce(
                         (total: number, item: CartItem) =>
-                            total + item.product.data.price,
+                            total + item.product.data.price * item.quantity,
                         0
                     )
                     .toLocaleString(undefined, {
