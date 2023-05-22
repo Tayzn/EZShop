@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Col, Form, Row } from "react-bootstrap";
 import { UserAddress } from "../../interface/account";
 
@@ -73,6 +73,14 @@ const statePattern = new RegExp(
     "i"
 );
 
+const generateExpectedDeliveryDate = (daysToAdd: number) => {
+    const date = new Date();
+    date.setDate(date.getDate() + daysToAdd);
+    return `${date.toLocaleString("default", {
+        month: "long"
+    })} ${date.getDate()}, ${date.getFullYear()}`;
+};
+
 export const ShippingForm: React.FC<ShippingFormProps> = ({
     user,
     shippingOption,
@@ -89,6 +97,18 @@ export const ShippingForm: React.FC<ShippingFormProps> = ({
     const [cityTouched, setCityTouched] = useState(false);
     const [stateTouched, setStateTouched] = useState(false);
     const [zipTouched, setZipTouched] = useState(false);
+
+    const [standardDeliveryDate, setStandardDeliveryDate] = useState("");
+    const [expressDeliveryDate, setExpressDeliveryDate] = useState("");
+
+    useEffect(() => {
+        setStandardDeliveryDate(
+            generateExpectedDeliveryDate(Math.floor(Math.random() * 4) + 4)
+        );
+        setExpressDeliveryDate(
+            generateExpectedDeliveryDate(Math.floor(Math.random() * 3) + 1)
+        );
+    }, []);
 
     return (
         <Form>
@@ -108,6 +128,15 @@ export const ShippingForm: React.FC<ShippingFormProps> = ({
                             checked={shippingOption === "standard"}
                             onChange={(e) => setShippingOption(e.target.value)}
                         />
+                        <small
+                            className="text-muted"
+                            style={{
+                                fontFamily: "inherit",
+                                paddingLeft: "2em"
+                            }}
+                        >
+                            {"\t"}Expected by: {standardDeliveryDate}
+                        </small>
                     </Col>
                 </Row>
                 <Row>
@@ -121,9 +150,18 @@ export const ShippingForm: React.FC<ShippingFormProps> = ({
                             checked={shippingOption === "express"}
                             onChange={(e) => setShippingOption(e.target.value)}
                         />
+                        <small
+                            className="text-muted"
+                            style={{
+                                fontFamily: "inherit",
+                                paddingLeft: "2em"
+                            }}
+                        >
+                            Expected by: {expressDeliveryDate}
+                        </small>
                     </Col>
                 </Row>
-            </div>{" "}
+            </div>
             <Form.Group as={Row} controlId="formStreetAddress" className="mb-3">
                 <Col sm={12}>
                     <Form.Control
