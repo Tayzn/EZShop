@@ -13,4 +13,4 @@ Otherwise, feel free to create your own account or login with Google.
 - Run `npm start` to start the local server. May take a few minutes to load.
 
 ### Credits
-This wensite was made by: Tyler Nauta, Paul Kearney, Matt Meredith, Nick Lago, Evan Lewis, and Kay Sousa
+Tyler Nauta, Paul Kearney, Matt Meredith, Nick Lago, Evan Lewis, and Kay Sousa
