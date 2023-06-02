@@ -13,18 +13,18 @@ export const Footer = (): JSX.Element => {
             <Navbar.Collapse className="justify-content-end">
                 {window.innerWidth > 850 ? (
                     <a
-                        href="https://github.com/Tayzn/275-Final-Project/"
+                        href="https://github.com/Tayzn/EZShop/"
                         style={{ paddingRight: "10px" }}
                     >
-                        CISC275 Final Project | Team 4 : Tyler Nauta, Paul
+                        Credits : Tyler Nauta, Paul
                         Kearney, Matt Meredith, Nick Lago, Evan Lewis, Kay Sousa
                     </a>
                 ) : (
                     <a
-                        href="https://github.com/Tayzn/275-Final-Project/"
+                        href="https://github.com/Tayzn/EZShop/"
                         style={{ paddingRight: "10px" }}
                     >
-                        CISC275 Final Project | Team 4
+                        A simple web store
                     </a>
                 )}
             </Navbar.Collapse>
