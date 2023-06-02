@@ -5,12 +5,12 @@
 Browserslist: caniuse-lite is outdated. Please run:
   npx browserslist@latest --update-db
   Why you should do it regularly: https://github.com/browserslist/browserslist#browsers-data-updating
-PASS src/components/cart/Checkout.test.tsx (6.878 s)
+PASS src/components/cart/Checkout.test.tsx (5.053 s)
 PASS src/components/admin/Orders.test.tsx
 PASS src/components/admin/Admin.test.tsx
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-06-02T19:32:03.814Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-06-02T19:47:52.728Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
@@ -334,7 +334,7 @@ FAIL src/components/Login.test.tsx
 
 
   ●  Cannot log after tests are done. Did you forget to wait for something async in your test?
-    Attempted to log "[2023-06-02T19:32:05.801Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
+    Attempted to log "[2023-06-02T19:47:54.149Z]  @firebase/firestore: Firestore (9.19.1): FIRESTORE (9.19.1) INTERNAL ASSERTION FAILED: Unexpected state".
 
       at console.error (node_modules/@jest/console/build/BufferedConsole.js:163:10)
       at Logger.defaultLogHandler [as _logHandler] (node_modules/@firebase/logger/src/logger.ts:115:57)
