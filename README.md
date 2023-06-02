@@ -1,4 +1,4 @@
-# EZShop - Team 4 Final Project
+# EZShop
 Live: https://tayzn.github.io/275-Final-Project/#/
 
 ### Important!
@@ -12,9 +12,5 @@ Otherwise, feel free to create your own account or login with Google.
 - Run `npm i` to install dependencies
 - Run `npm start` to start the local server. May take a few minutes to load.
 
-### Tests
-- To view tests, follow instructions in **Local Setup** and then run `npm run test:all`
-- ![test results](https://i.ibb.co/bv35qGB/testpass.png)
-
 ### Credits
-This project was made by (Team 4) Tyler Nauta, Paul Kearney, Matt Meredith, Nick Lago, Evan Lewis, and Kay Sousa
+This wensite was made by: Tyler Nauta, Paul Kearney, Matt Meredith, Nick Lago, Evan Lewis, and Kay Sousa
